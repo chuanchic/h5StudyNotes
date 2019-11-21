@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .source {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+        .target {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+    <!--开启拖拽-->
+    <div class="source" draggable="true"></div>
+    <div class="target"></div>
+    <!--img默认可以拖拽，关闭拖拽-->
+    <img draggable="false" src="rocket.jpg">
+    <script>
+        /*
+        拖拽：
+            在html5规范中，可以给元素添加draggable="true"，来设置此元素可以拖拽
+        拖拽元素：
+            页面中设置了draggable="true"属性的元素，其中图片<img>、链接<a>默认是true
+        目标元素：
+            页面中任何一个元素都可以成为目标元素
+        事件监听：
+            ondragover：应用于目标元素，当停留在目标元素上时调用
+            ondrop：应用于目标元素，当在目标元素上松开鼠标时调用
+        */
+
+        var source = document.querySelector(".source");
+        var target = document.querySelector(".target");
+        target.addEventListener("dragover", function (e) {
+            //浏览器默认禁用了拖拽，需要阻止浏览器的默认行为
+            e.preventDefault();
+        })
+        target.addEventListener("drop", function (e) {
+            //从外界拖拽到这里的文件，默认会打开，防止文件默认被打开
+            e.preventDefault();
+            //从外界拖拽到这里的文件，可以通过下面的方式获取
+            console.log(e.dataTransfer.files);
+            //把拖拽的元素添加进来
+            target.appendChild(source);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    字面量创建对象
+    属性名 ：属性值
+      属性名类似变量名，不能是字符串
+    */
+   var stu = {
+     name : '小明',
+     age : 18,
+     children : ['大宝', '小宝'],
+     xifu : {
+       name : '大美',
+       age : 18
+     },
+     coding : function(){
+       console.log('我会敲代码');
+     }
+   }
+
+   /*
+   构造函数Object创建对象
+    上面字面量创建对象的方式，会在底层转成这种方式
+   */
+  var stu2 = new Object({
+    name : '小妹',
+    age : 18
+  });
+
+  /*
+  属性赋值
+    属性存在：修改
+    属性不存在：添加
+  */
+ stu2.name = '大妹';
+ stu2.gender = '女';
+ console.log(stu2);
+ 
+ /*
+ 属性取值
+  属性存在：具体的值
+  属性不存在：undefined
+ */
+console.log(stu2.name);
+console.log(stu2.haha);
+
+/*
+属性删除
+*/
+delete stu2.gender;
+console.log(stu2);
+
+/*
+工厂函数创建对象
+*/
+function createStu(name, age){
+  var stu = {};
+  stu.name = name;
+  stu.age = age;
+  stu.coding = function(){
+    console.log('写代码');
+  }
+  return stu;
+}
+var stu3 = createStu('lisi', 18);
+console.log(stu3);
+
+/*
+自定义构造函数创建对象
+  new做了四件事情
+    1.创建一个对象
+    2.this指向这个对象
+    3.执行构造函数
+    4.返回这个对象
+*/
+function Student(name, age){
+  this.name = name;
+  this.age = age;
+  this.coding = function(){
+    console.log('写代码');
+  }
+}
+var stu4 = new Student('wangwu', 17);
+console.log(stu4);
+
+/*
+遍历对象
+*/
+for(var key in stu4){
+  console.log(key + '=' + stu4[key]);
+}
+
+/*
+判断某个属性是不是对象的属性
+*/
+if('name' in stu4){
+  console.log('name是stu4的属性');
+}else{
+  console.log('name不是stu4的属性');
+}
+
+/*
+获取对象里的所有属性
+*/
+console.log(Object.keys(stu4));
+
+  </script>
+</body>
+</html>

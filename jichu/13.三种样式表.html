@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!-- 
+		三种样式表
+ 		内嵌式样式表：
+ 			含义：在html里嵌套一个style标签，将CSS语句放在style标签里面
+ 			控制范围：当前页面
+ 			好处：基本实现样式和结构的分离
+ 			弊端：没有完全实现样式和结构的分离
+ 		外链式样式表：
+ 			含义：单独创建一个.css结尾的文件，通过link标签载入这个文件
+ 			控制范围：整个网站
+			好处：完全实现样式和结构的分离
+			弊端：需要加载一次
+ 		行内式样式表：
+ 			含义：将CSS语句作为标签属性写入到标签内部
+ 			控制范围：当前标签
+ 			好处：权重最高
+ 			弊端：没有实现样式和结构的分离
+ 		另外：
+ 			一般JS操作CSS，都是行内式操作
+ 			行内式权重最高，而内嵌式和外链式，谁后渲染谁权重高（因为html是自上而下渲染的，写在后边的覆盖前边的）
+	 -->
+	 <!-- 内嵌式 -->
+	<style type="text/css">
+		.box {
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+		}
+	</style>
+	<!-- 外链式 -->
+	<link rel="stylesheet" type="text/css" href="13.CSS样式.css">
+</head>
+<body>
+	<div class="box">hello world</div>
+	<!-- 行内式 -->
+	<div style="width: 100px; height: 100px; background-color: yellow; color: purple;">hello world</div>
+</body>
+</html>

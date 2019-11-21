@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  /* 属性选择器：有skill属性的li元素 */
+  li[skill] {
+    background-color: pink;
+  }
+  /* 属性选择器：有skill=‘test1’的li元素 */
+  li[skill='test1'] {
+    background-color: red;
+  }
+  /* 属性选择器：有skill属性以mtest开头的li元素 */
+  li[skill^='mtest'] {
+    background-color: yellow;
+  }
+  /* 属性选择器：有skill属性以test5结尾的li元素 */
+  li[skill$='test5'] {
+    background-color: green;
+  }
+  /* 属性选择器：有skill属性包含est的li元素 */
+  li[skill*='est'] {
+    background-color: black;
+  }
+</style>
+<body>
+  <ul>
+    <li skill="test1">haha1</li>
+    <li skill="test2">haha2</li>
+    <li>haha3</li>
+    <li skill="mtest4">haha4</li>
+    <li skill="mtest5">haha5</li>
+  </ul>
+</body>
+</html>

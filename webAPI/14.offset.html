@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box1 {
+      width: 300px;
+      height: 300px;
+      border: 10px solid blue;
+      position: relative;
+    }
+    #box2 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+      margin-left: 10px;
+      margin-top: 10px;
+      left: 20px;
+      top: 20px;
+      padding: 10px;
+      border: 10px solid green;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1">
+    <div id="box2"></div>
+  </div>
+  <script>
+  /*
+  offsetParent：返回当前元素最近的定位父元素，不同于parentNode(直接父元素)
+  offsetLeft：返回距离offsetParent的左偏移量
+  offsetTop：返回距离offsetParent的上偏移量
+  offsetWidth：返回当前元素的宽
+  offsetHeight：返回当前元素的高
+  注意：
+    offset系列只能获取，不能赋值
+  */
+  var box1 = document.getElementById('box1');
+  var box2 = document.getElementById('box2');
+  console.log(box2.offsetParent);//box1
+  console.log(box2.offsetLeft);//30px，margin-left + left
+  console.log(box2.offsetTop);//30px，margin-top + top
+  console.log(box2.offsetWidth);//140px，content + padding + border
+  console.log(box2.offsetHeight);//140px，content + padding + border
+  
+  </script>
+</body>
+</html>

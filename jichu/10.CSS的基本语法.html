@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!--style标签，原则上可以放在任何位置，建议放在head标签里-->
+	<style type="text/css">
+		div {
+			color: red;
+			font-size: 24px;
+			font-weight: bold; /* 还可以取值为：100-900之间的数字 */
+			font-style: italic; /* 倾斜样式 */
+			font-family: 'microsoft yahei','宋体'; /* 设置字体，并且可以设置多个字体，用逗号分隔 */
+		}
+		span {
+			/* 
+				font的简易写法 
+				font: font-style font-weight font-size/line-height font-family;
+				至少得有font-size font-family，其他可以不写
+			*/
+			font: italic 700 24px/1.5 '宋体';
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div>hello world</div>
+	<span>hello world</span>
+</body>
+</html>

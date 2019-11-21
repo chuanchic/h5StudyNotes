@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery-1.12.4.js"></script>
+  <style>
+    #showDiv {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      display: none;
+    }
+    #animateDiv {
+      width: 100px;
+      height: 100px;
+      background-color: green;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <button id="showBtn">show动画</button>
+  <button id="hideBtn">hide动画</button>
+  <button id="toggleBtn">toggle动画</button>
+
+  <button id="slideDownBtn">slideDown动画</button>
+  <button id="slideUpBtn">slideUp动画</button>
+  <button id="slideToggleBtn">slideToggle动画</button>
+
+  <button id="fadeInBtn">fadeIn动画</button>
+  <button id="fadeOutBtn">fadeOut动画</button>
+  <button id="fadeToggleBtn">fadeToggle动画</button>
+
+  <div id="showDiv"></div>
+
+  <br>
+  <button id="animateBtn">animate动画</button>
+  <div id="animateDiv"></div>
+
+  <script>
+  /*
+  jq动画：
+    1、三组基本动画
+      1.1：显示（show）、隐藏（hide）、切换（toggle）
+      1.2：滑入（slideDown）、滑出（slideUp）、切换（slideToggle）
+      1.3：淡入（fadeIn）、淡出（fadeOut）、切换（fadeToggle）
+
+      详解1：show(speed, easing, callback)
+            hide(speed, easing, callback)
+            toggle(speed, easing, callback)
+        speed：可选
+          1.不传，没有动画效果，但是对于slide和fade系列，不传默认是normal
+          2.毫秒值，比如1000，动画在1000内执行完成
+          3.固定字符串，slow：600，normal：400，fast：200，传其他字符串，则为默认的normal
+        easing：可选，动画的效果
+          swing，默认值，荡秋千的效果，钟摆一样由慢-快-慢
+          linear，匀速的效果
+        callback：可选
+          动画执行完成之后的回调方法
+        主要修改的是元素的width，height，opacity
+
+      详解2：slideUp(speed, easing, callback)
+            slideDown(speed, easing, callback)
+            slideToggle(speed, easing, callback)
+        三个参数同上
+        主要修改的是元素的height
+
+      详解3：fadeIn(speed, easing, callback)
+            fadeOut(speed, easing, callback)
+            fadeToggle(speed, easing, callback)
+        三个参数同上
+        主要修改的是元素的
+
+    2、自定义动画
+      animate({params}, speed, easing, callback)
+        {params}：必选，要执行动画的css属性
+        speed：可选，执行动画时长，默认值normal
+        easing：可选，执行动画效果，默认swing，其他比如linear
+        callback：可选，动画执行完成后的回调
+
+    3、动画队列
+      按顺序依次执行多个动画
+      通过链式调用的方式，就能实现动画按顺序依次执行
+
+    4、停止动画
+      stop()
+        停止当前正在执行的动画，不是停止队列里所有的动画，队列里后续动画会继续执行
+      stop(clearQueue, jumpToEnd)
+        clearQueue：true，会清除动画队列，默认值false
+        jumpToEnd：true，会立马跳转到当前执行动画的最后效果，默认值false
+      使用场景一
+        每一个动画之前，调用一下stop()，保证队列里只有一个动画
+  */
+  $(function(){
+    //show动画
+    $("#showBtn").click(function(){
+      //$("#showDiv").show();//不传，直接显示，没有动画效果
+      $("#showDiv").show(1000, "linear");
+    });
+    //hide动画
+    $("#hideBtn").click(function(){
+      $("#showDiv").hide(1000, function(){
+        console.log("我是hide动画");
+      });
+    });
+    //toggle动画
+    $("#toggleBtn").click(function(){
+      $("#showDiv").toggle(1000, function(){
+        console.log("我是toggle动画");
+      });
+    });
+
+    //slideDown动画
+    $("#slideDownBtn").click(function(){
+      $("#showDiv").slideDown();//不传，就是默认动画normal
+    });
+    //slideUp动画
+    $("#slideUpBtn").click(function(){
+      $("#showDiv").slideUp();//不传，就是默认动画normal
+    });
+    //slideToggle动画
+    $("#slideToggleBtn").click(function(){
+      $("#showDiv").slideToggle();//不传，就是默认动画normal
+    });
+
+    //fadeIn动画
+    $("#fadeInBtn").click(function(){
+      $("#showDiv").fadeIn();//不传，就是默认动画normal
+    });
+    //fadeOut动画
+    $("#fadeOutBtn").click(function(){
+      $("#showDiv").fadeOut();//不传，就是默认动画normal
+    });
+    //fadeToggle动画
+    $("#fadeToggleBtn").click(function(){
+      $("#showDiv").fadeToggle();//不传，就是默认动画normal
+    });
+
+    //animate动画
+    $("#animateBtn").click(function(){
+      $("#animateDiv").animate({
+        left: 500,
+        top: 500,
+        borderRadius: 50
+      });
+    });
+  });
+
+  </script>
+</body>
+</html>

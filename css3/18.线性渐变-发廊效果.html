@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 800px;
+            height: 100px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            /*指定背景图片大小为正方形*/
+            background-size: 100px 100px;
+            /*然后让背景平铺*/
+            background-repeat: repeat;
+            /*给100px大小的正方形设置背景图*/
+            background-image: linear-gradient(
+                135deg,
+                white 0%, white 25%,
+                black 25%, black 50%,
+                white 50%, white 75%,
+                black 75%, black 100%
+            );
+            /*让背景图的X轴动起来*/
+            background-position: 0px 0px;
+            transition: all 10s linear;
+        }
+        div:hover {
+            background-position: 800px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

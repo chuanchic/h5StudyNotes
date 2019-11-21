@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div data-name="box" data-id="10" data-color="black">我是商品</div>
+    <script>
+        /*
+        html5自定义属性
+            如果将数据绑定在自定义属性中，传统做法需要通过getAttribute、setAttribute，
+            如果数据很多，就比较麻烦，html5提供的方式：dataset，可以方便的存取数据
+        dataset用法：
+            存的时候，在属性名之前加上data-
+            取的时候，通过dataset.
+            修改、添加的时候，也是通过dataset.
+        */
+        var div = document.querySelector("div");
+        console.log(div.dataset.name);//读取
+        console.log(div.dataset['name']);//读取
+        div.dataset.name = "box2";//修改
+        div.dataset.price = 99;//添加
+    </script>
+</body>
+</html>

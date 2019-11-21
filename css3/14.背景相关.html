@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .div1 {
+            width: 300px;
+            height: 200px;
+            background-repeat: no-repeat;
+            background-image: url("./test.jpg");
+            /*
+            background-size: 改变背景图片的大小
+            下面的方式可能会失真，导致图片变形或者平铺
+                方式一：写数值
+                方式二：写百分比：100%，相对于父元素的
+            不失真的方式：
+                方式三：contain，让图片等比例缩放，缺点：会存在留白(在设置no-repeat的情况下)
+                方式四：cover，也是让图片等比例缩放，会完全盖住父元素，不会留白，会裁剪
+            */
+            /*background-size: 300px 200px;*/
+            /*background-size: 100% 100%;*/
+            /*background-size: contain;*/
+            background-size: cover;
+            /* 如果裁剪的话，留中间那部分，一般配合cover使用 */
+            background-position: center center;
+        }
+        .div2 {
+            width: 300px;
+            height: 300px;
+            border: 30px dashed #000;
+            padding: 10px;
+            background-color: green;
+            box-sizing: border-box;
+            /*
+            background-clip：背景裁切，设置背景的显示范围
+            取值：
+                border-box：默认值，显示范围：border + padding + width
+                padding-box：显示范围：padding + width
+                content-box：显示范围：width
+            */
+            background-clip: content-box;
+        }
+        .div3 {
+            width: 300px;
+            height: 300px;
+            border: 30px dashed #000;
+            padding: 10px;
+            background-repeat: no-repeat;
+            background-image: url("test.jpg");
+            box-sizing: border-box;
+            /*
+            background-origin：背景显示的原点
+            取值：
+                border-box：从border的左顶点开始显示
+                padding-box：默认值，从padding的左顶点开始显示
+                content-box：从content的左顶点开始显示
+            */
+            background-origin: border-box;
+        }
+        .div4 {
+            width: 300px;
+            height: 300px;
+            border: 30px dashed #000;
+            padding: 10px;
+            box-sizing: border-box;
+            /*
+            给盒子内容添加背景图片，padding和border不能显示背景图片
+            下边两个属性一般配合使用
+            */
+            background-clip: content-box;
+            background-origin: content-box;
+        }
+        .div5 {
+            width: 1300px;
+            height: 1000px;
+            border: 1px solid #000;
+            /*
+            多重背景：
+                background可以设置多个背景，多个背景图片用逗号隔开，
+                如果要设置背景颜色，要在最后设置，而且只能设置一次。
+                如果之前已经有相关background设置，会被覆盖。
+            */
+            background: url("test.jpg") left top no-repeat,
+                        url("new.jpg") right top no-repeat,
+                        pink;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1"></div>
+    <div class="div2"></div>
+    <div class="div3"></div>
+    <div class="div4"></div>
+    <div class="div5"></div>
+</body>
+</html>

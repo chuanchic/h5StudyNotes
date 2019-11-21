@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">xml数据解析</button>
+  <script>
+  /*
+  xml：Extensible Markup Language
+  */  
+  //xml数据解析
+  var btn = document.getElementById("btn");
+  btn.onclick = function(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("get", "xxx.php");
+    xhr.send();
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          //xml格式数据需要responseXML接收，会对xml格式数据进行解析，得到一个dom对象
+          var result = xhr.responseXML;
+          //获取所有的user标签
+          var allUser = result.querySelectorAll('user');
+          //遍历所有的user标签，标签结构参考data.xml文件
+          allUser.forEach(function(v, i){//v：每一项，i；下标
+            var name = v.children[0].innerHTML;
+            var age = v.children[1].innerHTML;
+            //...
+          });
+        }
+      }
+    }
+  };
+  </script>
+</body>
+</html>

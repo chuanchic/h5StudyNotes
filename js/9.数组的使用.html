@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  /*
+  创建数组
+  */  
+  //构造函数创建
+  var arr1 = new Array();
+  var arr2 = new Array(1,2,3);
+  var arr3 = new Array(3);
+  console.log(arr1);//空数组
+  console.log(arr2);//有三个元素的数组
+  console.log(arr3);//长度为3的空数组
+  
+  //字面量创建
+  var arr4 = [1,2,3];
+  console.log(arr4);//有三个元素的数组
+  //追加元素，下标存在替换，不存在追加
+  arr4[2] = 4;//替换
+  arr4[3] = 5;//追加
+  console.log(arr4);
+  
+  </script>
+</body>
+</html>

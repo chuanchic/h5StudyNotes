@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  .outer {
+    width: 400px;
+    height: 50px;
+    border: 1px solid #000;
+    overflow: hidden;
+  }
+  .inner {
+    width: 1%;
+    height: 100%;
+    background-color: pink;
+  }
+</style>
+<body>
+
+  <!-- 发送请求，设置超时时间 -->
+  <button id="btn">发送get请求</button>
+
+  <!-- 通过button按钮提交form表单数据 -->
+  <form id="form">
+    用户名：<input type="text" name="username"><br>
+    密码：<input type="text" name="password"><br>
+    确认密码：<input type="text" name="againPassword"><br>
+    <input type="button" value="提交" id="btn2"><br>
+  </form>
+
+  <!-- 文件上传，带进度 -->
+  <input type="file" id="fileInput">
+  <div id="outer">
+    <div id="inner"></div>
+  </div>
+
+  <script>
+  /*
+  老版本的XMLHttpRequest缺点
+    1.仅支持传输文本数据，无法传输二进制文件，比如图片、视频
+    2.传输的过程中没有进度信息，只能提示是否完成
+    3.受“同源策略”的限制
+  新版本的功能
+    1.可以设置timeout超时时间
+    2.可以使用formData对象管理表单数据
+    3.允许请求不同域名下的数据，支持跨域(有兼容性问题，jsonp没有兼容性问题)
+    4.支持上传二进制文件
+    5.可以获取数据传输的进度信息
+  formData对象用于管理表单数据：
+    1.formData仅支持post请求
+    2.不需要设置请求头，浏览器会自动帮我们设置
+    3.通过 new FormData(form) 来创建对象
+      参数form：form表单元素，form表单元素中设置了name属性的值会被提交
+    4.formData对象会作为send()方法的参数发送出去
+  异步文件上传：
+    原始的文件上传需要借助表单，但是表单上传是同步的，而formData对象支持异步的文件上传
+  */
+
+  //发送get请求，设置超时时间
+  var btn = document.getElementById("btn");
+  btn.onclick = function(){
+    var xhr = new XMLHttpRequest();
+    xhr.timeout = 3000;//设置超时时间，如果3s内没有返回数据，就认为超时
+    xhr.open("get", "xxx.php");
+    xhr.send(null);
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          console.log(xhr.responseText);
+        }
+      }
+    };
+    xhr.ontimeout = function(){//如果超时就会触发
+      console.log("连接超时...");
+    };
+  };
+
+  //通过button按钮提交form表单数据
+  var btn2 = document.getElementById("btn2");
+  btn2.onclick = function(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("post", "xxx.php");
+    //使用原始的方式提交数据需要字符串拼接，比较麻烦，使用formData就简单很多
+    var form = document.getElementById("form");
+    var formData = new FormData(form);
+    formData.append("id", "111");//formData可以追加数据
+    xhr.send(formData);
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          console.log(xhr.responseText);
+        }
+      }
+    };
+  };
+
+  //文件上传，带进度
+  var fileInput = document.getElementById("fileInput");
+  var inner = document.getElementById("inner");
+  fileInput.onchange = function(){
+    var xhr = new XMLHttpRequest();
+    xhr.open("post", "xxx.php");
+    var formData = new FormData();
+    formData.append("file", fileInput.files[0]);
+    xhr.upload.onprogress = function(e){//要在send()方法之前写
+      var percent = (e.loaded / e.total * 100).toFixed(2);//保留两位小数
+      console.log(percent);
+      inner.style.width = percent + "%";
+    };
+    xhr.send(formData);
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          console.log(xhr.responseText);
+        }
+      }
+    };
+  };
+
+  </script>
+</body>
+</html>

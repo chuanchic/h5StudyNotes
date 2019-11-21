@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>表单</h1>
+	<form action="demo.php">
+		用户名：
+		<!--
+			autocomplete：自动补全，默认on，off关闭
+			autofocus：自动获取焦点
+			required：自动验证表单
+		-->
+		<input type="text" name="username" placeholder="请输入用户名" autocomplete="on" required><br>
+		密码：
+		<input type="passworld" name="password" placeholder="请输入密码" autofocus><br>
+		<!--
+			默认选中项checked：对应的值checked可以省略
+			如果想点击响应的区域是按钮+文字，用label标签包裹一下
+		-->
+		性别：
+		<label><input type="radio" name="gender" value="0" checked="checked"> 男 </label>
+		<input type="radio" name="gender" value="1"> 女 <br>
+		爱好：
+		<input type="checkbox" name="aihao" value="0" checked> 打篮球 
+		<input type="checkbox" name="aihao" value="1"> 踢足球 <br>
+		上传图片：
+		<input type="file"><br>
+		籍贯：
+		<select name="address">
+			<option value="上海">上海</option>	
+			<option value="北京" selected>北京</option>	
+			<option value="南京">南京</option>	
+		</select> <br>
+		请介绍自己，字数10-100：<br>
+		<textarea name="jieshao" cols="50" rows="10"></textarea><br>
+		<!-- 
+			button标签没有表单提交功能，submit标签有
+		-->
+		<input type="button" name="btn" value="按钮"><br>
+		<button>按钮</button><br>
+		<input type="submit">
+		</form>
+</body>
+</html>

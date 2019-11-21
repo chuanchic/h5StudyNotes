@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  /*
+  函数的静态成员：属于函数Person的属性，而不是Person对象的属性
+  函数的实例成员：在构造函数体内，通过this给Person对象添加的属性
+  */
+  function Person(name, age){
+    this.name = name;//实例成员
+    this.age = age;//实例成员
+  }
+  Person.type = 'human';//静态成员
+  Person.prototype.type2 = 'human';
+  //总结：Person对象可以访问type2，但是访问不了type
+  //因为type是Person函数(函数也是对象)的成员，但是Person函数并不在原型链上，
+  //而Person对象只能访问原型链上的属性，所以访问不了type
+
+  </script>
+</body>
+</html>

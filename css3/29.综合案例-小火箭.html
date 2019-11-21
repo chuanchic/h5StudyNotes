@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            /*添加太阳：径向渐变*/
+            background-image: radial-gradient(
+                200px at right top,
+                red, yellow, skyblue
+            );
+        }
+        img {
+            width: 100px;
+            height: 200px;
+            position: absolute;
+            left: -100px;
+            bottom: -200px;
+        }
+        body:hover img {
+            /*
+            2D转换问题
+                如果写了多个transform，后面的会覆盖前面的
+                如果先写rotate，再写translate，因为rotate会改变坐标系，所以平移的方向就不对了
+                因此如果多个转换同时存在的话，就把rotate放在最后
+            */
+            transform: translate(1600px, -950px) scale(0) rotate(45deg);
+            transition: all 5s;
+        }
+    </style>
+</head>
+<body>
+    <img src="rocket.jpg">
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">发送get请求</button>
+  <button id="btn2">发送post请求</button>
+  <script>
+  /*
+  ajax请求：
+    form表单发送请求会进行页面跳转
+    ajax发送请求则不会，通过XMLHttpRequest对象(浏览器内建对象)发送
+    发送请求基于http协议，包含请求行、请求头、请求体
+  readyState：记录了XMLHttpRequest对象的当前状态
+    0：UNSENT               open尚未调用
+    1：OPENED               open已经调用
+    2：HEADERS_RECEIVED     接收到响应头信息
+    3：LOADING              接收到响应体信息
+    4：DONE                 响应完成
+  */
+
+  //get请求
+  var btn = document.getElementById("btn");
+  btn.onclick = function(){
+    //1.创建对象
+    var xhr = new XMLHttpRequest();
+    //2.请求行：请求方式、请求地址，xhr.open(type, url, 是否异步)，默认true(异步)
+    xhr.open("get", "xxx.php?username=xx&password=123", true);
+    //3.请求头：get请求不需要请求头，按照浏览器默认就行
+    //4.请求体：get请求没有请求体，因此xhr.send(null)或者xhr.send()
+    xhr.send();
+    //5.监听readyState状态变化
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4){//响应完成
+        //响应包含：状态行、响应头、响应体
+        //1.状态行里包含状态码，状态码200说明响应成功
+        if(xhr.status === 200){
+          //2.获取响应头（了解）
+          //xhr.getAllResponseHeaders();//获取所有响应头信息
+          //xhr.getResponseHeader("content-type");//获取单个响应头信息
+          //3.获取响应体
+          var result = xhr.responseText;
+          //...
+        }else{
+          //响应失败
+        }
+      }
+    };
+  }
+
+  //post请求
+  var btn2 = document.getElementById("btn2");
+  btn2.onclick = function(){
+    //1.创建对象
+    var xhr = new XMLHttpRequest();
+    //2.请求行：请求方式、请求地址
+    xhr.open("post", "xxx.php");
+    //3.请求头：需要在请求头中设置请求体的编码方式
+    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+    //4.请求体：
+    shr.send("username=xx&password=123");
+    //5.监听readyState状态变化
+    //...
+  };
+
+  </script>
+</body>
+</html>

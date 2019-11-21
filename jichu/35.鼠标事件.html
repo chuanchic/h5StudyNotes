@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    mouseover、mouseout事件：
+      会在当前元素和其子元素上触发，即会触发多次
+      一般不使用此类事件做鼠标监听
+    mouseenter、mouseleave事件：
+      只会在当前元素上触发，只会触发一次
+      推荐使用此类事件做鼠标监听
+    */
+
+    /*鼠标滚动事件*/
+    window.addEventListener("mousewheel", function (e) {
+      if(e.wheelDelta > 0){
+        //往上滚动
+      }else{
+        //往下滚动
+      }
+    })
+  </script>
+</body>
+</html>

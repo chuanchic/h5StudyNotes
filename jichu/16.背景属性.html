@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.box {
+			width: 100px;
+			height: 100px;
+			background-color: blue;/* 背景颜色 */
+		}
+		.box2 {
+			width: 500px;
+			height: 500px;
+			background-image: url(test.jpg);/* 背景图片 */
+			background-repeat: repeat;/* 背景平铺 no-repeat repeat repeat-x repeat-y */
+			background-attachment: scroll;/* 背景滚动 scroll fixed */
+			/* 
+			背景位置
+				1、方位：left right top bottom center，注意：要写两个值，比如水平垂直居中：center center
+				2、像素：100px 100px
+				3、百分比：100% 100% 不常用
+				4、混写：100px top 有顺序要求，先是X轴方向，再是Y轴方向
+			*/
+			/*background-position: right bottom;*/
+			background-position: 100px 100px;
+			/*
+			背景的简写方式
+			background: 背景颜色 背景图片地址 背景平铺 背景滚动 背景位置;
+			*/
+			background: blue url(test.jpg) right 100px no-repeat;
+			/* 
+			img和背景图片的区别
+				img不需要写宽高就能显示出来，而背景图片默认撑不开容器，所以需要写宽高
+				一般产品插入图推荐使用img，而一些小的icon或者很少更新的图片，再或者超大的图片推荐使用背景图
+				而且背景图可以让内部的文字盖在上面，但是img不行（除非用定位实现）
+			 */
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="box">hello world</div>
+	<div class="box2">hello world</div>
+</body>
+</html>

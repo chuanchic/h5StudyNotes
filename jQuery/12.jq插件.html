@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery-1.12.4.js"></script>
+  <!-- https://github.com/jquery/juery-color -->
+  <script src="http://code.jquery.com/color/jquery.color-2.1.2.js" integrity="sha256-1Cn7TdfHiMcEbTuku97ZRSGt2b3SvZftEIn68UMgHC8=" crossorigin="anonymous"></script>
+  <script src="jquery.lazyload.js"></script>
+  <script src="jquery.my.js"></script>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-attachment: red;
+      position: relative;
+    }
+    li {
+      width: 500px;
+      height: 500px;
+      background-color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <ul>
+    <li><image class="lazy" data-original="test.jpg"></image></li>
+    <li><image class="lazy" data-original="test.jpg"></image></li>
+    <li><image class="lazy" data-original="test.jpg"></image></li>
+    <li><image class="lazy" data-original="test.jpg"></image></li>
+    <li><image class="lazy" data-original="test.jpg"></image></li>
+  </ul>
+  <script>
+  /*
+  jq插件
+    jq不可能提供所有的功能，可以通过插件扩展jq的功能
+  插件使用
+    1.先引入jq文件
+    2.再引入插件文件(顺序不能颠倒，因为插件文件依赖于jq文件)，如果有用到css的话，需要引入css
+    3.使用插件
+  懒加载插件
+    jquery.lazyload.js
+  制作自己的插件
+    给jQuery的原型添加方法即可
+    $.fn.pluginName = function(){}
+  */
+  $(function(){
+    //jq不支持颜色做动画操作，需要插件提供支持
+    $("div").animate({
+      left: 600,
+      backgroundColor: "green"
+    }, 1000)
+
+    //使用懒加载插件显示图片
+    $("img.lazy").lazyload({
+      placeholder: "haha.jpg"//配置占位图片
+    });
+    
+    //使用自己制作的插件，显示背景颜色
+    $("body").bgc("#f99");
+    
+  })
+  </script>
+</body>
+</html>

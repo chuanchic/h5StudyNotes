@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.box {
+			width: 1800px;
+			border: 1px solid #000;
+		}
+		/*
+		布局的三种基本方式：
+			1、标准流：按照标签默认的特性摆放盒子
+			2、浮动流：利用浮动摆放盒子
+			3、定位流：利用定位摆放盒子
+		*/
+		/* 
+		浮动布局的取值：
+			left：左浮动
+			right：右浮动
+			none：取消浮动
+			注意：行内块布局也能实现浮动布局的效果，但是有以下弊端：
+				1、行内块在低版本浏览器里面不支持，ie6、ie7
+				2、行内块有默认的间距
+				3、行内块里文字的对齐比较麻烦
+		*/
+		img {
+			float: left;
+		}
+		/*
+		浮动的特性：
+			1、脱标：浮动的元素会脱离标准流，不在占有标准流的位置，因此会盖住后面的兄弟元素。
+			   解决方法：让后面的兄弟元素也浮动。
+			2、不会继承父级的宽度，内容有多少就撑多大
+			3、可以直接写宽高
+			4、margin:auto对于脱标元素不起作用，因此无法让浮动元素居中
+			5、浮动的盒子一排装不下的时候会掉下来，掉下来的位置是根据上一个浮动盒子的高度
+			6、右浮动会颠倒盒子的顺序
+			7、浮动的盒子压不住文字和图片
+			8、浮动的盒子撑不开父容器
+			9、尽量在标准流的盒子里面浮动，这样即使出现问题，也只会影响这一个盒子
+		浮动的问题：
+			因为浮动的盒子撑不开父容器（一般父容器不会指定固定高度），那么父容器就会没有高度，父容器相邻的下边的容器就会有问题。
+			解决的办法：
+				1、给父容器添加高度（不推荐）
+				2、额外标签法：在浮动元素的后边添加一个块级标签，然后设置clear:both，意思是结束浮动布局（闭合浮动）。
+				   （不推荐，因为会产生一个空的盒子）
+				3、伪元素闭合浮动法：就是在当前元素（下面的box2）内容的前面或者后面追加一个标签，
+					写法：
+					::before、::after，因为是写在CSS里的，所以是由CSS渲染的，不是html渲染，不会增大页面的开销
+					特性：
+					双冒号的写法（::）在ie8里不认识，推荐单冒号的写法（:），和伪类的写法一样
+					伪元素默认是行内元素，但是可以转成块元素
+					content属性不能省略，如果没有内容，就写空
+				4、overflow: hidden也能清除浮动
+					值：
+						visible：直接显示
+						hidden：溢出部分隐藏
+						auto：自动产生滚动条，如果没有溢出，就没有滚动条
+						scroll：不管有没有溢出，都有滚动条
+					作用：
+						控制元素溢出后的显示方式
+		*/
+		.box2 {
+			width: 500px;
+			background-color: red;
+			border: 1px solid black;
+		}
+		.box3 {
+			width: 400px;
+			height: 200px;
+			background-color: purple;
+			border: 1px solid black;
+		}
+		.info {
+			width: 100px;
+			height: 100px;
+			background-color: yellow;
+			float: left;
+		}
+		/* 额外标签法 */
+		/*.clear {
+			clear: both;
+		}*/
+		/* 伪元素闭合浮动法 */
+		.clearfix:after {
+			content: '';/* 这个不能省略 */
+			clear: both;
+			display: block;/* 因为闭合浮动必须是块级元素，而伪元素默认是行内元素，所以需要转成块级元素 */
+			height: 0;
+			visibility: hidden;
+		}
+		/* 为了兼容ie6，ie7 */
+		.clearfix {
+			*zoom: 1;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div class="box">
+		<img src="images/test.jpg">爱上了附近氨基酸冷风机爱上了防腐剂爱丽丝烧腊店就分手了福建省来得及发斯蒂芬记录卡
+	</div> -->
+
+	<div class="box2 clearfix">
+		<div class="info"></div>
+		<div class="info"></div>
+		<div class="info"></div>
+		<!-- <div class="clear"></div> -->
+	</div>
+	<div class="box3"></div>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body {
+            background-color: deeppink;
+        }
+        ul {
+            width: 150px;
+            height: 150px;
+            background-color: white;
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        li {
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius: 50%;
+        }
+        ul:nth-child(1) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        ul:nth-child(2) {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        ul:nth-child(3) {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            /*设置上下间距*/
+            padding: 20px 0;
+            /*设置内减模式*/
+            box-sizing: border-box;
+        }
+        ul:nth-child(3) li:nth-child(1) {
+            align-self: flex-start;
+        }
+        ul:nth-child(3) li:nth-child(3) {
+            align-self: flex-end;
+        }
+        ul:nth-child(4) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: space-around;
+        }
+        ul:nth-child(4) li {
+            /*设置左右间距，实现一行显示两个*/
+            margin: 0 20px;
+        }
+        ul:nth-child(5) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: space-around;
+        }
+        ul:nth-child(5) li {
+            /*设置左右间距，实现一行显示两个*/
+            margin: 0 20px;
+        }
+        ul:nth-child(5) li:nth-child(3) {
+            /*设置左右间距，实现第三个单独显示在一行*/
+            margin: 0 60px;
+        }
+        ul:nth-child(6) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-content: space-around;
+        }
+        ul:nth-child(6) li {
+            /*设置左右间距，实现一行显示两个*/
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+    </ul>
+    <ul>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

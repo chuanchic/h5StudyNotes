@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* 
+    传统盒子模型：
+      盒子宽度 = width + padding + border
+      因此在改变padding或者border时需要内减
+      css3盒子模型：box-sizing: border-box;
+      盒子宽度 = width
+      如果改变了padding或者border时自动内减
+     */
+    div {
+      width: 200px;
+      height: 200px;
+      padding: 50px;
+      border: 10px solid #000;
+      background-color: gray;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+</body>
+</html>

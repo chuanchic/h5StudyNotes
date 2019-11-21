@@ -1,0 +1,30 @@
+/*
+font-family：“iconfont”; 告诉浏览器当前的字体为iconfont
+src url 引用字体文件
+format  告诉浏览器当前字体用什么格式去渲染
+*/
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1566116244579'); /* IE9 */
+  src: url('iconfont.eot?t=1566116244579#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPcAAsAAAAACCAAAAOPAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCfAqEDINCATYCJAMMCwgABCAFhG0HPxsHB8g+QDZkA7VOpESlkw4soZErF/P1f2+tC6CGCZ7/9mv3zcyaSITsWVROJ36iWIgbGiFSNdEIGULy/7WpP0CsEMkhJul8JvnJujCugGsBeOwEvPHeqa9rDTq4m71r5JkvDVQadlpaekwTPm9XuDSg7WtHdxrALMB8A2zAoco/ruLMRDpOK1zkP+4d/4UtsPkozGmtbWPRpwZYHFBAYw3rAgm4QLrAtGHsJsqDOA4B3ORJwmK0qqED7DGAcQLIiSyNgn3KhKlhCE6tvWSpQe7AhlOdW76CuOWflw9osQeFTQOmTlQ5ASXP/BozrFALXI3nALRVoIEugAGZKXWNsQpTXaxwOylrysC6nAJjSalotX88UCB2QK4XgKZoUJyQGPOgCMip9OzF9zXaDviAe+BRJqKlBlfIA9tGWwPE9YPbew/KGY78pK9e8W5/l3mMu7ywLqTj/DHyz7rtgTXyX1ytF+v6ynH34rbBs2vYU2+nAQeoawhz7r72OnM9y977UNQav2KHa45E1CxwBaRCYh8rj5Xb51aeZSxAvywefOD9fdxPs3ct1pRDGXIHigXvkJPf/iU0Dp/88m/JLyyiyQIFx77gy8qceYdq/LbQQNd+m9QEn6SQAO87IXex6r9n/ouNbsWfc/R54qf23vuYEr/Qxi5D2OTm1mxRit+O23n3Pyh1jAQsxbh6BHu4ltCQ68wwjZFlw3Ag6Wn32aMvuaHvlfRecWFQWHFJTUtxz9Jy5xQ0xi02FYrN3uRPgxEA/J/oL20B/oUB3f9Tv8Olf62cW8E/e2wAeJewz0XtqtcAcKKgtfgXilvWGFcKzNrYIizys5pFDm/JiNv18g/AF+Z7f08MiB2CUxeLoHCQA42TKmKILtjw0Ad2nAyAmw7Vqz1E4KwQ4wLabAggBLkFCj8PoAnyBjHEN7AR5w/YCYoVuJmb15Ye6iI7lnMyKsgEGptB8jgzUGQVjkF+G5EU3ShPSjmzi3CTHEWpOCWbrSYGwseYYZqU0oSgiHKmR1XCaUSnY8jImYaMC6wWwpinUtGyJ+FxpgdHRnDEKIGYgBgzAyEbxxhQ2lpwzL2/DSFR6IziNaQOfxeCM5E7R6SCSWmBVKsMrUjX0ttkkiQNQaDyKIpj9BBVooPQwRSDMJYP0iDGCRh1j4RRHiqpEW2rwvNr9M+3DXAD7tSiRIvBs8+UKWVcTfSjBjvFIJOstAkAAA==') format('woff2'),
+  url('iconfont.woff?t=1566116244579') format('woff'),
+  url('iconfont.ttf?t=1566116244579') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1566116244579#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gouwucheman:before {
+  content: "\f0178";
+}
+
+.icon-unie62d:before {
+  content: "\e6b8";
+}
+

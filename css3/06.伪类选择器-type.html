@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* 找父元素中子元素是span类型的，然后取第一个 */
+    span:nth-of-type(1) {
+      background-color: red;
+    }
+    /* 找父元素中子元素是span类型的，然后取倒数第一个 */
+    span:nth-last-of-type(1) {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <p>我是p</p>
+    <span>我是span</span>
+    <p>我是p</p>
+    <span>我是span</span>
+    <p>我是p</p>
+    <span>我是span</span>
+  </div>
+</body>
+</html>

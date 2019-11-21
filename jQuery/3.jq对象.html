@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 300px;
+      height: 300px;
+      background-color: #f99;
+      display: none;
+    }
+  </style>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+    /*
+    dom对象：通过原生js方法获取到的元素就是dom对象
+    jq对象：通过jQuery方法 $() 获取到的元素就是jq对象
+      jq对象是一个伪数组，伪数组里以下标的形式，存储着获取到的所有dom对象
+    原则上dom对象不能使用jq对象的方法，jq对象不能使用dom对象的方法
+      如果dom对象想使用jq对象的方法，需要把dom对象转成jq对象：$(dom对象)
+      如果jq对象想使用dom对象的方法，以下标的形式从伪数组里取dom对象
+    $对象：$是个函数，等价于jQuery，$(参数)，作用：参数不同，作用就不同
+      $(function(){})，作用是入口函数
+      $("div")，作用是获取页面上的div元素
+      $(document对象)，作用是转成jq对象，就可以调用jq的方法
+    */
+    $(function(){
+      $("#btn").click(function(){
+        //直接用jq对象，调用show方法
+        //$("#div").show();
+
+        //dom对象转成jq对象，调用show方法
+        var div = document.getElementById('div');
+        $(div).show();
+
+        //从jq对象里取dom对象，使用dom对象的属性
+        $("#div")[0].style.backgroundColor = "red";//方式一（推荐）
+        $("#div").get(0).style.color = "green";//方式二，底层会调用方式一
+        
+      });
+    });
+  </script>
+</head>
+<body>
+  <button id="btn">展示div</button>
+  <div id="div">hello world</div>
+  
+</body>
+</html>

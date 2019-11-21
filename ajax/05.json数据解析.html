@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <button id="btn">json数据解析</button>
+    <script>
+    /*
+    json：JavaScript Object Notation，JS对象标记
+      js对象、js数组转json字符串：JSON.stringify(obj);
+      json字符串转js对象、js数组：JSON.parse(json)
+    */  
+
+    //js对象
+    var obj = {
+      name: "张三",
+      age: 18
+    }
+
+    //json字符串
+    var json = '{"name":"张三","age":18}';
+
+    //json数据解析
+    var btn = document.getElementById("btn");
+    btn.onclick = function(){
+      var xhr = new XMLHttpRequest();
+      xhr.open("get", "xxx.php");
+      xhr.send();
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            var result = xhr.responseText;
+            var obj = JSON.parse(result);
+            console.log(obj.name);
+            console.log(obj.age);
+          }
+        }
+      }
+    };
+    </script>
+</body>
+</html>

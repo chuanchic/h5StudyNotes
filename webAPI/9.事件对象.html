@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  #box {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+  }
+  </style>
+</head>
+<body>
+  <div id="box"></div>
+  <input type="text" id="txt">
+  <script>
+    /*
+    事件对象常用属性
+    */
+    var box = document.getElementById('box');
+    var fn = function(e){
+      //事件类型（事件名）
+      console.log(e.type);
+      //事件目标（谁触发就是谁）
+      console.log(e.target);
+      //触发事件时，鼠标相对浏览器可视区的水平、垂直坐标
+      console.log(e.clientX);
+      console.log(e.clientY);
+      //触发事件时，鼠标相对整个页面的水平、垂直坐标
+      //如果页面很大有滚动条，那么鼠标相对于页面的坐标要大于相对于可视区域的坐标
+      console.log(e.pageX);
+      console.log(e.pageY);
+    };
+    box.addEventListener('mouseover', fn, false);
+
+    /*
+    键盘事件：
+      keydown：键盘按下触发，对于字母按键：不区分大小写，统一返回大写
+      keyup：键盘抬起触发
+      keypress：键盘按下触发，对于字母按键：区分大小写
+    keycode属性：
+      键盘按下的标识，标识是哪一个按键
+    */
+    var txt = document.getElementById('txt');
+    txt.onkeydown = function(e){
+      console.log('keydown:' + e.keyCode);
+    };
+    txt.onkeypress = function(e){
+      console.log('keypress:' + e.keyCode);
+    };
+  </script>
+</body>
+</html>

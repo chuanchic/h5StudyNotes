@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* 设置对象在成为输入焦点时候的样式 */
+    input:focus {
+      background-color: red;
+    }
+    ul {
+      margin: 50px;
+      border: 1px solid #000;
+    }
+    li {
+      height: 50px;
+    }
+    /* 设置不是最后一个li元素的样式 */
+    li:not(:last-child) {
+      border-bottom: 1px solid #000;
+    }
+    div {
+      width: 100px;
+      height: 100px;
+    }
+    /* 设置没有子元素的div元素的样式 */
+    div:empty {
+      background-color: green;
+    }
+    /* 设置被选中时候的样式 */
+    input[type='checkbox']:checked {
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <input>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <div></div>
+  <input type="checkbox">
+</body>
+</html>

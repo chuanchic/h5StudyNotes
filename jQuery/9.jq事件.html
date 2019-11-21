@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery-1.12.4.js"></script>
+  <style>
+  div {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+  }
+  p {
+    width: 300px;
+    height: 50px;
+    background-color: green;
+  }
+  </style>
+</head>
+<body>
+  <button id="unbindBtn">unbind解绑</button>
+  <button id="createBtn">创建p元素</button>
+  <button id="undelegateBtn">解绑委托事件</button>
+  <button id="offBtn">off解绑事件</button>
+  <div>
+    <p>这是div内的p元素</p>
+  </div>
+  <br>
+  <button id="mbtn">触发事件，以事件名的方式</button>
+  <button id="mbtn2">触发事件，以trigger的方式</button>
+  <div id="mdiv">
+    <a href="http://www.baidu.com">我是网址</a>
+  </div>
+  <script>
+    $(function(){
+      //注册事件发展历程
+
+      //1、以事件名的方式注册事件，click()、mouseenter()等
+      //缺陷：无法解绑，注册的多个都会生效
+      // $("p").click(function(){
+      //   console.log("p被点击了");//会打印
+      // })
+      // $("p").click(function(){
+      //   console.log("p被点击了2");//也会打印
+      // })
+
+      //2、bind()、unbind()
+      //可以同时绑定多个事件
+      //缺陷：不支持动态绑定，即对于动态创建的元素，无法绑定事件
+      //解决：delegate()注册委托事件，解决动态绑定的问题
+      //事件委托：把事件注册给父元素，让子元素去触发，原理：事件冒泡
+      //事件委托缺陷：delegate
+      // $("p").bind("click mouseenter", function(){
+      //   console.log("p被点击了");
+      // })
+      // $("#unbindBtn").click(function(){
+      //   //$("p").unbind();//解绑了注册的所有事件
+      //   $("p").unbind("click");//只解绑click事件
+      // })
+      //动态创建p元素
+      // $("#createBtn").click(function(){
+      //   $("<p>这是动态创建的p元素</p>").appendTo("div");
+      // })
+      //通过注册委托事件，动态创建的p元素也能响应click事件
+      // $("div").delegate("p", "click", function(){
+      //   console.log("这是delegate注册的委托事件");
+      // })
+      //解绑委托事件
+      // $("#undelegateBtn").click(function(){
+      //   //$("div").undelegate();//解绑所有的事件委托
+      //   $("div").undelegate("p", "click");//解绑p元素的click事件委托
+      // })
+
+      //3、jq注册事件on()，但是对于动态创建出来的元素，还是得使用事件委托
+      //on(type, selector, data, fn)
+      //type：事件名
+      //selector：选择器，该参数存在，就是注册事件委托，不存在，就是给元素自身注册事件
+      //data：传递给事件处理函数使用的数据
+      //fn：事件处理函数
+      // $("p").on("click", function(){
+      //   console.log("on注册的click事件");
+      // })
+      //委托的方式注册
+      // $("div").on("click", "p", function(e){
+      //   console.log("委托的方式注册click事件");//点击p元素才会响应，点击div不会响应
+      //   e.stopPropagation();//阻止事件冒泡，不然点击p元素的时候，p元素和div元素都会响应
+      // })
+      //点击div响应事件，需要给div注册自身的click事件
+      // $("div").on("click", function(){
+      //   console.log("给div自身注册的click事件");//没有阻止事件冒泡的话，点击p元素、div元素都会响应
+      // })
+      //jq解绑事件off
+      // $("#offBtn").click(function(){
+      //   //$("div").off();//解绑所有的注册事件
+      //   //$("div").off("click");//解绑自身的click事件
+      //   $("div").off("click", "p");//解绑p元素的事件委托
+      // })
+
+      //jq触发事件
+      //1、以事件名的方式直接调用
+      // $("#mdiv").on("click", function(){
+      //   console.log("我被点击了");
+      // })
+      // $("#mbtn").click(function(){
+      //   $("#mdiv").click();
+      // })
+      //2、trigger(type)
+      //type：事件名
+      // $("#mbtn2").click(function(){
+      //   $("#mdiv").trigger("click");
+      // })
+
+      //jq事件对象
+      //是对js事件对象的一个封装，处理了兼容性
+      //事件对象的data属性
+      // $("#mdiv").on("click", {name: "li", age: 18}, function(e){
+      //   console.log(e.data);
+      // })
+      //jq方式阻止事件对象默认行为
+      //jq里使用return false阻止事件传递：阻止冒泡、浏览器的默认行为
+      //原生js使用return false，只能阻止浏览器默认行为
+      $("a").on("click", function(){
+        console.log("a被点击了");
+        return false;
+      })
+    })
+  </script>
+</body>
+</html>

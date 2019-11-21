@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  /*
+  跨域资源共享：CORS(兼容性IE10+)，Cross-origin resource sharing
+    新版本的XMLHttpRequest对象，可以向不同域名的服务器发送HTTP请求，这叫做跨域资源共享。
+  跨域资源共享的前提：
+    浏览器必须支持这个功能(IE10+)
+    服务器必须允许这种跨域
+      header("Access-Control-Allow-Origin:*");//允许所有的域名访问这个接口
+      header("Access-Control-Allow-Origin:http://www.xxx.com");//允许www.xxx.com访问这个接口
+  CORS的具体流程：
+    1.浏览器发送跨域请求
+    2.服务器端收到跨域请求后，在响应头中添加：header("Access-Control-Allow-Origin:xxx")，发送响应。
+    3.浏览器收到响应后，查看是否设置了header("Access-Control-Allow-Origin:xxx")，
+      如果当前域已经得到授权，则将结果返回给JavaScript，否则浏览器忽略此次响应。
+    结论：跨域行为是浏览器行为，响应已经回来了，只是浏览器的安全机制做了限制，忽略了响应。
+         服务器与服务器之间不存在跨域问题。
+  cors与jsonp的对比：
+    1.jsonp兼容性好，老版本浏览器也支持，但是只支持get请求，发送的数据量有限。
+    2.cors需要浏览器支持cors功能才行，只要服务器端设置允许跨域，浏览器端发送get请求、post请求都可以。
+    3.跨域需要服务器端配合控制，不论jsonp还是cors，如果没有服务器端的允许，浏览器是没法做到跨域的。
+  */  
+  </script>
+</body>
+</html>

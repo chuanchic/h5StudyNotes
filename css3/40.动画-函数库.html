@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--引入动画函数库-->
+    <link rel="stylesheet" href="animate.css">
+    <style>
+        /*
+        动画函数库：Animate.css
+            网址：https://daneden.github.io/animate.css/
+        动画函数库的使用：
+            方式一：animation: bounce 2s infinite;
+            方式二：通过添加类名的方式
+        */
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            margin: 100px auto;
+            /*直接使用动画*/
+            /*animation: bounce 2s infinite;*/
+        }
+    </style>
+</head>
+<body>
+    <!--
+    通过添加类名的方式使用动画函数库，例如：
+        1.rotateIn：添加动画名称
+        2.animated：添加动画时间，让动画停留在最终状态
+    -->
+    <div class="rotateIn animated"></div>
+</body>
+</html>

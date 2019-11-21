@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<!--引入下载下来的字体图标库-->
+	<link rel="stylesheet" href="fonts/iconfont.css">
+	<style type="text/css">
+		/*
+		字体图标：
+			概念：将图标做成字体来使用
+			原理：通过@font-face定义一个字体，并引入对应的字体文件，供用户使用
+			使用：
+				借助第三方网站(iconfont.cn)找到对应的图标，下载下来：
+				搜索某个图标 -> 加入购物车 -> 添加至项目/下载素材/下载代码
+				下载素材：一个svg格式的文件，矢量图
+				下载代码：一个压缩文件，解压缩，得到几个字体文件，
+					iconfont.css, iconfont.eot, iconfont.ttf, iconfont.woff, iconfont.svg
+					新建fonts文件夹，复制这几个文件，然后参考demo_index.html文件的使用方法
+				3种使用方式：Unicode、Font class(常用)、Symbol
+			优点：
+				1.本质上是字体，字体相对图片来说容量小
+				2.通过修改字体大小(font-size)，可以任意缩放，不会失真
+				3.通过修改字体颜色(color)，可以任意修改颜色
+				4.加载字体文件即可，节约网络请求次数
+			场景：
+				当小图片特别多，请求次数就会多，可以通过精灵图解决，只需要加载一张图片，
+				但是精灵图缺点：使用起来麻烦(算位置)，缩放可能会失真，
+				可以通过字体图标来实现。
+			其他字体库：
+				比如：awesome，使用方式类似
+		自定义字体图标：
+			UI设计师用AI软件来做，然后导出.svg格式的文件
+		如何使用.svg的文件：
+			把.svg格式的文件上传到iconfont.cn网站上，然后再下载代码，再按照上面的使用方式就行了
+		*/
+		.gouwuche {
+			font-size: 10em;
+			color: pink;
+		}
+	</style>
+</head>
+<body>
+	<!--
+	iconfont：指定字体
+	icon-gouwucheman：指定某个图标
+	gouwuche：修改字体
+	-->
+	<span class="iconfont icon-gouwucheman gouwuche"></span>
+</body>
+</html>

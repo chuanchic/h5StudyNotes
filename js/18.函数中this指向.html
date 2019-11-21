@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box">按钮</div>
+  <script>
+  /*
+  函数中this指向：
+    谁调用函数就指向谁
+  */
+
+  //1、普通调用
+  function fn(){
+    console.log(this);
+  }
+  fn();//this指向window对象
+
+  //2、对象调用
+  var obj = {};
+  obj.fn = fn;
+  obj.fn();//this指向obj
+
+  //3、new调用
+  var obj2 = new fn();//this指向new出来的对象obj2
+  console.log(obj2);//打印对象obj2
+
+  //4、注册事件
+  var box = document.getElementById('box');
+  box.onclick = fn;//this指向box对象
+
+  //5、定时器
+  //setInterval(fn, 1000);//this指向window对象
+
+  //6、上下文调用，就是js提供的三个方法，作用是可以随意控制函数中的this指向
+  function fn2(x, y){
+    console.log(this);
+    console.log(x + y);
+  }
+
+  //6.1、call函数：会调用函数fn2，同时改变this指向
+  //call函数的第二个参数传的是fn2方法的各个参数
+  fn2.call([1,2], 3, 4);//this指向数组[1,2]，fn2的参数是3，4
+
+  //6.2、apply函数：会调用函数fn2，同时改变this指向
+  //apply函数的第二个参数传的是一个数组，数组里边放的是fn2方法的各个参数
+  fn2.apply([1,2],[3,4]);//this指向数组[1,2]，fn2的参数是数组[3，4]里的3，4
+
+  //6.3、bind函数：会克隆函数fn2(只是克隆一个函数，不会调用函数)，同时改变this指向
+  //6.3.1方式一：
+  var fn3 = fn2.bind([1,2],3,4);
+  fn3();//调用克隆出来的函数
+  //6.3.2方式二：
+  var fn4 = fn2.bind([1,2]);
+  fn4(4,5);//调用克隆出来的函数
+
+  </script>
+</body>
+</html>

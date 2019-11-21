@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        /*
+        flex布局：(伸缩布局、弹性布局)
+            任何一个容器都可以指定为flex布局，使得对块级元素的布局变得很灵活
+        display：
+            none：隐藏
+            block：块级，独占一行，可设宽高
+            inline-block：行内块，一行显示多个，可设宽高
+            inline：行内，一行显示多个，宽高由内容撑开，不可设宽高
+            flex：让盒子有伸缩性，有了主轴和侧轴
+        主轴和侧轴：
+            主轴：主要用来配置flex项目，默认水平向右
+            侧轴：与主轴垂直的就是侧轴，默认竖直向下
+            因此：内部的子盒子，默认在主轴方向从左向右布局
+        */
+        ul {
+            width: 600px;
+            height: 400px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            /*设置为弹性布局*/
+            display: flex;
+            /*
+            设置主轴的方向：一般很少调整主轴的方向，主轴和侧轴的起始点是同一个
+                row：水平向右(默认值)
+                    |—— —— —— >主轴
+                    ∨
+                    侧轴
+                row-reverse：水平向左
+                    主轴< —— —— ——|
+                                 ∨
+                                侧轴
+                column：竖直向下
+                    |—— —— —— >侧轴
+                    ∨
+                    主轴
+                column-reverse：竖直向上
+                    主轴
+                     ∧
+                     |—— —— —— >侧轴
+            */
+            flex-direction: row;
+            /*
+            设置主轴方向的对齐方式：
+                flex-start：开始位置对齐(默认值)
+                flex-end：结束位置对齐
+                center：居中对齐
+                space-between：让相邻子盒子之间间隙一样大
+                space-around：让每个子盒子左右间隙一样大
+            */
+            justify-content: flex-start;
+            /*
+            设置侧轴方向的对齐方式：单行
+                flex-start：开始位置对齐(默认值)
+                flex-end：结束位置对齐
+                center：居中对齐
+                stretch：单行拉伸，拉伸子盒子和父盒子一样高(子盒子没有设置高才会起作用)
+                         用的很少，因为可以直接设置子盒子和父盒子一样高
+                注意：只是侧轴方向上单行内的对齐方式，多行的对齐方式：align-content
+            */
+            align-items: flex-start;
+            /*
+            设置侧轴方向的对齐方式：多行
+                flex-start：开始位置对齐
+                flex-end：结束位置对齐
+                center：居中对齐
+                space-between：让相邻行之间间隙一样大
+                space-around：让每一行的左右间隙一样大
+                stretch：多行拉伸，一般不用
+            */
+            align-content: flex-start;
+            /*
+            设置flex容器是单行或者多行
+                nowrap：不换行，单行(默认)，子盒子过多的时候，会压缩子盒子的宽度
+                wrap：换行，多行，子盒子过多的时候，会换行显示
+            */
+            flex-wrap: wrap;
+        }
+        li {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border: 1px solid #000;
+            /*自动内减*/
+            box-sizing: border-box;
+            /*
+            flex：给子元素设置大小
+                1.可以根据不同的需求，给每个子元素按需分配
+                2.也可以让每个子元素平均分配
+                3.还可以指定某些子元素大小固定，剩下子元素按需分配
+            */
+            /*给每个子元素平均分配*/
+            flex: 1;
+        }
+        li:nth-child(2) {
+            /*给第二个子元素分配3份大小*/
+            flex: 3;
+            /*
+            设置子元素的排列顺序，数值越小排列越靠前，默认为0，不建议使用
+            */
+            order: -1;
+            /*
+            设置自己在侧轴的对齐方式
+                值和父元素里的align-items值一样
+                如果同时设置，会覆盖父元素的align-items对齐，因此可以实现子元素的自定义对齐
+            */
+            align-self: flex-start;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</body>
+</html>

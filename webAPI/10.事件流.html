@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  #box1 {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+  }
+  #box2 {
+    width: 200px;
+    height: 200px;
+    background-color: green;
+  }
+  #box3 {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+  }
+  #box4 {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+  }
+  #box5 {
+    width: 200px;
+    height: 200px;
+    background-color: green;
+  }
+  #box6 {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+  }
+  </style>
+</head>
+<body>
+  <div id="box1">
+    <div id="box2">
+      <div id="box3"></div>
+    </div>
+  </div>
+  <div id="box4">
+      <div id="box5">
+        <div id="box6"></div>
+      </div>
+  </div>
+  <a href="" id="link">我是链接</a>
+  <script>
+  /*
+  点击box1的事件传递流：目标阶段
+    window -> document -> body -> box1
+  点击box1的事件响应流：冒泡阶段
+    box1 -> body -> document -> window
+  点击box3的事件传递流：目标阶段
+    window -> document -> body -> box1 -> box2 -> box3
+  点击box3的事件响应流：冒泡阶段
+    box3 -> box2 -> box1 -> body -> document -> window
+  */
+  var box1 = document.getElementById('box1');
+  var box2 = document.getElementById('box2');
+  var box3 = document.getElementById('box3');
+
+  document.body.onclick = function(){
+    console.log('body被点击');
+  };
+  box1.onclick = function(e){
+    console.log('box1被点击');
+    /*
+    事件委托：
+      box3需要做的事情委托给box1来做
+      即：box1设置监听事件，然后通过e.target获取到目标对象
+    */
+    console.log(e.target);
+  };
+  box2.onclick = function(){
+    console.log('box2被点击');
+  };
+  box3.onclick = function(){
+    console.log('box3被点击');
+  };
+
+  /*
+  addEventListener的第三个参数：
+    true：事件处理函数在事件捕获阶段执行
+    false：事件处理函数在事件冒泡阶段执行
+    注意：如果被点击的元素是事件目标，那么true/false无效
+  */
+  var box4 = document.getElementById('box4');
+  var box5 = document.getElementById('box5');
+  var box6 = document.getElementById('box6');
+
+  box4.addEventListener('click', function(){
+    console.log('box4被点击');
+  }, false);
+  box5.addEventListener('click', function(e){
+    console.log('box5被点击');
+    e.stopPropagation;//阻止事件的传播
+  }, true);
+  box6.addEventListener('click', function(e){
+    console.log('box6被点击');
+  }, false);
+
+  /*
+  preventDefault：
+    阻止默认行为
+    在addEventListener里不能通过return false来阻止默认行为
+  */
+  var link = document.getElementById('link');
+  link.addEventListener('click', function(e){
+    console.log('链接被点击');
+    // return false;
+    e.preventDefault();
+  });
+  
+  </script>
+</body>
+</html>

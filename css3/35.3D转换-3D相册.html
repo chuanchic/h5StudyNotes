@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body {
+            background-color: black;
+            /*添加近大远小的效果*/
+            perspective: 1000px;
+        }
+        ul {
+            width: 300px;
+            height: 400px;
+            margin: 100px auto;
+            position: relative;
+            /*添加过渡动画*/
+            transition: all 1s;
+            /*添加变换的基点*/
+            transform-origin: center bottom;
+            /*添加3d效果*/
+            transform-style: preserve-3d;
+        }
+        ul:hover {
+            transform: rotateX(45deg);
+        }
+        li {
+            width: 100%;
+            height: 100%;
+            border: 3px solid orange;
+            position: absolute;
+            left: 0;
+            top: 0;
+            /*添加过渡动画*/
+            transition: all 1s;
+            /*添加变换的基点*/
+            transform-origin: left center;
+        }
+        /*
+        注意：相册第一页应该是最后一个li，因此要先旋转最后一个li
+        */
+        ul:hover li:nth-child(6) {
+            transition-delay: 1s;
+            transform: rotateY(-150deg);
+        }
+        ul:hover li:nth-child(5) {
+            transition-delay: 1.5s;
+            transform: rotateY(-120deg);
+        }
+        ul:hover li:nth-child(4) {
+            transition-delay: 2s;
+            transform: rotateY(-90deg);
+        }
+        ul:hover li:nth-child(3) {
+            transition-delay: 2.5s;
+            transform: rotateY(-60deg);
+        }
+        ul:hover li:nth-child(2) {
+            transition-delay: 3s;
+            transform: rotateY(-30deg);
+        }
+        li img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li><img src="meinv.jpg"></li>
+        <li><img src="meinv.jpg"></li>
+        <li><img src="meinv.jpg"></li>
+        <li><img src="meinv.jpg"></li>
+        <li><img src="meinv.jpg"></li>
+        <li><img src="meinv.jpg"></li>
+    </ul>
+</body>
+</html>

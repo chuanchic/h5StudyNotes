@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.left {
+			width: 36px;
+			height: 59px;
+			float: left;
+			background: url(images/test.jpg) 0 0 no-repeat;
+		}
+		.right {
+			width: 20px;
+			height: 59px;
+			float: left;
+			background: url(images/test.jpg) 0 0 no-repeat;
+		}
+		.center {
+			height: 59px;
+			float: left;
+			line-height: 59px;
+			background: url(images/test.jpg) 0 0 repeat-x;
+			padding-right: 16
+		}
+		.box2 {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			/* 
+			鼠标悬停的样式
+				pointer：鼠标放上去会显示小手的图标 
+				default：默认样式，箭头
+				move：移动样式
+				text：文本
+				url链接：可以用一张图片代替鼠标的箭头
+						逗号后边的取值：default，当图片加载失败的时候要显示的代替图片
+			*/
+			/*cursor: pointer;*/
+			cursor: url(images/test.jpg),default;
+		}
+		input {
+			/* 去掉选中之后自动生成的蓝色外边框 */
+			outline: none;
+		}
+		textarea {
+			/* 去掉缩放 */
+			resize: none;
+		}
+	</style>
+}
+</head>
+<body>
+	<div class="box">
+		<div class="left"></div>
+		<div class="center">我是内容</div>
+		<div class="right"></div>
+	</div>
+	<div class="box2"></div>
+	<input type="text" name="">
+	<textarea></textarea>
+</body>
+</html>

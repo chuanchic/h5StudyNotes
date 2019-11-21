@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            /*
+            background-image: radial-gradient(半径 at 圆心位置, 颜色 范围, 颜色 范围, ...);
+            圆心位置：
+                写法一：left, top, right, bottom
+                写法二：数值
+            */
+        }
+        div:first-child {
+            /*
+            半径范围内：红蓝渐变
+            半径范围外：保持蓝色
+            */
+            background-image: radial-gradient(100px at center center, red, blue);
+        }
+        div:nth-child(2) {
+            /*
+            半径范围内：25%的位置红色，75%的位置蓝色，25%-75%红蓝渐变，25%之前保持红色，75%之后保持蓝色
+            半径范围外：保持蓝色
+            */
+            background-image: radial-gradient(100px at center center, red 25%, blue 75%);
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+</body>
+</html>

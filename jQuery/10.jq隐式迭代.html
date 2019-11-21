@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+  <ul>
+    <li>hello world</li>
+    <li>hello world</li>
+    <li>hello world</li>
+  </ul>
+  <script>
+  /*
+  隐式迭代：jq在设置属性时会自动的遍历，不需要我们手动遍历
+    设置属性时，会给所有的元素都设置上相同的值
+    获取属性时：会返回第一个元素对应的值
+    如果需要给每个元素设置不同的值，需要手动遍历jq对象，用each()方法
+  */
+  $(function(){
+    //$("li").css("color", "red");//默认给每个li设置相同的颜色
+    $("li").each(function(index, ele){
+      //index：下标
+      //ele：dom对象
+      //$(ele).css("color", "green");//或者
+      $(this).css("color", "green");
+    })
+
+  })
+  </script>
+</body>
+</html>

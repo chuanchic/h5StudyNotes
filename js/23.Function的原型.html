@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  //底层实现：var fn = new Function();
+  function fn(){
+  }
+  //底层实现：var fn2 = new Function();
+  var fn2 = function(){
+  }
+  //底层实现：var fn3 = new Function('x','y','console.log(x+y)');
+  function fn3(x, y){
+    console.log(x+y);
+  }
+  //查看Function的原型，因为Function函数也是对象，因此也有对应的原型
+  console.log(fn3.__proto__);
+  
+  </script>
+</body>
+</html>

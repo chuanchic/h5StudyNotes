@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  a {
+    font-size: 40px;
+  }
+  /* a链接未被访问的样式 */
+  a:link {
+    color: gray;
+  }
+  /* a链接访问过的样式 */
+  a:visited {
+    color: blue;
+  }
+  /* 鼠标移上去的样式 */
+  a:hover {
+    color: purple;
+  }
+  /* 被点击时激活的样式 */
+  a:active {
+    color: red;
+  }
+  /* 去掉a链接各种状态下的下划线 */
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    text-decoration: none;
+  }
+  /* 给a链接添加下划线，没有效果，因为权重低于上面伪类的方式 */
+  a {
+    text-decoration: underline;
+  }
+</style>
+<body>
+  <a href="#">我是a链接</a>
+</body>
+</html>

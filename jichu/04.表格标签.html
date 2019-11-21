@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<!--
+		cellspacing：单元格与单元格之间的距离
+		cellpadding：单元格与内容之间的距离
+		td内部可以写任意标签，任意内容，table、tr不行
+		thead、tbody结构化标签，可以不写
+		合并单元格：
+			跨行合并：rowspan=2，同时多余的单元格需要删掉
+			跨列合并：colspan=2，同时多余的单元格需要删掉
+	-->
+	<table border="1" width="800" cellspacing="0" cellpadding="0" align="center">
+		<thead>
+			<tr>
+				<th>标题1</th>
+				<th>标题2</th>
+				<th>标题3</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td rowspan="2">2</td>
+				<td>3</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<!-- <td>5</td> -->
+				<td>6</td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>8</td>
+				<td>9</td>
+			</tr>
+			<tr>
+				<td colspan="2">10</td>
+				<!-- <td>11</td> -->
+				<td>12</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

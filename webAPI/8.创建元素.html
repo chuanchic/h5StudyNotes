@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">按钮</button>
+  <div id="box"></div>
+  <script>
+  /* 
+  创建元素的三种方式
+  */
+  //1、innerHTML：创建的元素存在于dom树上，并渲染到页面上
+    var box = document.getElementById('box');
+    box.innerHTML = '<span>我是span</span>';
+  //2、createElement：创建的元素不在dom树上
+    var p = document.createElement('p');
+    box.appendChild(p);
+  //3、write：只能document调用，加在body标签里
+  //直接写不会覆盖body里的内容，因为是在整个页面加载过程中写入的
+  //如果写在事件处理函数里，则会覆盖boday里的所有内容，因为是在整个页面加载完成之后点击的时候写入的
+    //document.write('<h1>我是h1</h1>');
+    var btn = document.getElementById('btn');
+    btn.onclick = function(){
+      document.write('<h1>我是h1</h1>');
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="txt"> 
+  <button id="btn1">点击充值</button>
+  <button id="btn2">点击查询</button>
+  <button id="btn3">点击花钱</button>
+  <ul>
+    <li>第一个li</li>
+    <li>第二个li</li>
+    <li>第三个li</li>
+  </ul>
+  <script>
+  /*
+  什么是闭包：
+    就是函数和函数作用域的结合
+    通俗的说就是，一个内部函数引用了外部函数的变量，这样就形成了一个闭包
+  闭包的作用：
+    私有化数据并持有数据
+  闭包的缺点：
+    由于内部函数引用了外部函数的变量，导致外部函数执行完毕后无法出栈，
+    如果代码中大量的写了闭包，有可能会造成栈溢出。
+  */
+  //例子一：
+  function outer(){
+    var i = 0;//外部访问不了变量i，私有化
+    function inner(){
+      console.log(i);//外部保持了变量i，内部可以直接访问
+    }
+  }
+  //例子二：操作用户存储的金额
+  function fn(){
+    var money = 1000;
+    return {
+      query : function(){
+        console.log(money);
+      },
+      pay : function(num){
+        money -= num;
+        console.log(money);
+      },
+      add : function(num){
+        money += num;
+        console.log(money);
+      }
+    }
+  }
+  var input = document.querySelector('#txt');
+  var btn1 = document.querySelector('#btn1');
+  var btn2 = document.querySelector('#btn2');
+  var btn3 = document.querySelector('#btn3');
+  var moneyManager = fn();
+  btn1.onclick = function(){
+    var value = input.value;
+    moneyManager.add(+value);
+  }
+  btn2.onclick = function(){
+    moneyManager.query();
+  }
+  btn3.onclick = function(){
+    moneyManager.pay(20);
+  }
+  //例子三：不能使用this，利用闭包，打印每一个li的文本
+  var lis = document.getElementsByTagName('li');
+  for(var i = 0; i < lis.length; i++){
+    (function(i){
+      lis[i].onclick = function(){
+        //console.log(this.innerText);
+        console.log(lis[i].innerText);
+      }
+    })(i);
+  }
+  /*
+  例子四：闭包的缺点
+    首先fn2进栈执行，返回fn3，执行完毕但是无法出栈，因为变量num被内部函数引用了，
+    然后fn3进栈执行 ...，如果有大量的闭包存在，就可能导致栈溢出
+  */
+  function fn2(){
+    var num = 1;
+    return function(){
+      console.log(num);
+    }
+  }
+  var fn3 = fn2();
+  fn3();
+
+  </script>
+</body>
+</html>

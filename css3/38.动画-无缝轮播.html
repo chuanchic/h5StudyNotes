@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box {
+            /*情况一：盒子宽度 = 每张图片宽度 = 300*/
+            /*width: 300px;*/
+            /*情况二：盒子宽度 = 每张图片宽度 * 2 = 600*/
+            width: 600px;
+            height: 200px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+        ul {
+            /*情况一：ul宽度 = 所有图片 + 最后一张占位图 = 300 * 4 + 300 = 1500*/
+            /*width: 1500px;*/
+            /*情况二：ul宽度 = 所有图片 + 最后两张占位图 = 300 * 4 + 300 * 2 = 1800*/
+            width: 1800px;
+            height: 200px;
+            /*使用动画*/
+            animation: run 5s infinite linear;
+        }
+        ul:hover {
+            /*暂停动画*/
+            animation-play-state: paused;
+        }
+        li {
+            float: left;
+        }
+        img {
+            width: 300px;
+            height: 200px;
+        }
+        /*声明动画*/
+        @keyframes run {
+            from {
+                transform: translateX(0px);
+            }
+            to {
+                /*需要移动所有图片 = 300 * 4*/
+                transform: translateX(-1200px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li><a href="#"><img src="test.jpg"></a></li>
+            <li><a href="#"><img src="test.jpg"></a></li>
+            <li><a href="#"><img src="test.jpg"></a></li>
+            <li><a href="#"><img src="test.jpg"></a></li>
+            <!--
+            处理最后一张滚动时的留白问题
+                情况一：最后添加一张占位图，图片使用第一张
+                情况二：最后添加两张占位图，图片使用第一张
+            -->
+            <li><a href="#"><img src="test.jpg"></a></li>
+            <li><a href="#"><img src="test.jpg"></a></li>
+        </ul>
+    </div>
+</body>
+</html>

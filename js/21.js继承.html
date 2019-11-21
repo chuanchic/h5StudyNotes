@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    对象和对象之间的继承
+    */
+    var wjl = {
+      wife : 'xxx',
+      money : 1000000,
+      houses : ['大房子','大别墅','大庄园']
+    }
+    var wsc = {
+      wife : ['yyy','zzz']
+    }
+    //1、拷贝继承(了解就行)
+    for(var key in wjl){
+      if(!wsc.hasOwnProperty(key)){
+        wsc[key] = wjl[key];
+      }
+    }
+    console.log(wsc);
+    //2、Object.create()继承
+    var wsc2 = Object.create(wjl);
+    wsc2.wife = ['yyy','zzz'];
+    console.log(wsc2);
+    //------------------------------------------------------
+    /*
+    构造函数的继承
+    */
+    function Person(name, age){
+      this.name = name;
+      this.age = age;
+    }
+    Person.prototype.say = function(){
+      console.log('你好，我是' + this.name);
+    }
+    function Student(name, age, score){
+      Person.call(this, name, age);
+      this.score = score;
+    }
+    var stu = new Student('zhangsan', 18, 100);
+    console.log(stu);
+    //stu.say();//无法继承原型上的方法
+    //------------------------------------------------------------
+    /*
+    原型继承
+      因为构造函数继承，无法继承原型上的方法，但是原型继承可以
+    */
+    Student.prototype = new Person();
+    //下面这种方式也行，但是不推荐，等于Person和Student共享一个原型对象，带来的问题比如：
+    //Student实例给原型添加属性，Person实例也会拥有这个属性
+    //Student.prototype = Person.prototype;
+    var stu2 = new Student('zhangsan', 18, 100);
+    stu2.say();//可以继承原型上的方法
+    //--------------------------------------------------------------
+    /*
+    继承总结
+      私有属性写在构造函数中，公有属性写在原型上，叫做：组合继承
+    */
+    //私有属性
+    function Person2(name, age){
+      this.name = name;
+      this.age = age;
+    }
+    //公有属性
+    Person2.prototype.type = 'human';
+
+  </script>
+</body>
+</html>

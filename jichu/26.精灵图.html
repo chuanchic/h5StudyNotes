@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		/*
+		精灵图（雪碧图sprite）
+			概念：就是将很多小的icon，都整合到一张大图上使用
+			作用：减少网络请求，降低服务器压力，提高效率
+			原因：因为浏览器会去服务器请求页面，请求回来的页面在执行的过程中，会不断的去服务器请求对应的图片，
+				 如果页面上的小icon过多，那么浏览器会频繁的发网络请求，会给服务器带来压力，效率很慢。
+			解决方法：将小的icon整合到一张大图上，直接请求一张大图即可，需要使用某一个小icon的时候，只需要
+					获取这个小icon在这个大图上的位置即可。
+			使用方式：
+				1：将需要显示的区域用切片选中，直接将切片的宽高赋值给盒子
+				2：直接获取切片的坐标，直接将坐标取负值赋值给background-position
+		*/
+		.box {
+			width: 15px;
+			height: 20px;
+			background: url(images/test.jpg) 0 -100px no-repeat;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+</html>

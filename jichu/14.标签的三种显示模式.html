@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.mdiv {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+		}
+		.mspan {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+		}
+		.mimg {
+			width: 200px;
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<!-- 
+		标签的三种显示模式：
+		块级元素
+		行内元素
+		行内块元素
+	 -->
+	 <!-- 
+	 	块级标签 div p h1-h6 ol ul li dl dt dd header footer nav aside article section...
+		特点：
+			1、可以直接写宽高
+			2、独占一行
+			3、默认宽度是父级标签的宽度
+			4、一般用于作为容器布局，可以嵌套其他块级元素或者行内元素，但是p标签不要嵌套其他块级元素
+	 	 -->
+	 <div class="mdiv">hello world</div>
+	 <!-- 
+	 	行内标签 span a strong ins b del s u i em...
+		特点：
+			1、宽高对于行内元素没有作用
+			2、可以允许其他行内元素排成一排
+			3、宽度由内容的宽度决定，没有内容就没有宽度
+			4、一般用于包裹文字或者做一些小的装饰（行内标签不要嵌套块级标签，a标签除外）
+	 -->
+	 <span class="mspan">hello world</span>
+	 <!-- 
+		行内块标签 img input 
+		特点：
+			1、行内块标签本质上是一种特殊的行内标签（text-align和line-height都可以控制行内块元素）
+			2、允许其他的行内元素排一排
+			3、可以设置宽高
+	  -->
+	  <img class="mimg" src="images/test.jpg">
+</body>
+</html>

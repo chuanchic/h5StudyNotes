@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.box1,
+		.box2 {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			position: relative;
+		}
+		.box1 {
+			/* 
+			层级性：
+				前提：必须作用于定位元素
+				值：默认是auto（0），值越大，层级越高
+				特殊情况：box1压住box2，box3压住box1
+					如果父元素已经比较过层级了（父元素都有z-index，并且不为auto），那么子元素与子元素之间不会再比较
+
+			*/
+			z-index: 2;
+		}
+		.box2 {
+			background-color: green;
+			top: -50px;
+			z-index: 1;
+		}
+		.box3 {
+			width: 50px;
+			height: 50px;
+			background-color: yellow;
+			position: absolute;
+			z-index: 3;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">1</div>
+	<div class="box2">
+		<div class="box3"></div>
+	</div>
+</body>
+</html>

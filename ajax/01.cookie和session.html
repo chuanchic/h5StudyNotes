@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  /*
+  会话：
+    浏览器和服务器之间的交流(请求和响应)
+  http协议：
+    无状态的，多次请求之间没有关联
+  cookie：
+    浏览器端的存储空间
+    对cookie操作：
+      1.通过原生js操作(麻烦)
+        设置：document.cookie = "name=haha";
+        获取：document.cookie; 以字符串的方式返回所有cookie
+      2.通过jquery.cookie.js操作(重点)
+        设置：$.cookie(key, value)
+        获取：$.cookie(key)
+        删除：$.removeCookie(key)
+        设置过期时间：$.cookie(key, value, {expires: 过期天数});
+      3.通过php操作(可以掌握)
+        设置：setCookie(key, value)
+        设置过期时间：setCookie(key, value, 过期时间);
+          time()：当前时间，立马过期
+          time() + 7 * 24 * 3600：7天以后过期
+        删除：setCookie(key, value, 过去某个时间)
+          time() - 1：设置为过去某个时间
+        获取：通过超全局变量 $_COOKIE
+    cookie特点
+      1.存储大小4k，不能存储太多数据
+      2.cookie中的数据，会在请求时携带，携带在请求头中
+      3.同一个网站的多个页面可以共享cookie
+      4.不同浏览器的cookie不能共享
+      5.cookie的生命周期默认会话级别，如果不设置过期时间，浏览器关闭，就会销毁cookie
+      6.服务器端不能直接操作cookie，只能通过请求头响应头间接操作，
+        获取的是请求头中携带的cookie数据，
+        设置的是响应头，通知浏览器去设置cookie
+  session：
+    服务器端的存储空间
+    对session操作：
+      获取：通过$_SESSION，获取到一个关联数组，使用之前必须先session_start()
+      设置：$_SESSION['name'] = 'haha';
+      删除：unset($_SESSION['name']);
+      清空所有：$_SESSION = [];
+      销毁session文件：session_destroy();
+      获取sessionid：session_id();
+    session工作原理：
+      1.开启了session之后，如果用户是第一次访问，即该用户的cookie中没有sessionid，
+        那么会生成sessionid，并根据sessionid创建session文件，这样就可以存储用户数据
+      2.设置响应头，将sessionid传递给浏览器，浏览器收到响应并解析响应头，
+        将sessionid设置到cookie中去
+      3.第二次请求时，请求头中携带了cookie数据，其中包括sessionid，
+        这样服务端就可以根据sessionid找到对应的session文件，读取用户数据
+    实现一个会话保持，我们要做的事情：
+      1.在用户登录成功的时候，记录用户信息：
+        session_start()，之后往session中存数据，$_SESSION['name'] = 'haha'
+      2.用户再次访问的时候，就可以直接从session文件里读取用户数据
+      3.退出登录的时候，两种方式
+        1.清除浏览器端cookie里的sessionid
+        2.销毁服务器端的session数据(session文件)
+  */  
+  </script>
+</body>
+</html>

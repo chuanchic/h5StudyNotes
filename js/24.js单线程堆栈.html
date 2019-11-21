@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  /*
+  js设计为单线程：
+    设计之初是为了表单验证、操作dom的，需要单线程操作
+  堆栈：
+    基本数据类型存在栈里(stack)
+    引用数据类型存在堆里(heap)
+  */
+  
+  /*
+  以下三行代码执行过程
+  1、代码预解析过程
+    变量a先放到栈底，接着b入栈、c入栈，值都是undefined
+  2、代码执行过程
+    2.1、值1是基本数据类型，直接存在栈里，赋值给a
+    2.2、function对象是引用数据类型，会在堆里开辟一块内存空间，存储这个function对象，最终生成的地址赋值给b。
+         内存中地址都是16进制的数，是基本数据类型，所以可以存在栈里
+    2.3、c = {}的执行过程同上。
+  */
+  var a = 1;
+  var b = function(){};
+  var c = {};
+
+  /*
+  以下代码setTimeout的执行过程
+  1、预解析过程
+  2、执行过程
+    console.log('hello')加载到栈里并执行，执行完出栈
+    setTimeout(callback)交给浏览器(WEB APIs)去计时
+    console.log('hello3')加载到栈里并执行，执行完出栈
+    1秒以后计时结束，setTimeout(callback)放到任务队列(Callback Queue)中排队
+    等栈里所有函数执行完以后
+    事件轮询(Event Loop)依次把任务队列里的函数拿到栈里并执行
+    事件轮询具体过程：
+      事件轮询一直在观察栈和任务队列，当栈空的时候，就去任务队列中拿第一个放到栈里执行，
+      然后第二个、第三个直到全部执行完
+  */
+  console.log('hello');
+  setTimeout(function(){
+    console.log('hello2');
+  }, 1000);
+  console.log('hello3');
+
+  /*
+  递归在内存中的执行过程
+  斐波那契数列：1 1 2 3 5 8 13 ...
+  求第n个数字是几？
+  1、预解析过程
+  2、执行过程
+    首先fn(6)加载到栈里并执行
+    在fn(6)里又调用fn(5)和fn(4)，也就是fn(5)和fn(4)接着入栈并执行
+    在fn(5)里又调用fn(4)和fn(3)，也就是fn(4)和fn(3)接着入栈并执行
+    以此类推 ...
+    最后在一个一个顺序出栈
+  */
+  function fn(n){
+    if(n == 1 || n == 2){
+      return 1;
+    }
+    return fn(n - 1) + fn(n - 2);
+  }
+  console.log(fn(6));
+  
+  /*
+  问题：
+    弹窗类的方法会阻塞后续代码的执行
+    因为弹窗出现的时候，方法并没有执行完毕
+  */
+  console.log(1);
+  confirm('haha');//会阻塞后续代码的执行，直到弹窗消失
+  console.log(2);
+  
+  </script>
+</body>
+</html>

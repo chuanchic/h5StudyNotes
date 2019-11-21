@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: red
+    }
+  </style>
+</head>
+<body>
+  <button id="btn">按钮</button>
+  <div id="box"></div>
+  <a href="" id="link">点击在控制台打印一句话</a>
+  <script>
+    /*
+    事件三要素：事件源、事件名、事件处理函数
+    */
+
+    //注册onclick事件
+    var box = document.getElementById('box');
+    box.onclick = function(){
+      alert('box被点击');
+    };
+    /*
+    移除onclick事件
+    */
+    var btn = document.getElementById('btn');
+    btn.onclick = function(){
+      box.onclick = null;
+    };
+
+    /*
+    给a标签注册行为（默认行为是页面跳转）
+    问题：
+      由于a标签的超链接功能，导致事件触发后，还会默认刷新页面/跳转页面
+    解决：
+      在事件处理函数的最后一行，写return false，就可以阻断a标签的默认行为
+    */
+    var link = document.getElementById('link');
+    link.onclick = function(){
+      console.log('a被点击了');
+      return false;
+    };
+    
+    /*
+    addEventListener：可以给同一个元素多次注册同一个事件
+    */
+    var fn = function(){
+      console.log('box被点击了');
+    };
+    var fn2 = function(){
+      console.log('box被点击了2');
+    };
+    box.addEventListener('click', fn, false);
+    box.addEventListener('click', fn2, false);
+    /*
+    removeEventListener：移除注册事件
+    */
+    box.removeEventListener('click', fn, false);
+
+  </script>
+</body>
+</html>

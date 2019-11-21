@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* 找父元素中第一个子元素，且是li */
+    li:first-child {
+      background-color: green;
+    }
+    /* 找父元素中最后一个子元素，且是li */
+    li:last-child {
+      background-color: red;
+    }
+    /* 找父元素中第n个子元素，且是li */
+    li:nth-child(2) {
+      background-color: yellow;
+    }
+    /* 2n表示偶数(或者even)，n:0,1,2,3,4... */
+    li:nth-child(2n) {
+      background-color: black;
+    }
+    /* 2n+1表示奇数(或者odd)，n:0,1,2,3,4... */
+    li:nth-child(2n+1) {
+      background-color: blue;
+    }
+    /* 找父元素中只有一个子元素，且是p */
+    p:only-child {
+      background-color: red;
+    }
+    /* 找父元素中前三个子元素，且是li */
+    li:nth-child(-n+3) {
+      background-color: yellow;
+    }
+    /* 找父元素中最后三个子元素，且是li */
+    li:nth-last-child(-n+3) {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>第1个li</li>
+    <span>我是span</span>
+    <li>第2个li</li>
+    <li>第3个li</li>
+    <li>第4个li</li>
+    <li>第5个li</li>
+    <li>第6个li</li>
+    <li>第7个li</li>
+    <li>第8个li</li>
+    <li>第9个li</li>
+    <li>第10个li</li>
+  </ul>
+  <div>
+    <p>我是p</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    jQuery其实就是一个函数自调用，沙箱的效果，不会造成全局污染
+    传参数window的好处
+      1.减少对window的查找过程
+      2.有利于代码压缩，在压缩的过程中，会把window转成类似于a、b这种字符
+    传参数undefined的好处
+      undefined这个数据类型在ie678中会被篡改，为了解决被篡改的问题，要新定义一个undefined变量
+      然后在函数自调用的时候不传这个参数，这样这个undefined变量的值就是undefined
+    */
+   //基本框架结构
+   (function(window, undefined){
+    //jQuery构造函数
+    var jQuery = function(){
+      //...
+    }
+    window.jQuery = window.$ = jQuery;
+   })(window);
+  </script>
+</body>
+</html>

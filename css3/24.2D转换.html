@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 10px auto;
+            transition: all 1s;
+        }
+        /*
+        transform含义：
+            转换，即可以用于2D转换，也可以用于3D转换
+        2D转换：
+            1、scale：缩放
+                x,y是数值，表示倍数，不能带单位px
+                scale(x, y)，x：水平方向上缩放的倍数，y：垂直方向上缩放的倍数
+                scale(2)，水平、垂直方向上都缩放2倍
+                scaleX(2)，水平方向上缩放2倍
+                scaleY(2)，垂直方向上缩放2倍
+            2、translate：平移
+                数值可以是px，也可以是百分比(参照自身的宽高)，相对于自身的位置进行平移
+                被移动的元素不会影响其他的盒子，类似于相对定位
+                translate(100px, 100px)
+                translate(50%, 50%)
+                translateX(100px)
+                translateY(100px)
+            3、rotate：旋转
+                数值是角度
+                rotate(45deg)
+            4、skew：斜切
+                数值是角度
+                skew(x, y)
+                skewX(45deg)
+        转换原点：
+            设置转换的中心原点，默认：center center
+            transform-origin：center center;
+            transform-origin：40px 40px;
+        */
+        div:first-child:hover {
+            /*水平方向上缩放1.5倍，垂直方向上不变*/
+            transform: scale(1.5, 1);
+        }
+        div:nth-child(2):hover {
+            transform: translateX(200px);
+        }
+        div:nth-child(3):hover {
+            transform: rotate(45deg);
+        }
+        div:nth-child(4):hover {
+            /*X轴保持不动，Y轴向右倾斜45度*/
+            /*transform: skewX(45deg);*/
+            /*Y轴向右倾斜45度，X轴向下倾斜45度，会压扁到完全看不见*/
+            transform: skew(45deg, 45deg);
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>

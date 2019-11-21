@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="aa bb"></div>
+    <script>
+        /*原生添加类名方式*/
+        var div = document.querySelector("div");
+        // div.className = div.className + " cc";
+
+        /*
+        html5操作类名
+            添加类：classList.add
+            移除类：classList.remove
+            判断类：classList.contains
+            切换类：classList.toggle   没有就添加，有就移除
+        */
+        div.classList.add("cc");
+        div.classList.remove("bb");
+        console.log(div.classList.contains("bb"));
+        div.classList.toggle("bb");
+    </script>
+</body>
+</html>

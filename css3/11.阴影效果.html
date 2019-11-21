@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  h1 {
+    font-size: 70px;
+    text-align: center;
+    line-height: 100px;
+  }
+  h1:first-child {
+    /* 文字阴影：水平偏移 垂直偏移 模糊度 颜色 */
+    text-shadow: 2px 2px 2px red;
+  }
+  h1:nth-child(2) {
+    /* 文字阴影：两层阴影，逗号分隔 */
+    text-shadow: 2px 2px 2px red, 4px 4px 4px blue;
+  }
+  div {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    margin: 50px auto;
+  }
+  /* 盒子阴影：水平偏移 垂直偏移 模糊度 外延值(可省略) 颜色 */
+  div:first-child {
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.6);
+  }
+  /* 添加外延值 */
+  div:nth-child(2) {
+    box-shadow: 2px 2px 2px 10px rgba(0,0,0,0.6);
+  }
+  /* 设置内阴影：inset */
+  div:nth-child(3) {
+    box-shadow: 2px 2px 2px 10px rgba(0,0,0,0.6) inset;
+  }
+  /* 最常见实现立体效果的方式 */
+  div:nth-child(4) {
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.6);
+  }
+  
+  </style>
+</head>
+<body>
+  <h1>hello world</h1>
+  <h1>hello world</h1>
+  <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+  </div>
+</body>
+</html>

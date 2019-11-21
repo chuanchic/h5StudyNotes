@@ -1,0 +1,14 @@
+1.什么是JavaScript
+  JavaScript是一种运行在客户端的脚本语言
+  脚本语言
+    JavaScript、PHP、Python，运行一行解析一行，不需要提前编译
+  编译语言
+    Java、C、C++，先把所有的代码编译一遍，再运行每一行代码
+2.JavaScript的组成
+  ECMAScript + DOM + BOM
+    DOM + BOM统称 WEB API
+    ECMAScript：描述了JavaScript的基本语法和数据类型，是一套标准
+    DOM：操作网页元素的API
+    BOM：操作浏览器功能的API
+
+

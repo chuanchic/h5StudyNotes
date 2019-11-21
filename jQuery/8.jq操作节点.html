@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery-1.12.4.js"></script>
+  <style>
+  div {
+    width: 300px;
+    height: 300px;
+    background-color: lime;
+  }
+  p {
+    background-color: red;
+  }
+  body {
+    height: 4000px;
+  }
+  </style>
+</head>
+<body>
+  <div>
+    <p class="innerP">这是div内部p标签</p>
+  </div>
+  <p class="outerP">这是div外部p标签</p>
+
+  <script>
+    $(function(){
+      //原生js方式创建节点
+      var a1  = document.createElement("a");
+      a1.href = "http://sh.itcast.cn";
+      a1.target = "_blank";
+      a1.innerText = "大前端";
+      document.body.appendChild(a1);
+      
+      //jq方式创建节点：$('html标签')
+      //要用单引号嵌套html标签，因为html标签里已经有双引号了
+      var a2 = $('<a href="http://sh.itcast.cn" target="_blank">大前端</a>');
+      $("body").append(a2);
+      
+      //添加节点6个方法
+      //1、append：添加到末尾，被添加的元素页面里有，就剪切再添加，否则创建再添加
+      //$("div").append($(".outerP"));//会把页面上存在的outerP元素剪切下来，然后添加到div元素里面
+      //2、appendTo：作用和append一样，只是调用关系不同
+      //$('<p class="outerP">这是div外部p标签</p>').appendTo($('div'));
+      //$('<p class="outerP">这是div外部p标签</p>').appendTo("div");//和上面一样
+      //3、A.prepend(B)：把B添加到A里，作为A的第一个子元素
+      //4、B.prependTo(A)：作用同上
+      //5、A.after(B)：把B放到A的后面，作为兄弟元素
+      //6、A.before(B)：把B放到A的前面，作为兄弟元素
+
+      //清空div里面的子节点
+      //$("div").empty();
+
+      //删除div节点
+      //$("div").remove();
+
+      //克隆节点：clone(boolean)
+      //参数值为true：克隆元素的事件也会被克隆
+      $(".outerP").clone().appendTo("div");
+
+      //val()：用于设置和获取表单元素的值，例如input、textarea
+      //htm()相当于innerHTML，text()相当于innerText
+      //聚焦、失焦，focus()相当于onfocus，blur()相当于onblur
+
+      //设置、获取宽高，width()，height()，不带单位px，不带padding
+      //innerWidth()，innerHeight()，width + padding
+      //outerWidth()，outerHeight()，width + padding + border
+      //outerWidth(true)，outerHeight(true)，width + padding + border + margin
+      //css("width")，带单位px
+
+      //获取可视区域的宽高
+      //$(window).width()、$(window).height()
+
+      //设置、获取滚动条的位置
+      //$(window).scrollTop()、$(window).scrollLeft()
+      //原生js获取方式，也是jq的scrollTop()的内部实现
+      //window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+
+      //页面滚动监听：window.onscroll
+      //$(window).scroll(function(){})
+
+      //做自定义页面滚动动画
+      // $(document.documentElement, document.body).animate({
+      //   scrollTop: 400
+      // }, 2000)
+      $("html, body").animate({
+        scrollTop: 400
+      }, 2000)
+
+      /*
+      jq获取元素的位置
+        offset()：获取元素距离document的位置，返回{left:100, top:100}
+        position()：获取元素距离有定位的父元素的位置
+      原生js获取元素的位置
+        offsetLeft、offsetTop
+      */
+    });
+  </script>
+</body>
+</html>

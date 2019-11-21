@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		/*
+		过渡本质不是动画，是css的某个属性的值变换到另外一个值的过程
+		取值：
+			第一个值：过渡的属性
+			第二个值：过渡的时间，单位是s或者ms
+			第三个值；过渡的曲线，减速、减速等
+			第四个值：过渡的延迟时间
+		*/
+		.box {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			/*transition: width 1s ease 1s, height 1s ease 1s;*/
+			transition: all 1s ease 1s;/* 简写方式 */
+		}
+		.box:hover {
+			width: 200px;
+			height: 200px;
+			background-color: green;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+</html>

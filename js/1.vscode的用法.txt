@@ -1,0 +1,15 @@
+1、安装常用插件
+    open in browser：打开默认浏览器
+    Path intellisense：自动提示路径
+2、隐藏右边mini预览图
+    view -> show minimap
+3、配置：左下角齿轮 -> 设置
+    Files: Auto Save     afterDelay
+    Editor: Font Size    18
+    Editor: Tab Size     2
+    Extensions: Auto Update      false
+    Emmet: Trigger Expansion On Tab     true  //自动补全代码
+    Window: Zoom Level   1
+    Workbench: Startup Editor      newUntitledFile
+    Workbench › Side Bar: Location    right
+    Explorer: Confirm Delete     false

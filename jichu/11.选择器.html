@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		/* 标签选择器 */
+		span {
+			font-weight: 500;
+			color: red;
+		}
+		/* 
+			类选择器，分为两步
+			1、声明类选择器
+			2、调用类选择器
+		 */
+		 .box {
+		 	font-size: 40px;
+		 }
+		 /*
+			多类名选择器
+		 */
+		 .red {
+		 	color: red;
+		 }
+		 .fz-30 {
+		 	font-size: 30px;
+		 }
+		 .fz-40 {
+		 	font-size: 40px;
+		 }
+		 /* 
+		 	id选择器，分为两步
+			1、声明id选择器
+			2、调用id选择器
+		 */
+		 #box {
+		 	color: red;
+		 }
+		 /* 通配符选择器：作用于所有的标签，效率较低 */
+		 * {
+		 	padding: 20px;
+		 }
+		 /* 伪类选择器 完整写法 以下顺序不能错：link、visited、hover、active */
+		 a:link {/* 没有被访问的显示效果 */
+		 	color: red;
+		 }
+		 a:visited {/* 访问过后的显示效果 */
+		 	color: purple;
+		 }
+		 a:hover {/* 鼠标悬停之后的显示效果 */
+		 	color: blue;
+		 }
+		 a:active {/* 鼠标按住不放的显示效果 */
+		 	color: yellow;
+		 }
+		 /* 伪类选择器 简写方式 */
+		 a {
+		 	color: red;
+		 }
+		 a:hover {
+		 	color: blue;
+		 }
+		 /* 交集选择器：既又原则 */
+		 span.box2 {
+		 	color: green;
+		 }
+		 .box2.box3 {
+		 	color: yellow;
+		 }
+		 /* 并集选择器 */
+		 .box4,
+		 .box5 {
+		 	color: blue;
+		 }
+		 /* 后代选择器：虽然son的父亲是uncle，但是son是father的后代 */
+		 .father .son {
+		 	color: green;
+		 }
+		 /* 子代选择器：父亲必须是father */
+		 .father > .son {
+		 	color: yellow;
+		 }
+	</style>
+</head>
+<body>
+	<span>hello world</span>
+	<br>
+	<span class="box">hello world</span>
+	<br>
+	<div class="red fz-30">hello world</div>
+	<div class="red fz-40">hello world</div>
+	<div id="box">hello world</div>
+	<a href="http://www.baidu.com">百度一下</a>
+	<span class="box2">hello world</span>
+	<span class="box2 box3">hello world</span>
+	<div class="box4">hello world</div>
+	<p class="box5">hello world</p>
+	<div class="father">
+		<div class="uncle">
+			<div class="son">hello world</div>
+		</div>
+		<div class="son">hello world</div>
+	</div>
+	<div class="laowang">
+		<div class="son">hello world</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  .one {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+  }
+  .two {
+    border: 10px solid red;
+  }
+  </style>
+</head>
+<body>
+  <div style="width:100px; height:100px; background-color:red;"></div>
+  <div id="box"></div>
+  <div id="box2"></div>
+<script>
+/*
+DOM中操作样式：
+  1、通过元素的style属性
+  2、通过元素的className属性
+*/
+
+//通过元素的style属性
+//注意：内嵌式样式和外链式样式，通过style属性访问不到，style属性只能访问行内式样式
+var box = document.getElementById('box');
+box.style.width = '100px';
+box.style.height = '100px';
+box.style.backgroundColor = 'green';
+
+//通过元素的className属性
+var box2 = document.getElementById('box2');
+box2.className = 'one';
+//拼接多个，注意要用空格隔开
+box2.className += ' two';
+
+</script>
+</body>
+</html>

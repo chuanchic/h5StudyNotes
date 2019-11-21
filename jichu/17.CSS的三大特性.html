@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		/*
+		继承性：
+			定义：后代元素可以继承祖先元素的一些CSS样式
+			原则上：自己有的样式用自己的，自己没有的样式去祖先那里找
+			一般：跟文字相关的基本都可以继承
+		*/
+		.box1 {
+			color: red;
+			text-align: center;
+			font-size: 80px;
+			height: 200px;/* 块级元素的高度不能被继承 */
+			width: 400px;/* 块级元素的宽度可以被继承 */
+		}
+		.box2 {
+			color: blue;
+		}
+		/* 
+		层叠性：
+			权重相同的情况下，后渲染的会覆盖先渲染的
+		*/
+		.box3 {
+			color: green;
+			color: red;
+		}
+		.box4 {
+			color: red;
+		}
+		.box5 {
+			color: blue;
+		}
+		/* 
+		优先级（权重）： 
+			继承 < 通配符 < 标签选择器 < 类选择器 < ID选择器 < 行内样式 < !important
+			0000           0001        0010      0100      1000      正无穷
+			注意：
+				!important只能针对单条CSS属性起作用，而不是整个选择器
+				!important对于继承没有作用，因为自己有的就不会用继承的，无论继承的权重有多高
+			权重叠加：
+				CSS特殊性（Specificity）是衡量CSS优先级的标准，用四位数（CSS2是三位）来表示
+			例子：
+				div ul li    0003
+				.nav ul li   0012
+				a:hover      0011
+				.nav a       0011
+				#nav p       0101
+		*/
+
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<div class="box2">hello world</div>
+	</div>
+	<div class="box3">hello world</div>
+	<div class="box4 box5">hello world</div>
+</body>
+</html>

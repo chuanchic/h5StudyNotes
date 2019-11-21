@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    //转number类型
+    //1、通过构造函数
+    var i = Number('12');
+    console.log(i);
+    console.log(typeof i);
+    //2、通过方法
+    var i2 = parseInt('12');
+    var i3 = parseFloat('12.3');
+    console.log(i2);
+    console.log(i3);
+    console.log(typeof i2);
+    console.log(typeof i3);
+    //3、简单粗暴 + (建议)
+    var i4 = +'12';
+    console.log(i4);
+    console.log(typeof i4);
+    //NaN
+    var i5 = +"aa";
+    console.log(i5);//NaN
+    console.log(typeof i5);//number
+    //判断是不是NaN
+    console.log(isNaN(i5));
+    
+    //转为字符串
+    //1、通过构造函数
+    var i6 = String(12);
+    console.log(i6);
+    console.log(typeof i6);
+    //2、通过方法
+    var i7 = 12;
+    var i8 = i7.toString();
+    console.log(i8);
+    console.log(typeof i8);
+    //3、通过 +
+    var i9 = 12;
+    var i10 = '3';
+    var i11 = i9 + i10;
+    console.log(i11);
+    console.log(typeof i11);
+    
+    //转为布尔类型
+    //1、通过构造函数
+    var i12 = Boolean(12);
+    console.log(i12);
+    console.log(typeof i12);
+    console.log(Boolean(0));//false
+    console.log(Boolean(''));//false
+    console.log(Boolean(undefined));//false
+    console.log(Boolean(null));//false
+    console.log(Boolean(NaN));//false
+    
+  </script>
+</body>
+</html>

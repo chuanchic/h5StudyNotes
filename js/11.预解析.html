@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  /*
+  预解析
+    js代码执行分为两个过程：
+      1、预解析过程
+        变量与函数的声明提升，赋值不会提升
+        提升到当前作用域的最前面
+        如果函数名相同，后面的会覆盖掉前面的
+        如果var声明的函数或变量和直接声明的函数同名，直接声明的函数优先
+      2、代码一行一行执行
+  */  
+
+  /*
+  下面代码实际执行过程（在全局范围内提升）
+    var num;
+    console.log(num);
+    num = 10;
+  */
+  console.log(num);//undefined
+  var num = 10;
+  
+  /*
+  下面代码实际执行过程（在方法内部提升）
+   var num2;
+   console.log(num2);
+   num2 = 10;
+  */
+  function f1(){
+    console.log(num2);//undefined
+    var num2 = 10;
+  }
+  f1();
+
+  /*
+  下面代码的执行过程（在全局范围内提升）
+  function f2(){
+    console.log('hello world');
+  }
+  f2();
+  */
+  f2();
+  function f2(){
+    console.log('hello world');
+  }
+
+  /*
+  下面代码的执行过程（在全局范围内提升）
+  var f3;
+  f3();
+  f3 = function(){
+    console.log('hello world');
+  }
+  */
+  // f3();
+  var f3 = function(){
+    console.log('hello world');
+  }
+
+  /*
+  var声明的变量和直接声明的函数同名
+  */
+  console.log(test);
+  var test = 10;
+  function test(){
+  }
+
+  /*
+  var声明的函数和直接声明的函数同名
+  */
+  test2();
+  function test2(){
+    console.log('我是test2');
+  }
+  var test2 = function(){
+    console.log('我是test2 var');
+  }
+
+  </script>
+</body>
+</html>

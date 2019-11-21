@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*
+        动画与过度的区别：
+            过度需要触发才能执行，再次执行依然需要触发，是需要两个状态的改变
+            动画不需要触发就可以一直运行下去，常用来实现复杂的动画效果
+            动画执行完成以后，默认情况下会恢复到初始状态
+        动画的使用：
+            1.声明动画序列
+            2.使用动画
+        声明动画序列：
+            1.from、to：只能设置两个状态的变化，满足不了复杂动画的要求
+                from = 0%, to = 100%
+            2.百分比：可以满足复杂动画的要求
+        动画参数详解：
+            animation-name：动画名称，由@keyframes定义
+            animation-duration：动画的持续时间
+            animation-timing-function：动画的过渡类型(动画效果)
+            animation-delay：动画的延迟时间
+            animation-iteration-count：动画的循环次数
+            animation-direction：设置动画在循环中是否反向运动(动画方向)
+            animation-fill-mode：设置动画时间之外的状态(最终状态)
+            animation-play-state：设置动画的状态(paused：暂停当前动画)
+        */
+        @keyframes rotate {
+            from {
+                width: 200px;
+                height: 200px;
+                transform: rotate(0deg);
+            }
+            to {
+                width: 400px;
+                height: 400px;
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes play {
+            0% {
+                width: 200px;
+                height: 200px;
+            }
+            50% {
+                width: 400px;
+                height: 200px;
+            }
+            100% {
+                width: 400px;
+                height: 400px;
+            }
+        }
+        @keyframes play2 {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(2);
+            }
+        }
+        div:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            border: 10px solid blue;
+            margin: 100px auto;
+            /*
+            使用动画：
+                复合属性，没有顺序要求，只要求动画延迟要在动画时间之后
+                常用属性顺序：动画名称 动画时间 动画次数 动画方向 动画效果 动画延迟
+            */
+            /*animation: rotate 1s 3;*/
+            /*animation: play 1s;*/
+        }
+        div:nth-child(2) {
+            width: 100px;
+            height: 100px;
+            border: 10px solid pink;
+            margin: 100px auto;
+            /*设置动画名称*/
+            animation-name: play2;
+            /*设置动画时间*/
+            animation-duration: 1s;
+            /*设置动画循环次数*/
+            animation-iteration-count: 3;
+            /*
+            设置动画的过渡类型(动画效果)：
+                linear、ease(默认值)、steps(10)、...和transition类似
+            */
+            animation-timing-function: linear;
+            /*
+            设置动画方向
+                normal：默认值，从from到to
+                alternate：交替，从from到to，再从to到from
+            */
+            animation-direction: alternate;
+            /*设置动画延迟*/
+            animation-delay: 1s;
+            /*
+            设置动画最终状态
+                forwards：停留在最终状态
+            */
+            animation-fill-mode: forwards;
+        }
+        div:nth-child(2):hover {
+            /*
+            设置动画状态
+                paused：暂停当前动画
+            */
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+</body>
+</html>

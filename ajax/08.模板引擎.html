@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="user"></div>
+  <div id="list"></div>
+
+  <!-- 1.引入模板引擎库 -->
+  <script src="template-web.js"></script>
+
+  <!-- 
+    2.准备模板：html静态模板 
+     type="text/html"，告诉浏览器当前是html模板，不需要被解析
+  -->
+  <script type="text/html" id="tpl">
+    <p>姓名：{{name}}</p>
+    <p>年龄：{{age}}</p>
+    <p>性别：
+      {{if sex === 1}}
+      男
+      {{else if sex === 2}}
+      女
+      {{else}}
+      未知
+      {{/if}}
+      <!-- 简写方式 -->
+      <!-- {{sex === 1 ? "男" : "女"}} -->
+    </p>
+  </script>
+
+  <script type="text/html" id="tpl2">
+    <!-- each语法中，内置了$index，$value，也支持自定义 -->
+    {{each list}}
+      <p>{{$index}},{{$value}}</p>
+    {{/each}}
+    {{each list v i}}
+      <p>{{i}},{{v}}</p>
+    {{/each}}
+  </script>
+
+  <script>
+  /*
+  模板引擎
+    为了让用户界面与业务数据分离而产生的，它可以生成特定格式的文档，
+    用于网站的模板引擎就会生成一个字符串格式的html文档
+  模板引擎的好处
+    当我们通过ajax获取到数据，开始渲染页面的时候，之前的做法是大量的拼接字符串，
+    如果页面结构比较复杂，拼接字符串的方式就不可取了，模板引擎可以解决这类问题
+  artTemplate模板引擎的下载
+    github地址下载：https://github.com/aui/art-template
+  */  
+  
+  //3.获取到的数据
+  var obj = {
+    name: "张三",
+    age: 18,
+    sex: 3
+  }
+  var arr = ["张三", "李四", "王五"];
+  var obj2 = {
+    list: arr
+  }
+
+  //4.将模板和数据相互结合，返回html字符串，并渲染到页面中
+  //  在模板中，数据对象的属性将被生成变量，可以直接访问变量，通过{{变量}}的方式
+  var htmlStr = template("tpl", obj);
+  var user = document.getElementById("user");
+  user.innerHTML = htmlStr;
+
+  var htmlStr2 = template("tpl2", obj2);
+  var list = document.getElementById("list");
+  list.innerHTML = htmlStr2;
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+  <button id="btn1">get请求</button>
+  <script>
+  /*
+  $.ajax()的参数列表
+    参数名称       描述           取值
+    url：         接口地址        xxx.php
+    type：        请求方式        get/post
+    timeout：     超时时间        毫秒值
+    dataType：    返回数据的格式   json/xml/text(默认)
+    data：        请求要传的数据   对象/字符串
+    beforeSend：  调用前的回调     函数
+    success：     成功的回调       函数
+    error：       失败的回调       函数
+    complete：    完成后的回调     函数
+  其他api
+    $.get()、$.post()，效果同上
+  data除了可以是对象，也可以是字符串，通过$('#ajaxForm').serialize()获取
+    表单序列化，可以将表单中带有name属性的表单元素的值，拼接成字符串
+  */  
+
+  //get请求
+  var btn1 = document.getElementById("btn1");
+  btn1.onclick = function(){
+    $.ajax({
+      type: "get",
+      url: "xxx.php",
+      data: {
+        username: "zhagnsan",
+        password: 123
+      },
+      timeout: 5000,//超时时间：5秒内没有响应就超时，走error回调
+      beforeSend: function(){
+        //如果返回false，这次请求不会继续发送，否则继续发送
+        //这里可以做一些比如表单校验，如果不合法返回false
+        return true;
+      },
+      success: function(result){
+        console.log(result);
+      },
+      error: function(){
+        console.log("失败");
+      },
+      complete: function(){//完成回调，不管成功还是失败，最后都会调用
+      }
+    });
+  };
+
+  </script>
+</body>
+</html>

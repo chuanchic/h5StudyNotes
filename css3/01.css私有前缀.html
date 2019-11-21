@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  div {
+    width: 200px;
+    height: 200px;
+    background-color: pink;
+    margin: 100px auto;
+    /* 
+    私有前缀：
+      在标准还未确定时，部分浏览器已经根据最初草案实现了部分功能，
+      为了与之后确定下来的标准进行兼容，每种浏览器使用了自己的私有前缀与标准进行区分，
+      当标准确立后，各大浏览器将逐步支持不带前缀的css3新属性。
+    结论：
+      为了兼容早期的各个浏览器，需要写全像下面这样，但是对于移动端的Ios、Android来说，
+      因为其浏览器都是基于webkit内核，所以不需要写全。
+      开发过程中一般借助自动化工具自动生成。
+    */
+
+    /* 谷歌(chrome)浏览器、Safari浏览器的前缀 -webkit- */
+    -webkit-transform: rotate(45deg);
+    /* 火狐浏览器的前缀 */
+    -moz-transform: rotate(45deg);
+    /* ie浏览器的前缀 */
+    -ms-transform: rotate(45deg);
+    /* 欧鹏(opera)浏览器的前缀 */
+    -o-transform: rotate(45deg);
+    /* 标准化写法 */
+    transform: rotate(45deg);
+
+    /* 过渡动画 */
+    transition: all 1s;
+  }
+  div:hover {
+    background-color: yellow;
+    width: 400px;
+    height: 400px;
+  }
+  
+</style>
+<body>
+  <div></div>
+</body>
+</html>

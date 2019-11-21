@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery-1.12.4.js"></script>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: #f99;
+      margin: 10px;
+    }
+    .basic {
+      background-color: lime;
+      font-size: 20px;
+    }
+    .big {
+      font-size: 50px;
+    }
+  </style>
+</head>
+<body>
+  <button>添加类名属性</button>
+  <button>移除类名属性</button>
+  <button>判断类名属性</button>
+  <button>切换类名属性</button>
+  <div></div>
+  <img src="./test.jpg" alt="我是提示" title="我是标题">
+  </br>
+  <label><input type="checkbox">点击我切换</label>
+
+  <script>
+    $(function(){
+      //添加类名属性
+      $("button").eq(0).click(function(){
+        //方式一：原生方式
+        $("div")[0].className = "basic";//缺点：会直接覆盖掉原来的
+        //方式二：jq方式
+        $("div").addClass("basic");//推荐，追加方式
+      });
+      //移除类名属性
+      $("button").eq(1).click(function(){
+        $("div").removeClass("basic");
+      });
+      //判断类名属性
+      $("button").eq(2).click(function(){
+        var hasBasic = $('div').hasClass("basic");
+        console.log(hasBasic);//判断多个div元素里，只要有一个有basic就返回true，否则返回false
+      });
+      //切换类名属性
+      $("button").eq(3).click(function(){
+        $("div").toggleClass("basic");
+      });
+
+      //设置、获取元素的属性
+
+      //原生js方式
+      // setAttribute(name, value);
+      // getAttribute(name);
+      // removeAttribute(name);
+
+      //jq方式：attr()
+      //设置单个属性
+      $("img").attr("title", "我是标题2");
+      //设置多个属性
+      $("img").attr({
+        title: "我是标题3",
+        alt: "我是提示2"
+      });
+      //获取单个属性
+      var title = $("img").attr("title");
+      console.log(title);
+      //移除单个属性
+      $("img").removeAttr("alt");
+      
+      //jq方式：prop()
+      $("input").click(function(){
+        //attr、getAttribute、setAttribute，操作的都是标签上的属性，拿不到实时的属性
+        //带来的问题：使用attr方法去获取checked、selected、disabled表单属性的时候，获取不到，
+        //推荐使用：prop方法替代attr方法
+        //总结：标签上的自定义属性用attr方法，标签上的固有属性用prop方法
+        //建议：checked、selected、disabled用prop方法，其他可以用attr方法
+        var check = $(this).attr("checked");
+        console.log(check);//返回undefined，原因：因为input元素上没有设置checked属性
+        check = $(this).prop("checked");
+        console.log(check);//返回true、false
+
+      });
+    });
+  </script>
+</body>
+</html>

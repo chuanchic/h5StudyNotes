@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /*
+        html5新增获取用户地理位置api，基于位置服务LBS(Location Base Service)，
+        html5还提供了一套保护用户隐私的机制，在获取地理位置之前会询问用户，只有在获得许可后才能获取
+        PC端：chrome，火狐定位请求的页面要是https协议的，所以PC端的测试要在IE下测试，因为IE没有要求
+        移动端：在iOS10中对webkit定位权限进行了修改：定位请求的页面必须是https协议的
+        */
+
+        //获取当前的地理位置
+        navigator.geolocation.getCurrentPosition(function (location) {
+            //定位成功回调
+            console.log(location.coords.latitude);//纬度
+            console.log(location.coords.longitude);//经度
+            console.log(location.coords.accuracy);//精确度，值越小，精确度越高
+            console.log(location.coords.altitude);//海拔高度
+        }, function (error) {
+            //定位失败回调
+            console.log(error);//错误信息
+        });
+
+        //重复的获取当前的地理位置
+        navigator.geolocation.watchPosition(function (location) {
+            //...
+        }, function (error) {
+            //...
+        });
+
+    </script>
+</body>
+</html>

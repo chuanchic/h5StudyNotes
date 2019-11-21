@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="fullpage.css">
+    <script src="jquery-1.12.4.js"></script>
+    <script src="fullpage.js"></script>
+    <style>
+        /*
+        fullPage含义：
+            fullPage.js是一个基于jQuery的插件，可以用来制作全屏网站
+            参考文档：http://www.dowebok.com/77.html
+            下载地址：https://github.com/alvarotrigo/fullPage.js
+        fullPage兼容性：
+            jQuery：1.7+
+            浏览器：IE8+，Chrome，Firefox，Opera，Safari
+        fullPage使用：
+            1.引入jQuery文件(fullPage依赖于jQuery)，引入fullPage文件：fullPage.js，fullPage.css
+            2.编写页面结构
+            3.编写js代码
+        fullPage原理：
+            当往上移动一屏的时候，其实是往上平移一屏的距离，距离是负值
+            transform: translate3d(0px, -635px, 0px); transition: all 700ms ease;
+        */
+    </style>
+</head>
+<body>
+    <!--class可以随便定义，如：box-->
+    <div class="box">
+        <!--class不可以随便定义，只能：fp-section，代表一屏-->
+        <div class="fp-section">1</div>
+        <!--默认显示第一屏，添加active类，可以修改默认显示第几屏-->
+        <div class="fp-section active">2</div>
+        <div class="fp-section">
+            <!--添加fp-slide类，代表横向一屏(不常用)-->
+            <div class="fp-slide">横向第一屏</div>
+            <div class="fp-slide">横向第二屏</div>
+            <div class="fp-slide">横向第三屏</div>
+            <div class="fp-slide">横向第四屏</div>
+        </div>
+        <div class="fp-section">4</div>
+        <div class="fp-section">5</div>
+    </div>
+    <script>
+        //入口函数
+        $(function () {
+            //初始化
+            $('.box').fullpage({
+                //配置fullPage属性
+                //配置每一屏的背景颜色
+                sectionsColor: ['pink', 'skyblue', 'green', 'gray', 'yellow'],
+                //配置每一屏里垂直方向不居中，默认居中
+                verticalCentered: false,
+                //配置导航小圆点的显示，默认不显示
+                navigation: true
+            });
+        })
+    </script>
+</body>
+</html>

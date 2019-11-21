@@ -1,0 +1,4 @@
+1、概念：
+  浏览器提供的一套操作浏览器功能（BOM）和页面元素（DOM）的API。
+  DOM：文档对象模型（Document Object Model）
+  BOM：

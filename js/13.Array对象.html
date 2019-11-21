@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    Array对象
+    */
+
+    /*
+    join：将数组的值拼接成字符串
+    */
+   var arr = [1,2,3];
+   console.log(arr.join('-'));
+   
+   /*
+   数组的增删操作
+    unshift shift push pop
+   */
+    arr.push(4, 5);
+    console.log(arr);
+    arr.pop();
+    console.log(arr);
+    arr.unshift(0, -1);
+    console.log(arr);
+    arr.shift();
+    console.log(arr);
+    
+    /*
+    数组排序
+    */
+   arr.sort(function(a, b){
+     //升序排列
+    return a - b;//a - b > 0，a > b，满足这个条件就交换位置
+   });
+
+   /*
+   数组的拼接
+   */
+  var arr2 = [1,2];
+  var arr3 = ['a', 'b'];
+  var arr4 = arr2.concat(arr3);
+  console.log(arr4);
+  
+  /*
+  数组的截取
+   slice(start, end)
+    start：开始位置（包括）
+    end：结束位置（不包括）
+    截取出来，不删除原数组里的
+   splice(start, deleteCount, item)
+    start：开始位置（包括）
+    deleteCount：删除的个数（可以为0，就是不删除）
+    item：要替换进去的数组
+    截取出来，同时删除原数组里的，并且可以替换进去新的数组（不替换新的数组可以不传）
+  */
+  var arr5 = [1, 2, 3, 4, 5];
+  var arr6 = arr5.slice(0, 2);
+  console.log(arr5);
+  console.log(arr6);
+  var arr7 = arr5.splice(0, 2, [6, 7]);
+  console.log(arr5);
+  console.log(arr7);
+
+  /*
+  数组的查找
+  */
+  var arr8 = [1, 2, 3, 4, 5];
+  var firstIndex = arr8.indexOf(2);
+  var lastIndex = arr8.lastIndexOf(4);
+  console.log(firstIndex);
+  console.log(lastIndex);
+  
+  /*
+  清空数组（3种方式）
+  */
+  //第一种
+  var arr9 = [1, 2];
+  arr9.splice(0, arr9.length);
+  console.log(arr9);
+  //第二种
+  arr9 = [1, 2];
+  arr9.length = 0;
+  console.log(arr9);
+  //第三种
+  arr9 = [1, 2];
+  arr9 = [];
+  console.log(arr9);
+  
+  </script>
+</body>
+</html>

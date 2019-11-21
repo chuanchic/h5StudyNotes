@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body {
+            background-color: black;
+            perspective: 1000px;
+        }
+        ul {
+            width: 300px;
+            height: 200px;
+            border: 1px solid white;
+            margin: 200px auto;
+            position: relative;
+            /*添加过渡动画*/
+            transition: all 1s;
+            /*设置变换的基准点：围绕底部旋转，底部任意一个点都行，选择底部中心点*/
+            transform-origin: center bottom;
+            /*添加3d效果*/
+            transform-style: preserve-3d;
+        }
+        li {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: white;
+            /*添加过渡动画，要在ul动画结束之后添加，因此需要添加延迟*/
+            transition: all 1s 1s;
+        }
+        ul:hover {
+            transform: rotateX(70deg);
+        }
+        ul:hover li:nth-child(2) {
+            transform: translateZ(20px);
+        }
+        ul:hover li:nth-child(3) {
+            transform: translateZ(40px);
+        }
+        ul:hover li:nth-child(4) {
+            transform: translateZ(60px);
+        }
+        ul:hover li:nth-child(5) {
+            transform: translateZ(80px);
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>

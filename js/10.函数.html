@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+    函数的声明与调用
+    返回值：undefined
+    */  
+   function sayHello(content){
+     console.log(content);
+   }
+   sayHello('hello world');
+   //返回值：string类型
+   function getHello(){
+     return 'hello world';
+   }
+   console.log(getHello());
+   
+   //函数作为参数
+   function f1(func){
+    func();
+   }
+   f1(function(){
+     console.log('hello world');
+   });
+
+   //函数作为返回值
+   function f2(){
+    return function(){
+      console.log('hello world');
+    }
+   }
+   var result = f2();
+   result();
+   
+   //匿名函数自动执行（立即执行函数）
+   //应用场景：可以作为沙箱，保护数据不被污染
+   (function(){
+    console.log('我是立即执行函数');
+   })();
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+注释：command + /
+复制一行：shift + option + 向下箭头
+移动一行：option + 向下、向上箭头
+格式化代码：shift + option + F
+折叠侧边栏：command + B
+浏览器调出控制台：fn + F12
+新建文件：command + N
+撤销：command + Z
+反撤销：shift + command + Z

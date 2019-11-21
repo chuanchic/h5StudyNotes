@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.box {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			/* 
+			内边距
+			一个值：上下左右都有
+			两个值：上下，左右
+			三个值：上，左右，下
+			四个值：上，右，下，左
+			*/
+			padding: 20px;
+			padding: 20px 40px;
+			padding: 20px 40px 60px;
+			padding: 20px 40px 60px 80px;
+			/* 
+			注意点：
+				行内元素不要写上下的padding，左右的可以写，上下的边距可以用行高来代替 
+				块元素宽度的继承，继承的是width的大小，不包括padding的大小
+			*/
+
+			/*
+			外边距
+			取值方式和内边距一样
+			注意点：
+				margin的大小只会移动盒子的位置，不会对盒子的大小造成影响（特殊情况除外）
+				行内元素也不要给上下的margin
+				auto: 可以让一个盒子水平居中，垂直不行
+				margin: 0 auto  意思是：上下margin为0，左右居中
+					左右居中的前提条件：必须是一个块元素，同时拥有固定的宽度
+			bug1:
+				当上下相邻的两个块元素相遇时，如果上面的元素有下外边距margin-bottom，下面的元素有上外边距margin-top，
+				则他们之间的垂直间距不是margin-bottom与margin-top之和，而是两者中的较大者，
+				这种现象被称为相邻块元素垂直外边距的合并，也称外边距塌陷。
+			bug2:
+				对于两个嵌套关系的块元素，如果父元素没有上内边距及边框，则父元素的上外边距会与子元素的上外边距发生合并，
+				合并后的外边距为两者中的较大者，即使父元素的上外边距为0，也会发生合并
+				解决方式：
+					1、不要给子元素margin-top，而给父元素padding-top
+					2、给父容器添加上边框或者上padding，1px就行
+					3、给父容器添加overflow:hidden
+			*/
+		}
+		/* 
+		清除默认的内外边距
+		*/
+		* {
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">hello world</div>
+</body>
+</html>

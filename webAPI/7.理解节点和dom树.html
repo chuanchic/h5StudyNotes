@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box">
+    我是box
+    <span>我是span</span>
+    <p>
+      我是p
+      <span>我是span2</span>
+    </p>
+    <!-- 这是注释 -->
+  </div>
+
+  <p id="p">我是p</p>
+  <div id="box2">
+    <span id="span">span</span>
+  </div>
+
+  <!--
+    节点包括：
+      文档节点：整个文档是一个文档节点
+      标签节点：每个HTML标签是一个标签节点/元素节点
+      属性节点：HTML标签内的文本是文本节点
+      文本节点：HTML标签的属性是属性节点
+      注释节点：注释
+  -->
+  <!--
+    dom树：
+      一个html页面中所有内容都是节点
+      当浏览器加载一个html页面的时候，会把页面中所有内容加载到内存，形成dom树
+      最终浏览器会根据dom树渲染界面
+  -->
+  <script>
+    /*
+    节点类型的属性 
+      nodeType：节点类型
+      nodeName：节点名称
+      nodeValue：节点值
+    */
+    //标签节点的类型：1，名称：大写的标签名，值：永远是null
+    var box = document.getElementById('box');
+    console.dir(box);
+    
+    /*
+    节点层级的属性
+    */
+    var childNodes = box.childNodes;//返回所有的子节点
+    var children = box.children;//返回所有的子标签节点
+    var parentNode = box.parentNode;//返回父标签节点
+    var nextElementSibling = box.nextElementSibling;//返回下一个兄弟元素（标签节点）
+    var previousElementSibling = box.previousElementSibling;//返回上一个兄弟元素（标签节点）
+    var nextSibling = box.nextSibling;//返回下一个兄弟节点
+    var previousSibling = box.previousSibling;//返回上一个兄弟节点
+    var firstChild = box.firstChild;//返回第一个子节点
+    var lastChild = box.lastChild;//返回最后一个子节点
+    var firstElementChild = box.firstElementChild;//返回第一个子元素
+    var lastElementChild = box.lastElementChild;//返回最后一个子元素
+    /*
+    操作节点
+    */
+    //添加子节点方式一
+    var box2 = document.getElementById('box2');
+    var p = document.getElementById('p');
+    var span = document.getElementById('span');
+    //box2.appendChild(p);//如果p存在，会先剪切掉，然后再添加（在末尾添加）
+    //添加子节点方式二
+    //box2.insertBefore(p, span);//在span标签之前添加p标签，如果p存在，先剪切再添加
+    //移除子节点
+    //box2.removeChild(span);
+    //替换节点
+    //box2.replaceChild(p, span);//把span替换成p
+    //克隆节点
+    box2.cloneNode(false);//不传或者传false，表明只克隆节点本身（box2本身）
+    box2.cloneNode(true);//克隆节点本身，包括它的子节点
+
+  </script>
+</body>
+</html>

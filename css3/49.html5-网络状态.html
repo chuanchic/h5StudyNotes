@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //返回当前的网络状态，true：连接，false：断开
+        //返回false，表示一定没有连上网络，返回true，不一定能访问互联网，也有可能连接的是局域网
+        console.log(navigator.onLine);
+
+        /*监听网络状态的变化*/
+        //网络连接时调用
+        window.addEventListener("online", function () {
+
+        })
+        //网络断开时调用
+        window.addEventListener("offline", function () {
+
+        })
+    </script>
+</body>
+</html>

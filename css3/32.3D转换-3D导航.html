@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        ul {
+            width: 600px;
+            height: 600px;
+            border: 1px solid #000;
+            margin: 100px auto;
+        }
+        li {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            float: left;
+            text-align: center;
+            position: relative;
+            /*添加3d效果*/
+            transform-style: preserve-3d;
+            /*添加过渡动画*/
+            transition: all 1s;
+        }
+        li:hover {
+            transform: rotateX(-90deg);
+        }
+        li span {
+            width: 100%;
+            height: 100%;
+            left: 0;
+            margin: 0;
+            position: absolute;
+        }
+        li span:nth-child(1) {
+            background-color: pink;
+            transform: translateZ(25px);
+        }
+        li span:nth-child(2) {
+            background-color: blue;
+            transform: rotateX(90deg) translateZ(25px);
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <span>传智播客</span>
+        <span>web前端</span>
+    </li>
+    <li>
+        <span>传智播客</span>
+        <span>web前端</span>
+    </li>
+    <li>
+        <span>传智播客</span>
+        <span>web前端</span>
+    </li>
+    <li>
+        <span>传智播客</span>
+        <span>web前端</span>
+    </li>
+    <li>
+        <span>传智播客</span>
+        <span>web前端</span>
+    </li>
+    <li>
+        <span>传智播客</span>
+        <span>web前端</span>
+    </li>
+</ul>
+</body>
+</html>

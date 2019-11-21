@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  #box1 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid green;
+    overflow: auto;
+  }
+  #box2 {
+    width: 300px;
+    height: 300px;
+    background-color: red;
+  }
+</style>
+<body>
+  <div id="box1">
+    <div id="box2">
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+      我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本
+    </div>
+  </div>
+  <script>
+  /*
+  scrollWidth：元素里内容的宽
+  scrollHeight：元素里内容的高
+  scrollLeft：元素中内容左侧滚动出去的距离
+  scrollRight：元素中内容顶部滚动出去的距离
+  注意：
+    scrollWidth,scrollHeight不能赋值
+    scrollLeft,scrollTop可以赋值，并且不用写单位
+  */
+  var box1 = document.getElementById('box1');
+  console.log(box1.scrollWidth);//不超过box2的300px时候，是300px，超过就是实际内容的大小
+  console.log(box1.scrollHeight);//不超过box2的300px时候，是300px，超过就是实际内容的大小
+  box1.onscroll = function(){
+    console.log(box1.scrollLeft);
+    console.log(box1.scrollTop);
+  };
+  </script>
+</body>
+</html>

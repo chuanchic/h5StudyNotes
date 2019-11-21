@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="tools.js"></script>
+  <style>
+  #box {
+    width: 600px;
+    height: 600px;
+    background-color: #ccc;
+    position: relative;
+  }
+  </style>
+</head>
+<body>
+  <button id="btn">面向过程方式随机生成一个小盒子</button>
+  <button id="btn2">面向对象方式随机生成一个小盒子</button>
+  <div id="box"></div>
+  <script>
+  /*
+  arguments是函数里的一个伪数组对象，里面存放了所有传进来的实参
+  */
+  function fn1(){
+    console.log(arguments);
+  }
+  fn1(1,'a');
+
+  /*
+  面向对象小案例
+  */
+  var btn = document.getElementById('btn');
+  var btn2 = document.getElementById('btn2');
+  var box = document.getElementById('box');
+  //1、面向过程方式
+  btn.onclick = function(){
+    var div = document.createElement('div');
+    div.style.width = '20px';
+    div.style.height = '20px';
+    div.style.backgroundColor = 'red';
+
+    var maxX = box.offsetWidth - 20;
+    var maxY = box.offsetHeight - 20;
+    var randomX = Tool.getRandom(0, maxX);
+    var randomY = Tool.getRandom(0, maxY);
+    div.style.left = randomX + 'px';
+    div.style.top = randomY + 'px';
+    div.style.position = 'absolute';
+
+    box.appendChild(div);
+  }
+  //面向对象方式
+  btn2.onclick = function(){
+    var smallBox = new SmallBox(20, 20, 'red');
+    smallBox.render();
+  }
+  //1、构造函数创建对象
+  function SmallBox(width, height, bgc){
+    this.width = width;
+    this.height = height;
+    this.bgc = bgc;
+  }
+  //2、因为方法不应该是某个对象私有的，应该是所有对象都能访问，所以方法要加在原型上
+  SmallBox.prototype.render = function(){
+    var div = document.createElement('div');
+    div.style.width = this.width + 'px';
+    div.style.height = this.height + 'px';
+    div.style.backgroundColor = this.bgc;
+   
+    var maxX = box.offsetWidth - 20;
+    var maxY = box.offsetHeight - 20;
+    var randomX = Tool.getRandom(0, maxX);
+    var randomY = Tool.getRandom(0, maxY);
+    div.style.left = randomX + 'px';
+    div.style.top = randomY + 'px';
+    div.style.position = 'absolute';
+
+    box.appendChild(div);
+  }
+
+  </script>
+</body>
+</html>

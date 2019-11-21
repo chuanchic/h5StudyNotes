@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<script src="jquery-1.12.4.js"></script>
+<script>
+/*
+jQuery选择器：
+  是jQuery为我们提供的一组方法，让我们方便的获取到页面中的元素
+  jQuery选择器返回的是jQuery对象
+  jQuery选择器获取一个元素，可以有多种方法，因此主要掌握常用的几个
+  1、css选择器
+    ID选择器：$("#id")              获取指定ID的元素
+    类选择器：$(".class")           获取同一类class的元素
+    标签选择器：$("div")            获取同一类标签的元素
+    并集选择器：$("div,p,li")       逗号分隔，符合条件之一就可
+    交集选择器：$("div.redClass")   获取class为redClass的div元素
+    子代选择器：$("ul>li")          使用>号，获取儿子层级的元素，不会获取孙子层级的元素
+    后代选择器：$("ul li")          使用空格，获取ul下的所有li元素，包括孙子等
+  2、过滤选择器
+    :eq(index)：$("li:eq(2)")   获取到的li元素中，选择索引号为2的元素，索引号从0开始
+    :odd：      $("li:odd")     获取到的li元素中，选择索引号为奇数的元素
+    :even：     $("li:even")    获取到的li元素中，选择索引号为偶数的元素
+    :first：    $("li:first")   获取到的li元素中，选择第一个
+    :last：     $("li:last")    获取到的li元素中，选择最后一个
+  3、筛选选择器(功能类似于过滤选择器)
+    children(selector)：$("ul").children("li")     获取当前元素的所有li子元素，只包括儿子
+    find(selector)：    $("ul").find("li")         获取当前元素的所有li后代元素，包括儿子、孙子
+    siblings(selector)：$("#first").siblings("li") 查找兄弟节点，不包括自己
+    parent()：          $("#first").parent()       查找父亲
+    eq(index)：         $("li").eq(2)              相当于$("li:eq(2)")，index从0开始，返回jq对象
+    get(index)：        $("li").get(2)             作用同eq(index)，但是返回的是dom对象
+    next()：            $("li").next()             查找下一个兄弟
+    prev()：            $("li").prev()             查找上一个兄弟
+  4、其他
+    index()：获取元素的下标，是当前元素在所有兄弟元素中的索引
+*/
+$(function(){
+  //ID选择器
+  $("#li1").css("color", "yellow");
+  //类选择器
+  $(".class1").text("我是类选择器");
+  //标签选择器
+  $("li").css("backgroundColor", "red");
+  //并集选择器
+  $("#li1, .class1").text("我是并集选择器");
+  //交集选择器
+  $(".li.li11").css("backgroundColor", "green");
+  //子代选择器
+  $("ol>li").text("我是子代选择器");
+  //后代选择器
+  //$("ul li").css("fontSize", "30px");
+  $("ul li").css("fontSize", 20);
+
+});
+</script>
+<body>
+  <ul>
+    <li id="li1">hello world</li>
+    <li class="class1">hello world</li>
+    <li>
+      hello world
+      <ol>
+        <li class="li li11">我是后代</li>
+        <li class="li ">我是后代</li>
+        <li class="li">我是后代</li>
+      </ol>
+    </li>
+  </ul>
+</body>
+</html>

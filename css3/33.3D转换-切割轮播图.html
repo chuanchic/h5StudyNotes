@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .box {
+            width: 560px;
+            height: 380px;
+            border: 1px solid #000;
+            margin: 100px auto;
+            position: relative;
+        }
+        ul {
+            /*
+            切割效果实现思路：
+                设置5个ul，每个ul占父盒子20%
+                设置ul左浮动
+                调整第2、3、4、5个ul里的每个li，调整每个li的背景定位：background-position
+                点击按钮的时候，让所有的ul同时做过渡动画，同时每个ul动画的时间不一致
+            */
+            width: 20%;
+            height: 100%;
+            position: relative;
+            /*添加3d效果*/
+            transform-style: preserve-3d;
+            float: left;
+        }
+        ul:nth-child(2) li {
+            background-position: -112px 0;
+        }
+        ul:nth-child(3) li {
+            background-position: -224px 0;
+        }
+        ul:nth-child(4) li {
+            background-position: -336px 0;
+        }
+        ul:nth-child(5) li {
+            background-position: -448px 0;
+        }
+        ul li {
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            position: absolute;
+        }
+        ul li:nth-child(1) {
+            background-image: url("test.jpg");
+            transform: translateZ(190px);
+        }
+        ul li:nth-child(2) {
+            background-image: url("test.jpg");
+            transform: rotateX(90deg) translateZ(190px);
+        }
+        ul li:nth-child(3) {
+            background-image: url("test.jpg");
+            transform: rotateX(180deg) translateZ(190px);
+        }
+        ul li:nth-child(4) {
+            background-image: url("test.jpg");
+            transform: rotateX(270deg) translateZ(190px);
+        }
+        .arrow_left,
+        .arrow_right {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            background-color: orange;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            border-radius: 10px;
+            text-decoration: none;
+        }
+        .arrow_left {
+            left: -100px;
+        }
+        .arrow_right {
+            right: -100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <a href="javascript:;" class="arrow_left">上一页</a>
+        <a href="javascript:;" class="arrow_right">下一页</a>
+    </div>
+    <script>
+        var leftBtn = document.querySelector(".arrow_left");
+        var rightBtn = document.querySelector((".arrow_right"));
+        var uls = document.querySelectorAll("ul");
+        var degCount = 0;
+        var clickFlag = true;
+        //点击左箭头，让每个ul绕X轴旋转，正方向旋转90度
+        leftBtn.onclick = function () {
+            if(!clickFlag){
+                return;//避免多次点击
+            }
+            clickFlag = false;
+
+            degCount += 90;
+            uls.forEach(function (v, i) {
+                v.style.transition = "all 1s "+(0.2*i)+"s";
+                v.style.transform = "rotateX("+degCount+"deg)";
+            })
+        }
+        //点击右箭头，让每个ul绕X轴旋转，反方向旋转90度
+        rightBtn.onclick = function () {
+            if(!clickFlag){
+                return;//避免多次点击
+            }
+            clickFlag = false;
+
+            degCount -= 90;
+            uls.forEach(function (v, i) {
+                v.style.transition = "all 1s "+(0.2*i)+"s";
+                v.style.transform = "rotateX("+degCount+"deg)";
+            })
+        }
+        //监听最后一个ul动画执行结束
+        uls[uls.length - 1].addEventListener("transitionend", function () {
+            clickFlag = true;
+        })
+    </script>
+</body>
+</html>

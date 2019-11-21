@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		/* 
+		vertical-align
+			控制行内块与文字的对齐方式，写在行内块元素上面
+		值：
+			middle：以中线对齐行内块和文字
+			baseline：默认值，以基线对齐行内块和文字
+			top：行高的顶线
+			bottom：行高的底线
+		*/
+		input {
+			width: 100px;
+			height: 100px;
+			vertical-align: middle;
+		}
+		textarea {
+			vertical-align: middle;
+		}
+		/* 
+		解决图片底部留白问题
+		原因：
+			因为行内块和文字的对齐方式是基线对齐，并不是底线，所以图片底部会有留白
+		解决方法：
+			第一种：设置img为块元素
+			第二种：设置行内块和文字的对齐方式不是基线对齐
+		 */
+		 .box {
+		 	border: 1px solid #000;
+		 	line-height: 100px;
+		 }
+		 img {
+		 	border: 1px solid lime;
+		 	/*display: block;*/
+		 	vertical-align: top;
+		 }
+		/*
+		让div垂直居中
+		*/
+		.box2 {
+			width: 200px;
+			height: 200px;
+			border: 1px solid #ccc;
+			line-height: 200px;
+			text-align: center;
+		}
+		.box3 {
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		/*
+		设置多行文本水平垂直居中
+		*/
+		.box4 {
+			width: 200px;
+			height: 200px;
+			border: 1px solid #ccc;
+			line-height: 200px;
+			text-align: center;
+		}
+		.box5 {
+			border: 1px solid red;
+			display: inline-block;
+			vertical-align: middle;
+			line-height: 1.2;
+		}
+		/*
+		单行文本溢出以省略号的形式显示
+		*/
+		.box6 {
+			width: 100px;
+			height: 20px;
+			border: 1px solid #000;
+		}
+		.txt-cut {
+			overflow: hidden;
+			white-space: nowrap;/* 强制文字不换行 */
+			text-overflow: ellipsis;
+		}
+	</style>
+</head>
+<body>
+	<input type="checkbox" name=""> 男
+	<br>
+	留言板：<textarea name="" id="" cols="30" rows="10"></textarea>
+	<br>
+	<div class="box">
+		<img src="images/test.jpg"> hello world
+	</div>
+	<br>
+	<div class="box2">
+		<div class="box3"></div>
+	</div>
+	<br>
+	<div class="box4">
+		<div class="box5">
+			我是文本<br>
+			我是文本<br>
+			我是文本<br>
+			我是文本<br>
+		</div>
+	</div>
+	<div class="box6 txt-cut">
+		safjl司法局拉进来发酵饲料发酵酸辣粉
+	</div>
+</body>
+</html>

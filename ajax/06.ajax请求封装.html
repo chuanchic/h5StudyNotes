@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="ajax.mine.js"></script>
+</head>
+<body>
+  <button id="btn">ajax请求封装</button>
+  <script>
+
+    //发送请求
+    var btn = document.getElementById("btn");
+    btn.onclick = function(){
+      $.ajax({
+        type: "get",
+        url: "xxx.php",
+        async: true,
+        data: {
+          name: "张三",
+          age: 18
+        },
+        dataType: "json",
+        success: function(result){
+          console.log(result);
+        },
+        error: function(result){
+          console.log(result);
+        }
+      })
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  /*
+  instanceof的作用：
+    判断一个函数的原型对象，是否在实例的原型链上
+  */
+  var arr = [];//底层调用new Array
+  console.log(arr instanceof Array);//true，在arr的原型链上
+  console.log(arr instanceof Object);//true，也在arr的原型链上
+
+  </script>
+</body>
+</html>

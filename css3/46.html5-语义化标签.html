@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--
+    html5语义化标签兼容性：IE8及以下不支持
+    传统解决方式：
+        1.在浏览器解析标签之前，动态创建一下标签，浏览器就认识了，document.createElement("xxx);
+        2.动态创建的标签默认是行内，需要转成块级的话就display: block;
+    插件解决方式：html5shiv
+        html5shiv 是一个针对 IE 浏览器的 HTML5 JavaScript 补丁，目的是让 IE 识别并支持 HTML5 元素。
+        在header中引入html5shiv插件就行了，<script src="html5shiv.js"></script>
+        但是在支持html5语义化标签的浏览器中，就没必要执行这个js文件，可以通过CSS IE条件注释 来做处理
+    CSS IE条件注释：
+        专门用于兼容IE低版本，所以只有IE9及以下版本才认识，IE10及以上版本或其他浏览器会当成注释，不会去解析
+        lte   less than or equal to       小于或等于
+        lt    less than                   小于
+        gte   greater than or equal to    大于或等于
+        gt    greater than                大于
+        如果gte IE 8：意思就是只有IE 9才会执行，因为IE10及以上会直接当成注释
+    -->
+
+    <!--在小于或等于IE8的浏览器中才会执行，在IE9或以上浏览器中就是注释，不会执行-->
+    <!--[if lte IE 8]>
+        <script src="html5shiv.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 8]>
+    <script>
+        alert("hello world");
+    </script>
+    <![endif]-->
+
+</body>
+</html>

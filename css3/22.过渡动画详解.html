@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            margin: 100px auto;
+            /*
+            过渡定义：
+                如果两个状态变化，没有过渡，效果是瞬间变化的
+                如果加上了过渡，这个过程就会有动画的效果
+                整个状态变化的过程是浏览器来完成的
+                过渡动画的渲染性能比通过js控制位置的效率高
+            过渡状态：
+                div代表A状态，div:hover代表B状态
+                如果transition加给A状态：那么鼠标hover的时候有动画，鼠标离开的时候也有动画
+                如果transition加给B状态，那么鼠标hover的时候有动画，鼠标离开的时候没有动画，因为此时transition没了
+            过渡属性：
+                transition-property：检索或设置参与过渡的属性
+                    值：width, height, all(全部属性), ...
+                transition-duration：检索或设置过渡的持续时间
+                transition-timing-function：检索或设置过渡的动画类型
+                    linear：线性过渡(匀速)
+                    ease：平滑过渡(缓动，默认值)
+                    ease-in：由慢到快
+                    ease-out：由快到慢
+                    ease-in-out：由慢到快再到慢(钟摆)
+                    step-start：等同于steps(1, start)，等同于立马从A状态变化到B状态
+                    step-end：等同于steps(1, end)，等同于xx秒后立马从A状态变化到B状态
+                    steps：接受两个参数
+                        第一个参数：正整数，指定函数的步数，即执行当前动画需要多少步
+                        第二个参数：start或end(可选，默认值end)，指定每一步发生变化(动画)的时间点
+                    cubic-bezier：特定的贝塞尔曲线类型，4个参数值要在[0,1]区间内
+                transition-delay：检索或设置延迟过渡的时间
+            简写方式：
+                不区分先后顺序，唯一要求：过渡延时要放在过渡时间的后面
+                例如：transition: all 1s linear 2s;
+            */
+
+            /*
+            下面设置含义：
+                所有属性参与过渡动画
+                动画时长10s
+                10s动画分成10份，每隔1s执行一次，在每秒开始的时候执行
+                延迟2s再执行
+            */
+            transition-property: all;
+            transition-duration: 10s;
+            transition-timing-function: steps(10, start);
+            transition-delay: 2s;
+
+        }
+        div:hover {
+            width: 400px;
+            height: 400px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

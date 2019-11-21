@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery-1.12.4.js"></script>
+  <script>
+  //jq入口函数：当文档加载完成的时候执行
+  $(document).ready(function(){
+    console.log('hello world');
+  });
+  //更简洁的方式
+  $(function(){
+    console.log('hello world2');
+  });
+  //原生方式
+  window.onload = function(){
+    console.log('hello world3');
+  };
+  //区别：
+  //jq的入口函数要先于window.onload执行
+  //jq的入口函数不会覆盖，window.onload后一次会覆盖前一次
+  //优劣：
+  //注册点击事件在jq的入口函数里要优于在window.onload里
+  //因为window.onload要等页面全部加载完成才会调用，包括外部资源文件(图片，css，js等)
+  //而jq的入口函数等页面加载完成就会调用，不包括外部资源，所以更快
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

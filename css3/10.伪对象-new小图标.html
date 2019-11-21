@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    ul {
+      height: 100px;
+      list-style: none;
+      padding: 0;
+      margin: 100px;
+    }
+    li {
+      width: 200px;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      border: 1px solid #000;
+      float: left;
+      position: relative;
+    }
+    /* 
+    通过伪元素显示小图标的好处： 
+      可以通过添加类的方式来显示小图标，而不改变代码结构。
+    */
+    .new::before {
+      content: "";
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      width: 76px;
+      height: 38px;
+      background: url('./new.jpg');
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>导航1</li>
+    <li class="new">导航2</li>
+    <li class="new">导航3</li>
+    <li>导航4</li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		/*
+		移动至某个位置：类似于相对定位，原来的位置还在
+			值：像素、百分比（相对于自己的）
+		*/
+		.box {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			transition: all 1s;
+		}
+		.box:hover {
+			/*transform: translate(100px);*/
+			/*transform: translate(100px,100px);*/
+			transform: translate(100%,100%);
+			/*transform: translateX(100px);*/
+		}
+		/*
+		旋转
+		*/
+		.box2 {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			transition: all 1s;
+			/*
+			控制中心点
+			值：
+				方位名词：left,right,top,bottom,center
+				像素：...
+			*/
+			/*transform-origin: top center;*/
+			transform-origin: 50px 50px;
+		}
+		.box2:hover {
+			transform: rotate(360deg);
+		}
+		/*
+		缩放
+		*/
+		.box3 {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			transition: all 1s;
+		}
+		.box3:hover {
+			/*
+			缩放到原来的多少倍
+			*/
+			/*transform: scale(2);*/
+			transform: scaleX(2);
+		}
+		/*
+		多个2D效果
+		*/
+		.box4 {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			transition: all 1s;
+		}
+		.box4:hover {
+			/*
+			需要多个2D效果的时候，采用下面这种方式
+			*/
+			transform: scale(2) rotate(360deg);
+		}
+		/*
+		多个场景下的2D效果
+		*/
+		.box5 {
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			transition: all 1s;
+			position: absolute;
+			left: 50%;
+			transform: translate(-50%, 0) rotate(0deg);
+		}
+		.box5:hover {
+			transform: translate(-50%, 0) rotate(360deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<div class="box2"></div>
+	<div class="box3"></div>
+	<div class="box4"></div>
+	<div class="box5"></div>
+</body>
+</html>

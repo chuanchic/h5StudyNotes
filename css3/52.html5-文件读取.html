@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div></div>
+    <input type="file">
+    <script>
+        /*
+        文件读取：
+            通过FileReader对象可以读取本地的文件，用File对象来指定要读取的文件，
+            File对象可以来自于在file类型的input框里，选择文件后返回的FileList对象，
+            也可以来自于拖放操作生成的DataTransfer。
+        File对象：
+            File对象中包含了文件的最后修改时间、文件名、文件类型等信息
+        FileList对象：
+            在file类型的input框对应的DOM对象里，存在一个files属性，这个属性就是FileList对象，
+            是一个伪数组，存储着上传的所有文件，当input框指定了multiple属性后就可以上传多个文件。
+        FileReader对象：
+            是html5新增的对象，用于读取文件
+        */
+
+        //案列：读取文件并预览
+        var div = document.querySelector("div");
+        var input = document.querySelector("input");
+        input.addEventListener("change", function () {
+            var file = this.files[0];//获取文件对象
+            var fileReader = new FileReader();//创建文件读取器
+            fileReader.readAsDataURL(file);//读取文件(这种方式读取的结果可以直接被浏览器解析)
+            // fileReader.readAsText(file);//读取文件
+            fileReader.onload = function () {//读取完成回调
+                var result = fileReader.result;//读取结果
+                div.innerHTML = '<img src = "' + result + '">';//显示图片
+            }
+        })
+    </script>
+</body>
+</html>

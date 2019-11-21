@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            background-color: skyblue;
+        }
+        .fish {
+            width: 87px;
+            height: 63px;
+            /*添加背景图片：多张图片组成的序列帧*/
+            background: url("fish-12-63.jpg") center -30px;
+            /*
+            开始动画：
+                抖动动画：分成12步，每步显示一张图片，形成抖动的效果
+                游动动画：分成5个状态
+                注意：多组动画用逗号分隔
+            */
+            animation: doudong 2s steps(12) infinite, youdong 10s infinite;
+        }
+        .fish:nth-child(1),
+        .fish:nth-child(5) {
+            animation-duration: 0.5s, 6s;
+        }
+        .fish:nth-child(2),
+        .fish:nth-child(4) {
+            animation-duration: 1s, 13s;
+        }
+        .fish:nth-child(3) {
+            animation-duration: 1.2s, 5s;
+        }
+        /*定义抖动动画*/
+        @keyframes doudong {
+            from {
+                background-position: center 0;
+            }
+            to {
+                background-position: center -756px;
+            }
+        }
+        /*定义游动动画*/
+        @keyframes youdong {
+            /*开始状态*/
+            0% {
+                transform: translateX(0) rotate(0deg);
+            }
+            /*游到最右边*/
+            25% {
+                transform: translateX(1000px) rotate(0deg);
+            }
+            /*转身*/
+            50% {
+                transform: translateX(1000px) rotate(180deg);
+            }
+            /*游回最左边*/
+            75% {
+                transform: translateX(0) rotate(180deg);
+            }
+            /*再次转身*/
+            100% {
+                transform: translateX(0) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+    <div class="fish"></div>
+</body>
+</html>

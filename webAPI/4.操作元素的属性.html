@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <img src="images/test.jpg" alt="" title="haha" id="img">
+  <div id="box">
+    div的文本
+    <span>span的文本</span>
+  </div>
+  <input type="text" value="123">
+  <input type="button" value="按钮" disabled>
+  <select id="select">
+    <option>请选择</option>
+    <option selected>选项一</option>
+    <option>选项二</option>
+  </select>
+  <script>
+    //操作img标签的属性
+    var img = document.getElementById('img');
+    img.title = 'hello world';
+
+    //操作innerText，innerHTML
+    var box = document.getElementById('box');
+    console.log(box.innerText);//返回元素里面的所有文本
+    console.log(box.innerHTML);//返回元素里面的所有内容
+    //赋值新的内容，会覆盖原来的内容
+    box.innerText = '我是div文本<p>我是p文本</p>';//不会识别里边的标签，全部当成文本处理
+    box.innerHTML = '我是div文本<p>我是p文本</p>';//会识别标签，把里边的标签渲染出来
+    //注意：
+    //1、innerText，innerHTML一般用来操作双标签，不能用于单标签
+    //2、单标签比如input标签，要用value属性来获取它的值
+
+    //操作表单元素的属性
+    //value属性
+    var input = document.querySelectorAll('input')[0];
+    input.value = '234';
+    //type属性
+    input.type = 'button';
+    //disabled属性
+    var input2 = document.querySelectorAll('input')[1];
+    input2.disabled = false;
+    //selected属性
+    var select = document.querySelector('select');
+    var options = select.getElementsByTagName('option');
+    options[2].selected = true;
+
+  </script>
+</body>
+</html>

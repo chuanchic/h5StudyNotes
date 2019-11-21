@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+  <script>
+  /*
+  同源策略的概念：
+    A网页设置的Cookie，B网页不能打开，除非这两个页面同源，即
+    协议相同、域名相同、端口相同
+  同源策略的目的：
+    为了保证用户信息的安全，防止恶意的网站窃取数据
+  同源策略的限制范围：
+    1.Cookie、LocalStorage、IndexDB都无法读取
+    2.DOM无法获得
+    3.AJAX请求在浏览器端有跨域限制，要求必须是同一个网站里请求
+  同源策略带来的问题：
+    在实际开发过程中，往往会把服务端架设到一台甚至是一个集群的服务器中，把客户端页面放到另一个单独的服务器中，
+    这时候就会出现不同源的情况。如果我们知道两个网站都是安全的话，那么我们希望两个不同源的网站之间可以相互
+    请求数据，这就涉及到跨域问题。
+  解决跨域问题：
+    JSONP(JSON with Padding)，可用于解决主流浏览器的跨域数据访问的问题
+      原理：利用script标签可以跨域请求的特性，不受同源策略的限制，
+           让服务端返回一个定义好的js函数，并且将数据作为该函数的参数，
+           script标签会执行该文件的返回，即执行定义好的js函数。
+      做法：用script的src属性引入一个php文件，
+           php文件返回一个函数，把需要的数据作为该函数的参数，
+           script标签会执行该文件的返回，即执行定义好的js函数。
+      场景：比如在某个点击事件中动态创建script标签
+           var script = document.createElement("script");
+           script.src = "http://www.xxx...?callback=fn";
+           document.body.appendChild(script);
+           其中fn就是定义好的js函数，通过参数传递给后端，后端会返回这个js函数
+      jquery中的使用：
+           jquery把jsonp封装到了ajax中，使用jquery发送jsonp请求，就是发送ajax请求，
+           但是只能通过get方式请求，同时需要设置dataType=jsonp。
+           $.ajax({
+              type: "get",
+              url: "http://www.../php",
+              dataType: "jsonp",
+              success: function(result){
+                console.log(result);
+              }
+           })
+    不受同源策略限制的标签
+      1.<img src="http://www.xxx...jpg" alt="">
+      2.<link rel="stylesheet" href="http://www.xxx...">
+      3.<script src="http://www.xxx..."></ script>
+  */  
+  </script>
+</body>
+</html>

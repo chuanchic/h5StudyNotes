@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #box1 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      border: 10px solid green;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box1"></div>
+  <script>
+  /*
+  clientWidth：元素可视区的宽
+  clientHeight：元素可视区的高
+  注意：
+    client系列不能赋值
+  */
+  var box1 = document.getElementById('box1');
+  console.log(box1.clientWidth);//120px，content + padding
+  console.log(box1.clientHeight);//120px，content + padding
+  console.log(box1.clientLeft);//10px，元素左边框的宽度
+  console.log(box1.clientTop);//10px，元素上边框的宽度
+  
+  
+  </script>
+</body>
+</html>

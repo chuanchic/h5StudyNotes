@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.box {
+			width: 100px;
+			height: 100px;
+			background-color: lime;
+			/* 
+			四周边框：
+			边框大小
+			边框样式
+				solid 实线
+				dashed 虚线
+				dotted 点线
+				double 双实线
+			边框颜色	
+			*/
+			border: 10px solid red;
+			/* 
+			单独边框：下边框
+			*/
+			border-bottom: 10px solid red;
+			/* 
+			四周边框：完整写法 
+			*/
+			border-width: 10px;
+			border-style: solid;
+			border-color: red;
+			/*  
+			边框圆角
+			*/
+			border-radius: 20px;
+			border-radius: 50%;
+			/*
+			单独控制圆角:
+				两个值分别控制的是对角线
+				三个值控制的是：左上，对角线，右下
+				四个值：左上，右上，右下，左下
+			*/
+			border-radius: 10px 50px;
+			border-radius: 10px 50px 30px;
+			border-radius: 10px 30px 50px 70px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">hello world</div>
+</body>
+</html>

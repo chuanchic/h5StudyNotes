@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="box" index="1"></div>
+
+  <script>
+  /*
+  自定义属性的作用：
+    在标签上写自定义属性，用来存储数据或状态
+    但是DOM对象不能通过点语法获取到这些自定义属性的值
+  */
+
+  //获取自定义属性（不能通过点语法）
+  var box = document.getElementById('box');
+  var index = box.getAttribute('index');
+  var id = box.getAttribute('id');//也可以获取标准属性
+  console.log(index);
+  console.log(id);
+  
+  //设置自定义属性
+  box.setAttribute('index2', '2');
+  box.setAttribute('class', 'boxClass')//也可以设置标准属性
+
+  //移除自定义属性
+  box.removeAttribute('index2');
+  box.removeAttribute('class');//也可以移除标准属性
+
+  </script>
+</body>
+</html>
