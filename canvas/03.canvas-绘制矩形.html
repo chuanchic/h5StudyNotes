@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas id="canvas" width="200" height="200" style="border: 1px solid red;">
+        浏览器版本过低，速度更新！
+    </canvas>
+    <script>
+        //矩形相关的四个方法
+        //rect(x, y, w, h);  画一块矩形路径
+        //strokeRect(x, y, w, h);  描边一块矩形区域
+        //fillRect(x, y, w, h);  填充一块矩形区域
+        //clearRect(x, y, w, h);  清除一块矩形区域
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        // ctx.rect(50, 50, 100, 100);
+        // ctx.stroke();
+        ctx.strokeRect(20, 20, 100, 100);
+        ctx.fillRect(30, 30, 100, 100);
+        ctx.clearRect(40, 40, 50, 50);
+
+    </script>
+</body>
+</html>

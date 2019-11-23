@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas id="canvas" width="1000" height="300" style="border: 1px solid red;">
+        浏览器版本过低，速度更新！
+    </canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+
+        // 绘制圆弧：arc(x, y, r, sAngle, eAngle, counterclockwise)
+        // x,y：圆心坐标
+        // r：圆半径
+        // sAngle：绘制开始的弧度
+        // eAngle：绘制结束的弧度
+        // counterclockwise：true逆时针，false顺时针，默认false
+        // 角度与弧度关系：角度/360=弧度/2*PI，角度/180=弧度/PI，弧度=角度/180*PI
+        ctx.arc(100, 100, 50, 0, 180/180*Math.PI);
+        ctx.stroke();
+
+        //绘制扇形
+        ctx.beginPath();
+        ctx.moveTo(250, 100);//移动到圆心
+        ctx.arc(250, 100, 50, 0, 240/180*Math.PI);
+        ctx.closePath();//闭合路径
+        ctx.stroke();
+
+    </script>
+</body>
+</html>

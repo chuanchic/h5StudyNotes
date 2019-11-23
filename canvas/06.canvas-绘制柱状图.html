@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas width="400px" height="400px" style="border: 1px solid black">
+        浏览器版本过低，速度更新！
+    </canvas>
+    <script>
+        var points = [
+            {
+                x: 100,
+                y: 100,
+                w: 20,
+                h: 250
+            },
+            {
+                x: 150,
+                y: 50,
+                w: 20,
+                h: 300
+            },
+            {
+                x: 200,
+                y: 150,
+                w: 20,
+                h: 200
+            },
+            {
+                x: 250,
+                y: 250,
+                w: 20,
+                h: 100
+            }
+        ];
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+        //绘制x轴、y轴
+        ctx.moveTo(50, 50);
+        ctx.lineTo(50, 350);
+        ctx.lineTo(350, 350);
+        ctx.stroke();
+        //绘制x轴箭头、y轴箭头
+        ctx.beginPath();
+        ctx.moveTo(50, 25);
+        ctx.lineTo(25, 50);
+        ctx.lineTo(75, 50);
+        ctx.closePath();
+        ctx.moveTo(375, 350);
+        ctx.lineTo(350, 325);
+        ctx.lineTo(350, 375);
+        ctx.closePath();
+        ctx.fill();
+        //绘制柱状图
+        points.forEach(function (value) {
+            ctx.fillRect(value.x, value.y, value.w, value.h);
+        });
+
+    </script>
+</body>
+</html>

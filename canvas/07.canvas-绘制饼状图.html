@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="util.js"></script>
+</head>
+<body>
+    <canvas width="400px" height="400px" style="border: 1px solid black">
+        浏览器版本过低，速度更新！
+    </canvas>
+    <script>
+        var data = [1000, 800, 600, 2000, 1500, 800, 1600];//原始数据
+        var sum = 0;//数据之和
+        data.forEach(function (value) {
+            sum += value;
+        })
+        var angles = [];//所有数据转换成角度值
+        data.forEach(function (value, index) {
+            angles[index] = value * 360 / sum;
+        })
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+        var startAngle = 0;//起始角度
+        angles.forEach(function (value) {
+            ctx.beginPath();
+            ctx.moveTo(200, 200);
+            ctx.arc(200, 200, 100, getRadian(startAngle), getRadian(startAngle + value));
+            ctx.closePath();
+            ctx.fillStyle = getRandomColor();
+            ctx.fill();
+            startAngle += value;
+        })
+
+    </script>
+</body>
+</html>

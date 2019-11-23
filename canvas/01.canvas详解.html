@@ -5,9 +5,8 @@
     <title>Title</title>
     <style>
         canvas {
-            /*width: 400px;*/
-            /*height: 400px;*/
-            border: 1px solid red;
+            /*width: 350px;*/
+            /*height: 150px;*/
         }
     </style>
 </head>
@@ -15,14 +14,114 @@
     <!--
     canvas：
         是html5新增的画布标签，默认宽高300*150
-        设置宽高不建议采用css方式，建议采用行内样式或者通过js的方式，因为使用css方式会使画布拉伸变模糊
+        设置宽高不建议采用css方式，建议采用行内样式或者通过js的方式，
+        因为使用css方式会使画布拉伸变模糊，不是真正的放大画布
         只是一个画布，不具备绘图能力
     -->
-    <canvas width="600" height="400">
+    <canvas id="canvas1" width="350" height="150" style="border: 1px solid red;">
         <!--解决IE浏览器版本过低兼容性问题，可以采取下面这种提示的处理方式-->
         浏览器版本过低，速度更新！
     </canvas>
+    <canvas id="canvas2" width="400" height="400" style="border: 1px solid red;">
+        浏览器版本过低，速度更新！
+    </canvas>
+    <canvas id="canvas3" width="400" height="400" style="border: 1px solid red;">
+        浏览器版本过低，速度更新！
+    </canvas>
+    <canvas id="canvas4" width="200" height="400" style="border: 1px solid red;">
+        浏览器版本过低，速度更新！
+    </canvas>
     <script>
+
+        var canvas = document.getElementById("canvas1");//获取canvas标签
+        var ctx = canvas.getContext("2d");//获取canvas绘图上下文，3d传递：webgl
+        ctx.lineWidth = 10;//线宽
+
+        //画一个三角形
+        ctx.moveTo(100, 50);
+        ctx.lineTo(150, 100);
+        ctx.lineTo(50, 100);
+        //ctx.lineTo(100, 50);//没有完全闭合，存在缺角
+        ctx.closePath();//闭合路径，让终点和起点连线，完全闭合，没有缺角
+        ctx.strokeStyle = "blue";//描边的样式，语法同css
+        ctx.stroke();//描边
+        ctx.fillStyle = "red";//填充的样式，语法同css
+        ctx.fill();//填充
+
+        //画两条平行线
+        ctx.moveTo(200, 50);
+        ctx.lineTo(300, 50);
+        ctx.moveTo(200, 100);
+        ctx.lineTo(300, 100);
+        ctx.stroke();
+
+        //填充会遵守：非零环绕原则
+        //假设顺时针画一圈的路径值为1，逆时针画一圈的路径值为-1
+        //从A区域向外延伸一条直线，会与A路径相交，路径值之和为1>0，那么A区域填充
+        //从B区域向外延伸一条直线，会与B路径、A路径相交，路径值之和为-1+1=0，那么B区域不填充
+        //从C区域向外延伸一条直线，会与C路径、B路径、A路径相交，路径值之和为1-1+1>0，那么C区域填充
+        //总结：无论第一条路径哪个方向，只要第二条路径保证相反方向，第二条路径包围的区域就不会填充
+        var canvas2 = document.getElementById("canvas2");
+        var ctx2 = canvas2.getContext("2d");
+        //先顺时针画一圈：为A路径，包围区域：为A区域
+        ctx2.moveTo(50, 50);
+        ctx2.lineTo(350, 50);
+        ctx2.lineTo(350, 350);
+        ctx2.lineTo(50, 350);
+        ctx2.closePath();
+        //再逆时针画一圈：为B路径，包围区域：为B区域
+        ctx2.moveTo(100, 100);
+        ctx2.lineTo(100, 300);
+        ctx2.lineTo(300, 300);
+        ctx2.lineTo(300, 100);
+        ctx2.closePath();
+        //再顺时针画一圈：为C路径，包围区域：为C区域
+        ctx2.moveTo(150, 150);
+        ctx2.lineTo(250, 150);
+        ctx2.lineTo(250, 250);
+        ctx2.lineTo(150, 250);
+        ctx2.closePath();
+        //开始填充
+        ctx2.fillStyle = "green";
+        ctx2.fill();
+        //开始描边
+        ctx2.strokeStyle = "red";
+        ctx2.stroke();
+
+        //开启新路径：ctx3.beginPath();
+        //如果不开启新路径，每次ctx3.stroke();都会把当前所有路径绘制一遍
+        //只有开启新路径，上一次的路径才不会被再次绘制
+        //同理：ctx.fill();也是一样
+        var canvas3 = document.getElementById("canvas3");
+        var ctx3 = canvas3.getContext("2d");
+        //画第一条线
+        ctx3.moveTo(100, 100);
+        ctx3.lineTo(300, 100);
+        ctx3.lineWidth = 30;
+        ctx3.strokeStyle = "red";
+        ctx3.stroke();
+        //画第二条线
+        ctx3.beginPath();//开启新路径
+        ctx3.moveTo(100, 200);
+        ctx3.lineTo(300, 200);
+        ctx3.lineWidth = 20;
+        ctx3.strokeStyle = "green";
+        ctx3.stroke();
+        //画第三条线
+        ctx3.beginPath();//开启新路径
+        ctx3.moveTo(100, 300);
+        ctx3.lineTo(300, 300);
+        ctx3.lineWidth = 10;
+        ctx3.strokeStyle = "blue";
+        ctx3.stroke();
+
+        //画一条虚线
+        var canvas4 = document.getElementById("canvas4");
+        var ctx4 = canvas4.getContext("2d");
+        ctx4.setLineDash([10, 20, 30]);//设置虚线：实线10 虚线20 实线30 虚线10 实线20 ...
+        ctx4.moveTo(0, 50);
+        ctx4.lineTo(200, 50);
+        ctx4.stroke();
 
     </script>
 </body>

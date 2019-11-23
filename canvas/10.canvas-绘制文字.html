@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas width="900px" height="500px" style="border: 1px solid black">
+        浏览器版本过低，速度更新！
+    </canvas>
+    <script>
+        /*
+        绘制文字：
+            ctx.strokeText(str, x, y)
+                绘制无填充的文本
+                str：文本
+                x,y：在画布上的起始坐标
+            ctx.fillText(str, x, y)
+                绘制有填充的文本
+            ctx.font = '18px "微软雅黑"'
+                设置或返回字体样式，与 CSS font 样式相同
+            ctx.measureText(str).width
+                获取文本的宽度，一定要在设置字体样式之后获取，不然获取到的宽度是默认样式下的宽度
+            ctx.textAlign = 'start'
+                设置或返回水平对齐方式
+                start(默认)     文本在指定的位置开始
+                end             文本在指定的位置结束
+                center          文本的中心被放置在指定的位置
+                left            文本左对齐
+                right           文本右对齐
+            ctx.textBaseline = 'alphabetic'
+                设置或返回文本基线(垂直对齐方式)
+                alphabetic(默认)  文本基线是普通的字母基线
+                top               文本基线是em方框的顶端
+                hanging           文本基线是悬挂基线
+                middle            文本基线是em方框的正中
+                ideographic       文本基线是em基线
+                bottom            文本基线是em方框的底端
+        */
+        var str = "A y f 私达 abcd";
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+        ctx.textAlign = "center";
+        ctx.textBaseline = "alphabetic";
+        ctx.font = '50px "微软雅黑"';
+        var strWidth = ctx.measureText(str).width;//要在设置字体样式之后获取
+
+        //绘制文本
+        ctx.strokeText(str, 100, 100);
+        ctx.fillText(str, 100, 200);
+
+        //绘制下划线
+        ctx.moveTo(100, 100);
+        ctx.lineTo(100 + strWidth, 100);
+        ctx.moveTo(100, 200);
+        ctx.lineTo(100 + strWidth, 200);
+        ctx.stroke();
+
+    </script>
+</body>
+</html>

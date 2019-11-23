@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        canvas {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="500px" height="500px" style="border: 1px solid black">
+        浏览器版本过低，速度更新！
+    </canvas>
+    <script>
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+
+        var img = new Image();
+        img.onload = function(){
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);//绘制第一层图片
+
+            var img2 = new Image();
+            img2.onload = function () {
+                var isDown = false;//鼠标是否按下
+                canvas.onmousedown = function () {//鼠标按下
+                    isDown = true;
+                };
+                canvas.onmousemove = function (e) {//鼠标移动
+                    if(isDown){//鼠标按下的时候
+                        var x = e.offsetX - 10;//-10作用：让鼠标按下区域作为中心点
+                        var y = e.offsetY - 10;
+                        ctx.drawImage(img2, x, y, 20, 20, x, y, 20, 20);
+                    }
+                };
+                canvas.onmouseup = function () {//鼠标抬起
+                    isDown = false;
+                };
+            };
+            img2.src = "meinv.jpg";
+        };
+        img.src = "test.jpg";
+
+    </script>
+</body>
+</html>

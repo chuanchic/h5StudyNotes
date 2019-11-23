@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas width="500px" height="500px" style="border: 1px solid black">
+        浏览器版本过低，速度更新！
+    </canvas>
+    <script>
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+
+        //第一条线
+        ctx.moveTo(100, 100);
+        ctx.lineTo(400, 100);
+        ctx.setLineDash([10, 20]);
+        ctx.strokeStyle = 'red';
+        ctx.stroke();
+        ctx.save();//保存画布当前的状态(画布的样式)，状态入栈
+
+        //第二条线
+        ctx.beginPath();
+        ctx.moveTo(100, 200);
+        ctx.lineTo(400, 200);
+        ctx.setLineDash([]);
+        ctx.lineWidth = 50;
+        ctx.strokeStyle = 'green';
+        ctx.stroke();
+        ctx.save();//保存画布当前的状态(画布的样式)，状态入栈
+
+        //第三条线
+        ctx.beginPath();
+        ctx.restore();//恢复画布到最近一次保存的状态，这样就可以复用最近一次保存的样式，状态出栈
+        ctx.moveTo(100, 300);
+        ctx.lineTo(400, 300);
+        ctx.stroke();
+
+        //第四条线
+        ctx.beginPath();
+        ctx.restore();//恢复画布到最近一次保存的状态，这样就可以复用最近一次保存的样式，状态出栈
+        ctx.moveTo(100, 400);
+        ctx.lineTo(400, 400);
+        ctx.stroke();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas width="400px" height="400px" style="border: 1px solid black">
+        浏览器版本过低，速度更新！
+    </canvas>
+    <script>
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+
+        //绘制x轴、y轴
+        ctx.moveTo(50, 50);
+        ctx.lineTo(50, 350);
+        ctx.lineTo(350, 350);
+        ctx.stroke();
+        //绘制x轴箭头、y轴箭头
+        ctx.beginPath();
+        ctx.moveTo(50, 25);
+        ctx.lineTo(25, 50);
+        ctx.lineTo(75, 50);
+        ctx.closePath();
+        ctx.moveTo(375, 350);
+        ctx.lineTo(350, 325);
+        ctx.lineTo(350, 375);
+        ctx.closePath();
+        ctx.fill();
+        //绘制曲线
+        ctx.beginPath();
+        ctx.moveTo(50, 350);
+        ctx.lineTo(70, 320);
+        ctx.lineTo(80, 330);
+        ctx.lineTo(120, 200);
+        ctx.lineTo(150, 250);
+        ctx.lineTo(200, 50);
+        ctx.lineTo(250, 200);
+        ctx.lineTo(300, 150);
+        ctx.stroke();
+
+    </script>
+</body>
+</html>

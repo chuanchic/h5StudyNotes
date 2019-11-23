@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="500" style="border: 1px solid red;">
+        浏览器版本过低，速度更新！
+    </canvas>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var x = 10;
+        var y = 10;
+        var timer = setInterval(function () {
+            x += 3;
+            y += 3;
+            if(x >= 400 || y >= 400){
+                clearInterval(timer);
+            }
+            ctx.clearRect(0, 0, canvas.width, canvas.height);//清空画布
+            ctx.strokeRect(x, y, 50, 50);//绘制矩形
+        }, 50);
+
+    </script>
+</body>
+</html>
