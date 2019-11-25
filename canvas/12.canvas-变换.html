@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="util.js"></script>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="600px" height="600px" style="border: 1px solid black">
+        浏览器版本过低，速度更新！
+    </canvas>
+    <script>
+        /*
+        canvas变换：
+            css3变换操作的是元素本身，而canvas变换操作的是坐标系
+            translate：平移坐标系
+            rotate：旋转坐标系
+            scale：缩放坐标系
+        */
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+
+        ctx.moveTo(300, 0);
+        ctx.lineTo(0, 0);
+        ctx.lineTo(0, 300);
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = "blue";
+        ctx.stroke();
+        ctx.fillRect(0, 0, 50, 50);
+
+        ctx.translate(100, 100);//坐标系平移100像素
+        ctx.rotate(getRadian(30));//坐标系旋转30度
+        ctx.scale(2, 2);//坐标系放大2倍
+
+        ctx.moveTo(300, 0);
+        ctx.lineTo(0, 0);
+        ctx.lineTo(0, 300);
+        ctx.lineWidth = 5;
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+        ctx.fillRect(0, 0, 50, 50);
+
+    </script>
+</body>
+</html>
