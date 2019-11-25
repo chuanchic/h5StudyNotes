@@ -1,3 +1,0 @@
-静态页面转动态页面
-    将所有html后缀改成php后缀，
-    利用批处理程序完成，新建z_rename.bat文件，内容：rename *.html *.php，然后双击运行即可。
