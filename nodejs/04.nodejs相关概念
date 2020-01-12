@@ -1,0 +1,49 @@
+
+1、为什么要学习服务端开发？
+1.了解Web请求和响应过程，了解服务端如何与客户端配合
+2.作为前端工程师需要具备一定的服务端开发能力
+  了解什么是服务端渲染？
+  了解服务端如何编写接口？
+3.全栈工程师的必经之路
+
+2、服务端开发语言有很多，为什么要选择nodejs？
+1.降低编程语言的学习成本(nodejs实质上用的还是JavaScript)
+2.nodejs是前端项目的基础设施，前端项目中用到的大量工具(webpack、vue-cli、angular-cli等)，都是基于nodejs实现的
+3.nodejs在处理高并发上有得天独厚的优势
+4.对于前端工程师，面试时对nodejs有一定的要求
+
+3、nodejs是什么？
+中文网：http://nodejs.cn
+1.Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行时。 
+  a.nodejs不是一门新的编程语言，nodejs是在服务端运行JavaScript的运行环境
+  b.运行环境：写的程序要想运行必须要有对应的运行环境
+    php代码必须要有Apache服务器
+    在web端，浏览器就是javascript的运行环境
+    在node端，nodejs就是javascript的运行环境
+  c.javascript并不只是能运行在浏览器端，浏览器端能运行javascript是因为浏览器有js解析器，因此只需要有js解析器，
+    任何软件都可以运行js。
+  d.nodejs可以在服务端运行js，因为nodejs是基于chrome v8的js引擎，实质是对Chrome v8引擎进行了封装，
+    对一些特殊用例进行优化，提供替代的API，使得v8在非浏览器环境下运行得更好。
+2.Node.js使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。
+  a.事件驱动：即Node.js里的方法都是异步的，带回调函数的。
+
+4、nodejs与浏览器的区别
+1.相同点：都是js的运行环境，都可以运行js代码
+2.浏览器的组成
+  a.ECMAScript，是一套JavaScript的规范(js核心语法)
+  b.Web Api包含BOM和DOM，是浏览器提供的，不是ECMAScript提供的，因为是浏览器提供的，所以会有兼容性问题，
+    因为不同的浏览器提供的Web Api不一样。
+3.nodejs的组成
+  a.ECMAScript，是一套JavaScript的规范(js核心语法)
+  b.没有Web Api，不能操作BOM和DOM，提供了自己的Api，比如：
+      fs模块：用来操作文件
+      http模块：用来创建服务器
+      ...
+
+5、nodejs可以干什么？
+1.开发服务端程序
+2.开发命令行工具(cli)，比如npm，webpack，gulp，less，sass等
+3.开发桌面应用程序(借助 node-webkit、electron 等框架实现)，
+  比如 VS Code，优点：JS开发的程序跨平台
+
+

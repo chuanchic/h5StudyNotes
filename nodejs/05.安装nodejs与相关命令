@@ -1,0 +1,28 @@
+
+1、查看nodejs是否安装
+node -v
+
+2、下载nodejs
+在nodejs中文网下载：http://nodejs.cn
+然后安装，不需要卸载，会自动覆盖旧的版本，完成之后会自动配置环境变量
+
+3、如何运行nodejs程序
+
+方式一：(开发过程中使用)
+1.命令行切换到对应目录下，输入：node 文件名
+2.在VS Code 里直接在文件上右键：open in terminal，输入：node 文件名
+技巧：文件名不需要全输入，可以输入前边然后tab补全
+
+方式二：(调试的时候用的比较多)
+1.REPL 全称：Read-Eval-Print-Loop(交互式解释器)
+  R：读取，读取用户输入，解析输入了JavaScript数据结构并存储在内存中。
+  E：执行，执行输入的数据结构
+  P：打印，输出结果
+  L：循环，循环操作以上步骤直到用户两次按下 ctrl+c 按钮退出。
+2.在REPL中编写程序(类似于浏览器开发人员工具中的控制台功能)
+  直接在控制台输入 node 命令进入REPL环境
+3.按两次 ctrl+c 退出REPL界面，或者输入 .exit 退出REPL界面
+  windows系统下：按住 ctrl 不要松开，然后按两下 c 键
+  mac系统下：    按住 fn + control + c
+
+

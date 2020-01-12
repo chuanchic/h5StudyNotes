@@ -1,0 +1,62 @@
+
+1、浏览器的组成：
+          User Interface
+                |                |
+          Browser engine   ————  | ——————> Data Persistence
+                |                |
+          Rendering engine       |
+      |         |             |  |
+  Networking  JavaScript   UI Backend
+              Interpreter
+1.用户界面：包括地址栏、后退/前进按钮、书签目录等，也就是主窗口之外的其他部分。
+2.浏览器引擎：用来查询及操作渲染引擎的接口。
+3.渲染引擎(浏览器内核)：用来显示请求的内容，例如，如果请求的内容为html，它负责解析html及css，
+并将解析后的结果显示出来。
+4.网络：用来完成网络调用，例如http请求，它具有平台无关的接口，可以在不同平台上工作。
+5.JS解析器(JavaScript Interpreter)：用来解析执行js代码的。
+6.UI后端：用来绘制类似组合选择框及对话框等基本组件，具有不特定于某个平台的通用接口，
+底层使用操作系统的用户接口。
+7.数据持久化(Data Persistence)：对应浏览器的Application选项里的Storage，可以存储数据。
+注意：重点记住3,5
+
+2、主流的渲染引擎(排版引擎、浏览器内核)
+Chrome浏览器：            Blink引擎(Webkit的一个分支)
+Opera浏览器：             Blink引擎(早期版本使用Presto引擎)
+Safari浏览器：            Webkit引擎
+FireFox浏览器：           Gecko引擎
+Internet Explorer浏览器： Trident引擎
+Microsoft Edge浏览器：    EdgeHTML引擎(Trident的一个分支)
+主要分为三类：Chrome和Safari的Webkit、FireFox的Gecko、InternetExplorer的Trident
+我们写代码只需要兼容这三类引擎就差不多了。
+
+3、渲染引擎的工作原理(渲染引擎解析的基本流程)
+1.解析 HTML 构建 DOM 树，DOM 是W3C组织推荐的处理可扩展标志语言的标准编程接口。
+2.构建渲染树，渲染树并不等同于 DOM 树，因为像 'head' 标签或 'display:none' 这样的元素
+没有必要放在渲染树中，但是他们在 DOM 树种。
+3.对渲染树进行布局，定位坐标和大小、确定是否换行、确定position、overflow、z-index等等，这个过程
+叫 layout 或 reflow。
+4.绘制渲染树，调用操作系统底层API(UI Backend)进行绘制操作。 
+
+Webkit内核工作流程：
+                    DOM
+                     | 向下
+HTML -> HTML ————>  DOM 
+        Parser      Tree          Layout
+                     | 向下          | 双向
+                    Attachment -> Render -> Painting -> Display
+                     | 向上        Tree 
+Style -> CSS ————>  Style 
+Sheets   Parser     Rules            
+
+Gecko内核工作流程：
+                              DOM
+                               | 向下
+HTML -> Parser -> Content -> Content ——           Reflow(Layout)
+                  Sink       Model    | 向下        | 双向
+                   | 向下           Frame ——————> Frame -> Painting -> Display
+       <————————————               Constructor   Tree
+       | 向下                         | 向上
+     Styles -> CSS ——> Style —————————>
+     Sheets    Parser  Rules
+
+

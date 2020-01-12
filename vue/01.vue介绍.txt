@@ -1,0 +1,21 @@
+
+1. vue官网
+https://cn.vuejs.org
+
+2. 什么是vue
+是渐进式的JavaScript框架
+渐进式：vue不再去操作DOM元素来更新页面了，而是操作数据，页面会根据数据的变化自动更新。JQuery是DOM编程，vue是数据驱动编程。
+
+3.准备工作(安装插件)
+
+浏览器插件：
+Vue.js-devtools_v4.1.4  一个在浏览器上可以调试vue项目的插件
+安装步骤自行百度
+大体步骤：安装nodejs - 安装vue-devtools调试工具 - ...
+
+VS Code插件：
+自动补全标签  
+  * Auto Close Tag
+  * Auto Rename Tag
+  * Auto Complete Tag
+在 VS Code 的右侧菜单项最下面一个EXTENSIONS里搜索，比如 Auto Close Tag，然后 Install
