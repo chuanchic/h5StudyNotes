@@ -55,6 +55,24 @@ server.on('request', function(req, res){
   // var urlObj = url.parse(req.url, true)
   // console.log(urlObj)
 
+  // 如何获取post请求携带的参数？
+  // 给req注册 data 事件，当post请求有数据发送到服务器的时候，就会触发
+  // 如果数据比较多，会多次触发，依次发送，chunk 是一个buffer对象
+  // 定义数组，用于接收每次发送过来的数据
+  var bufferArr = []
+  req.on('data', function(chunk){
+    bufferArr.push(chunk)
+  })
+  // 给req注册 end 事件，数据发送完毕，就会触发
+  req.on('end', function(){
+    // 将数组里的多个buffer对象合并成一个
+    var result = Buffer.concat(bufferArr)
+    // 如果result是请求的参数，那么直接toString()就能拿到
+    // name=haha&age=18
+    var params = querystring.parse(result.toString())
+    console.log(params)
+  })
+
   // 中文会有乱码，因为VS Code的编码是utf-8，浏览器默认的是GBK
   // 解决乱码方式：设置响应头，告诉浏览器用utf-8解析内容
   // content-type：MIME类型，不同的文件有不同的MIME类型，例如html文件和css文件的MIME类型是不同的

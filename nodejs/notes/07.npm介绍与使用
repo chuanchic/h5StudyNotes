@@ -1,0 +1,69 @@
+
+1、npm是什么？(Node Package Manager)
+npm 是JavaScript的包管理工具，通过 npm 可以快速安装开发中使用的包
+只要安装了 nodejs ，就可以使用 npm 了
+查看 npm 是否安装： npm -v
+
+2、基本使用
+创建 package.json 文件： 每个项目都需要执行一次，都需要这个文件
+  npm init       每一步都需要按回车键确认
+  npm init -y    -y：自动帮你确认(全部使用默认值)
+  或者手动创建 package.json 文件(不推荐)
+安装项目中用到的包(本地安装)：下载的包会放到当前项目的node_modules下
+  npm install 包名  (默认最新版本)
+  npm install 包名@版本号  (下载指定版本)
+  npm install 包名1 包名2 包名3 ... (一次下载多个包)
+  install命令执行了两步操作：1.安装包，2.把 依赖项信息 保存到 dependencies 中
+如何将 依赖项信息 指定保存到 dependencies 或 devDependencies 中，通过 --save
+  npm install 包名  安装包，并保存到 dependencies 中
+  npm install 包名 --save 安装包，并保存到 dependencies 中(早期的npm版本)
+  npm install 包名 --save-dev 安装包，并保存到 devDependencies 中
+全局安装用到的包： 
+  npm install 包名 -g
+  有些包需要被全局安装：这个包会提供全局命令，这个包会当做工具被使用
+  常用比如 live-server，less
+  类似于 jquery，mime 这种资源包，不需要全局安装，本地安装就行
+卸载项目中用到的包：
+  命令卸载：npm uninstall 包名
+  手动卸载：删除node_modules下对应的包就行了
+代码分享：
+  在进行代码分享的时候，不需要分享node_modules，只需要分享自己的代码和package.json文件
+  其他人拿到代码以后，只需要根据package.json文件下载所有的依赖项即可
+  npm install 会下载 package.json 下所有的依赖项，包括 dependencies、devDependencies
+  npm install --production  只下载运行时依赖项 dependencies
+
+3、package.json文件的作用
+  只要一个文件夹有package.json文件，这个文件夹就是一个包
+  package.json文件用来描述这个包的信息
+  合格的package.json文件必须至少包含 name version
+    name          包名 
+      唯一 不能有中文、空格、大写字母、特殊字符
+    version       版本号 
+      格式：      主版本号.次版本号.修订版本号
+      主版本号：   不兼容之前的版本
+      次版本号：   只是新增某些功能，依然兼容之前的版本
+      修订版本号： 只是修复了某些BUG或者优化了某些功能
+    description   描述信息
+    scripts(重要)  给一些复杂的shell命令起个别名
+      通过 npm run 别名 就能启动这个shell命令
+      npm run less  将index.less转成index.css
+      有些别名(命令)的执行可以省略 run： start stop restart test config
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+        "less": "lessc index.less index.css"   
+      }
+    keywords      关键词，方便在npm网站上进行搜索
+    author        作者
+    license       开源协议，自己指定
+    dependencies(重要)    运行时依赖项
+      在将代码上传到服务器时，这个包仍被需要，比如 jquery模块
+      "dependencies": {
+        "jquery": "^3.4.1",
+        "mime": "^2.4.4"
+      }
+    devDependencies(重要) 开发时依赖项
+      这个包只是在开发时需要，在将代码上传到服务器时不需要，比如 less模块
+      "devDependencies": {
+        "less": "^3.10.3"
+      }
+
