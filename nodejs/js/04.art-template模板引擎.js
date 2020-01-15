@@ -8,20 +8,22 @@ const template = require('art-template')
 const path = require('path')
 const fs = require('fs')
 
-// 数据
+// 准备模板
+// ...
+
+// 准备数据
 var obj = {
   msg: "hello world"
 }
 
-// 准备模板
-// ...
-
 // 渲染模板
-// 方式一：以文件作为模板
+// 方式一：以文件作为模板(常用)
 // template(文件路径, 数据)
 var result = template(path.join(__dirname, 'tpl.html'), obj)
-// 方式二：以字符串作为模板
-var htmlStr = "..." //html页面(基本结构)的字符串，在浏览器渲染的时候会依赖数据
-var render = template.compile(htmlStr)
-var result2 = render({item : obj}) //{item : obj}就是所依赖的数据
+
+// 渲染模板
+// 方式二：以字符串作为模板(偶尔用)
+var htmlStr = "..." //html页面(基本结构)的字符串
+var render = template.compile(htmlStr) // 根据 模板字符串 创建 渲染函数
+var result2 = render({item : obj}) // 将 数据 渲染到 模板
 

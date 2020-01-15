@@ -44,6 +44,9 @@ npm 是JavaScript的包管理工具，通过 npm 可以快速安装开发中使�
       次版本号：   只是新增某些功能，依然兼容之前的版本
       修订版本号： 只是修复了某些BUG或者优化了某些功能
     description   描述信息
+    main          告诉require()在引入包的时候，具体引用这个包里的哪个js文件
+      一般都是index.js
+      "main": "index.js"
     scripts(重要)  给一些复杂的shell命令起个别名
       通过 npm run 别名 就能启动这个shell命令
       npm run less  将index.less转成index.css
