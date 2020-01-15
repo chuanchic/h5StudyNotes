@@ -1,5 +1,14 @@
 .idea
 
+ajax/test
+canvas/test
+css3/test
+jichu/test
+jQuery/test
+js/test
+vue/test
+webAPI/test
+
 # nodejs 相关
 nodejs/test
 nodejs/js/node_modules
