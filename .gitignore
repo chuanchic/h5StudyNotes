@@ -12,3 +12,4 @@ webAPI/test
 # nodejs 相关
 nodejs/test
 nodejs/js/node_modules
+nodejs/hacker-news模块化改造/node_modules
