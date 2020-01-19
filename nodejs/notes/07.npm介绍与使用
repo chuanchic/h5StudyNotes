@@ -3,6 +3,7 @@
 npm 是JavaScript的包管理工具，通过 npm 可以快速安装开发中使用的包
 只要安装了 nodejs ，就可以使用 npm 了
 查看 npm 是否安装： npm -v
+npm官网：https://www.npmjs.com
 
 2、基本使用
 创建 package.json 文件： 每个项目都需要执行一次，都需要这个文件
