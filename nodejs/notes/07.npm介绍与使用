@@ -71,3 +71,20 @@ npm官网：https://www.npmjs.com
         "less": "^3.10.3"
       }
 
+4、使用 nodejs 编写命令行工具(cli：Command Line Interface)
+  作用：通过在命令行中 输入某个命令，就可以实现某个功能
+  流程：1.创建一个包(一个文件夹，并 npm init -y)
+       2.新建 index.js 文件，实现功能
+       3.声明让 js代码 运行的环境，在 index.js 的顶部添加 #! node
+       4.修改 package.json 文件，添加 bin 属性，让 命令 和 index.js 文件相关联
+       5.全局安装这个包(全局使用某个命令行工具，就需要被全局安装)
+        1.先把这个包上传到 npm 服务器(要保证 package.json 里的 name 属性唯一)
+        2.再全局安装这个包 npm install 包名 -g
+
+5、使用 npm 上传包到npm服务器
+  1. nrm use npm 
+    切换到 npm 服务器，因为所有的 镜像服务器 都不能上传
+  2. npm login
+    登录，输入用户名 密码 邮箱 按回车键
+  3. npm publish
+    上传包
