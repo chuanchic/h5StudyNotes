@@ -1,0 +1,27 @@
+
+1.使用 cURL 安装
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+
+2.打开 .bash_profile 并添加以下代码行：
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+3.让 .bash_profile 生效
+
+4.验证安装
+command -v nvm
+
+5.使用 nvm 安装 node
+  安装最新版本：    nvm install node
+  安装最新稳定版：  nvm install stable
+  安装指定版本：    nvm install x.x.x
+  删除指定版本：    nvm uninstall x.x.x
+  查看远程版本：    nvm ls-remote
+  查看安装版本：    nvm ls
+  使用指定版本：    nvm use x.x.x
+
+6.删除 nvm
+  卸载：nvm unload
+  手动卸载：$ rm -rf "$NVM_DIR"
+  同时删除 .bash_profile 里的记录

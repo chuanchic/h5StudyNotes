@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- 1.引入vue库 -->
+  <script src="./vue2.js"></script>
+</head>
+
+<body>
+  <!-- 3.View，将data中定义好的数据展示到页面 -->
+  <div id="app">
+    <!-- 插值表达式 {{}} 的用法：
+         1.直接写变量
+         2.字符串拼接
+         3.数值运算
+         4.三元表达式
+         5.函数-->
+    <h1>{{msg}}</h1>
+    <h1>{{"你好" + msg}}</h1>
+    <h1>{{age + 1}}</h1>
+    <h1>{{age >= 18 ? "已成年" : "未成年"}}</h1>
+    <h1>{{msg.split("").reverse().join("")}}</h1>
+  </div>
+  <script>
+    // 2.创建vue实例(ViewModel对象)，用来管理html代码
+    let vm = new Vue({
+      // 通过el属性来指定vue实例需要管理的范围
+      el: "#app",
+      // 通过data属性来保存页面需要用到的数据(Model)
+      data: {
+        msg: "hello world",
+        age: 18
+      }
+    })
+  </script>
+</body>
+
+</html>

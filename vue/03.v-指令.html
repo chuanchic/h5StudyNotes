@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue2.js"></script>
+  <style>
+    .redFont {
+      color: red;
+    }
+
+    /* 属性选择器，解决表达式闪烁问题 */
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- v-text：作用和插值表达式一样，用来展示数据 -->
+    <h1 v-text="msg"></h1>
+    <h1 v-text="'你好' + msg"></h1>
+    <h1 v-text="age + 1"></h1>
+    <h1 v-text="age >= 18 ? '已成年' : '未成年'"></h1>
+    <h1 v-text="msg.split('').reverse().join('')"></h1>
+
+    <!-- v-bind：用于动态绑定属性(可以绑定任何属性，包括自定义属性例如 username)
+         使用方式：v-bind:属性名=“data的一个属性”
+            简写：      :属性名=“data的一个属性”-->
+    <img v-bind:src="imgUrl">
+    <img :src="imgUrl">
+    <!-- 第一种不推荐，第二种推荐 -->
+    <a :href="'del.php?id='+id"></a>
+    <a :href="'del.php?id=${id}'"></a>
+    <!-- 动态绑定样式，使用对象语法 -->
+    <p :class="{redFont: username==='jack'}">动态绑定样式</p>
+
+    <!--  v-for：遍历数组，添加key属性，标识每一项的唯一性，提高渲染性能-->
+    <ul>
+      <li v-for="item in list">{{item.name}}</li>
+    </ul>
+    <ul>
+      <li v-for="(item, index) in list" :key="index">{{index}}</li>
+    </ul>
+    <!--  v-for：遍历对象-->
+    <ul>
+      <li v-for="value in obj">{{value}}</li>
+    </ul>
+    <ul>
+      <li v-for="(value, key, index) in obj" :key="index">{{key}}</li>
+    </ul>
+
+    <!-- 下面两种方式不会动态刷新视图 -->
+    <!-- 1.使用数组的length属性去更改数组 arr.length = 0 -->
+    <!-- 2.使用索引的方式去更改数组 arr[0] = 1 -->
+    <!-- 解决方式1：Vue.set(target, key, value) -->
+    <!-- 作用：向响应式对象中添加一个新属性，并确保这个属性是响应式的，且触发视图更新 -->
+    <!-- 解决方式2：调用数组的splice方法 -->
+
+    <!-- v-mode：用来实现双向数据绑定，这个指令只能给 input/select/textarea/组件 这些标签使用 -->
+    <!-- 双向数据绑定，即数据模型中的数据和视图中的数据同步变化-->
+    <input type="text" v-model="username">
+    <!-- 单向数据绑定 -->
+    <input type="text" :value="username">
+
+    <!-- v-on：监听dom事件
+         v-on:事件类型="一个函数" 这个事件类型可以自定义
+         v-on:click 简写为 @click -->
+    <h1>{{username}}</h1>
+    <button v-on:click="changeName">点击改变姓名</button>
+    <button @click="changeName">点击改变姓名</button>
+    <button @click="changeName2('jack3')">点击改变姓名</button>
+    <button @click="getEvent($event)">获取事件对象</button>
+
+    <!-- 事件修饰符：用来增强事件的
+         .stop    阻止冒泡
+         .prevent 阻止默认行为 -->
+    <a href="http://www.baidu.com" @click.prevent="preventToBaidu">阻止跳转到百度</a>
+
+    <!-- 按键修饰符：用来增强按键的
+         .按键码 比如 .13 代表 回车键 
+         还可以通过按键别名：
+         .enter .tab .delete .esc .space .up .down .left .right-->
+    <input type="text" v-model="username" @keyDown.13="keyTest">
+
+    <!-- v-if和v-show 都能用来控制元素的显示和隐藏
+         区别：v-if是通过操作dom来控制的
+              v-show是通过操作样式 display:none 来控制的
+         场景：如果页面中设计到异步数据渲染用 v-if
+              如果页面中涉及到大量dom元素的显示与隐藏用 v-show -->
+    <p v-if="age>=18">已成年</p>
+    <p v-else-if="age<18&&age>0">未成年</p>
+    <p v-else>未知</p>
+    <p v-show="age>=18">已成年</p>
+
+    <!-- v-cloak：用于解决表达式 {{}} 闪烁的问题
+         步骤：1.给会闪烁的标签添加 v-cloak
+              2.添加样式(见顶部 [v-cloak] ) -->
+    <p v-cloak>{{username}}</p>
+
+  </div>
+  <script>
+    let vm = new Vue({
+      el: "#app",
+      // 定义数据
+      data: {
+        msg: "hello world",
+        age: -1,
+        imgUrl: "./avatar.jpg",
+        id: 11,
+        username: "jack",
+        list: [
+          { id: 11, name: "haha" },
+          { id: 12, name: "haha2" },
+          { id: 13, name: "haha3" }
+        ],
+        obj: {
+          id: 2132,
+          name: "hehe"
+        }
+      },
+      // 定义函数
+      methods: {
+        changeName() {
+          // 这里的 this 就是vue实例 vm
+          this.username = "jack2"
+        },
+        changeName2(newName) {
+          this.username = newName
+        },
+        // 获取事件对象
+        getEvent(e) {
+          console.log(e)
+        },
+        // 阻止跳转到百度
+        preventToBaidu() {
+          console.log("阻止跳转到百度")
+        },
+        keyTest() {
+          console.log("测试按键修饰符")
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
