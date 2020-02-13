@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./vue2.js"></script>
+  <link rel="stylesheet" href="./animate.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- 结合 animate.css 实现
+         步骤：1.引包
+              2.给transition添加两个属性 enter-active-class leave-active-class -->
+    <transition enter-active-class="animated shake" leave-active-class="animated fadeOutLeftBig">
+      <div v-if="isShow">显示</div>
+    </transition>
+    <button @click="isShow = !isShow">切换</button>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        isShow: true
+      }
+    })
+  </script>
+</body>
+
+</html>

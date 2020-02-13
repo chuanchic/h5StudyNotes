@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue2.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <img v-mybind:src="avatar">
+  </div>
+
+  <script>
+
+    // 自定义指令
+    Vue.directive("mybind", {
+      // binding对象中的属性：
+      // value：绑定属性的值
+      // arg：绑定属性的名称
+      inserted(el, binding) {
+        el.setAttribute(binding.arg, binding.value)
+      },
+      update(el, binding) {
+        el.setAttribute(binding.arg, binding.value)
+      }
+    })
+
+    let vm = new Vue({
+      el: "#app",
+      data: {
+        avatar: './avatar.jpg'
+      }
+    })
+
+  </script>
+
+</body>
+
+</html>

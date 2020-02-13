@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./vue2.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 结合 js 实现
+         步骤：1.找到需要添加动画的元素，用 transition包裹
+              2.然后添加以下六个事件，并添加其执行函数 -->
+    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter" @before-leave="beforeLeave"
+      @leave="leave" @after-leave="afterLeave">
+      <div v-if="isShow">显示</div>
+    </transition>
+    <button @click="isShow = !isShow">切换</button>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        isShow: true
+      },
+      methods: {
+        beforeEnter(el) {
+          el.style.paddingLeft = "100px"
+        },
+        // el表示需要动画的dom元素
+        // done表示成功的回调函数
+        enter(el, done) {
+          let step = 1
+          let interval = setInterval(() => {
+            el.style.paddingLeft = (100 - step) + "px"
+            step++
+            if (step === 100) {
+              clearInterval(interval)
+              // 只有调用done()，afterEnter()才会被执行
+              done()
+            }
+          }, 10);
+        },
+        afterEnter(el) {
+          el.style.paddingLeft = "0"
+        },
+        beforeLeave(el) {
+          // 同上...
+        },
+        leave(el, done) {
+          // 同上...
+        },
+        afterLeave(el) {
+          // 同上...
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

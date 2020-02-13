@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./vue2.js"></script>
+  <script src="./axios.js"></script>
+  <style>
+    #app {
+      width: 600px;
+      margin: 10px auto;
+    }
+
+    .tb {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .tb th {
+      background-color: #0094ff;
+      color: white;
+    }
+
+    .tb td,
+    .tb th {
+      padding: 5px;
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    .add {
+      padding: 5px;
+      border: 1px solid black;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- 添加 -->
+    <div class="add">
+      编号:<input type="text" v-model="newId" id="myid" ref="inputRef" v-myfocus="newId">
+      品牌名称:<input type="text" v-model="newName" @keyDown.enter="addData">
+      <input type="button" value="添加" @click="addData">
+    </div>
+
+    <!-- 搜索 -->
+    <div class="add">
+      品牌名称:<input type="text" placeholder="请输入搜索条件" v-model="searchVal" @keyDown.enter="searchData">
+    </div>
+
+    <!-- 展示 -->
+    <div>
+      <table class="tb">
+        <tr>
+          <th>编号</th>
+          <th>品牌名称</th>
+          <th>创立时间</th>
+          <th>操作</th>
+        </tr>
+        <tr v-for="(item,index) in list" :key="index">
+          <td>{{item.id}}</td>
+          <td>{{item.name}}</td>
+          <!-- 通过管道符号 | ，使用时间过滤器 fmtTime -->
+          <td>{{item.ctime | fmtTime('-')}}</td>
+          <td>
+            <button @click="delData(item.id)" v-mycolor="color">删除</button>
+          </td>
+        </tr>
+        <tr v-if="list.length === 0">
+          <td colspan="4">没有品牌数据</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+
+<script>
+
+  // 全局自定义指令，利用 Vue.directive(指令名称, 配置项)
+  // 创建自定义指令 v-myfocus，实现input框自动聚焦
+  Vue.directive('myfocus', {
+    // 自定义指令绑定到dom上的时候，就自动执行(执行一次)
+    bind() {
+    },
+    // 自定义指令插入到dom上的时候，就自动执行(执行一次)
+    // el：使用自定义指令的元素
+    // binding：记录自定义指令信息的对象
+    inserted(el, binding) {
+      // 实现自动聚焦功能
+      el.focus()
+    },
+    // 自定义指令对应的值更新的时候，就自动执行(执行多次)
+    update() {
+    }
+  })
+
+  // 创建自定义指令 v-mycolor，修改字体颜色
+  Vue.directive('mycolor', {
+    inserted(el, binding) {
+      el.style.color = binding.value
+    }
+  })
+
+  // 全局创建时间过滤器 Vue.filter(过滤器名称, 一个处理函数)
+  // 处理函数的参数：表示需要过滤的数据
+  // 最后如何使用过滤器：通过管道符号 | 
+  Vue.filter('fmtTime', function (sourceTime, fengefu) {
+    // 这儿的 sourceTime 是字符串类型的，需要转换
+    sourceTime = new Date(sourceTime)
+    let y = sourceTime.getFullYear()
+    let m = sourceTime.getMonth() + 1
+    let d = sourceTime.getDate()
+    return y + fengefu + m + fengefu + d
+  })
+
+  let vm = new Vue({
+    el: '#app',
+    data: {
+      newId: '', // 获取编号框中的值
+      newName: '', // 获取品牌名称框中的值
+      list: [],
+      searchVal: '',
+      color: 'green'
+    },
+    methods: {
+      // 获取列表数据
+      getList() {
+        axios.get('http://www.liulongbin.top:3005/api/getprodlist', {
+          params: {
+            searchvalue: this.searchVal
+          }
+        })
+          .then(res => {
+            if (res.data.status === 0) {
+              this.list = res.data.message
+            }
+          })
+        this.searchVal = ''
+      },
+      // 删除数据
+      delData(id) {
+        axios.get(`http://www.liulongbin.top:3005/api/delproduct/${id}`)
+          .then(res => {
+            if (res.data.status === 0) {
+              alert('删除成功')
+              // 删除成功之后，重新获取列表数据
+              this.getList()
+            }
+          })
+      },
+      // 添加数据
+      addData() {
+        axios.post('http://www.liulongbin.top:3005/api/addproduct', {
+          name: this.newName
+        })
+          .then(res => {
+            if (res.data.status === 0) {
+              alert('添加成功')
+              // 添加成功之后，重新获取列表数据
+              this.getList()
+              this.newName = ''
+            }
+          })
+      },
+      // 搜索数据
+      searchData() {
+        this.getList()
+      }
+    },
+    // 页面一加载就执行
+    mounted() {
+      // 页面一打开自动获取焦点
+      // document.getElementById('myid').focus()
+      // 但是vue中不推荐直接操作dom，可以通过给dom元素添加ref属性的方式来获取dom元素的引用
+      // this.$refs.inputRef.focus()
+
+      // 页面一加载完成就执行getList方法
+      this.getList()
+    }
+  })
+
+</script>
+
+</html>

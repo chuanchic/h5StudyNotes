@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue2.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <p v-mytext="msg"></p>
+  </div>
+
+  <script>
+
+    // 自定义指令
+    Vue.directive("mytext", {
+      // 只会执行一次
+      inserted(el, binding) {
+        el.innerText = binding.value
+      },
+      // 自定义指令对应的属性值更新的时候，就会执行(执行多次)
+      update(el, binding) {
+        el.innerText = binding.value
+      }
+    })
+
+    let vm = new Vue({
+      el: "#app",
+      data: {
+        msg: "hello world"
+      }
+    })
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue2.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="firstName">
+    <input type="text" v-model="lastName">
+    <h1>全名：{{fullName}}</h1>
+    <input type="text" v-model="user.name">
+    <h1>用户名：{{user.name}}</h1>
+  </div>
+
+  <script>
+    let vm = new Vue({
+      el: "#app",
+      data: {
+        firstName: "",
+        lastName: "",
+        fullName: "",
+        user: {
+          name: ""
+        }
+      },
+      // watch监听器：监听data中数据的变化，然后执行相应的函数
+      // 这个函数有两个参数：一个是新值，一个是旧值
+      // 同样，效率上也没有computed高，但是涉及到异步操作，可以使用watch
+      watch: {
+        // 监听 firstName
+        firstName(newValue, oldValue) {
+          this.fullName = newValue + this.lastName
+        },
+        // 监听 lastName
+        lastName(newValue, oldValue) {
+          this.fullName = this.firstName + newValue
+        },
+        // 监听复杂数据类型 user
+        user: {
+          // 属性变化的处理函数，函数名只能为 handler
+          handler(newVal) {
+            console.log(newVal)
+          },
+          //表示开启深度监听
+          deep: true
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

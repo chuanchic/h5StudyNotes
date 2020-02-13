@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue2.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" id="myinput">
+  </div>
+  <script>
+    // 借助Object.defineProperty(对象, 属性, 配置项)，给对象添加、更新属性
+    let obj = {}
+    Object.defineProperty(obj, 'name', {
+      get() {
+        return name // 相当于 obj.name
+      },
+      set(newName) {
+        name = newName
+        document.getElementById('myinput').value = newName
+      }
+    })
+    // 监听输入框
+    document.getElementById('myinput').addEventListener("input", function (e) {
+      obj.name = e.target.value // 会调用obj的set方法
+    })
+  </script>
+</body>
+
+</html>

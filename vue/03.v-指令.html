@@ -12,7 +12,7 @@
       color: red;
     }
 
-    /* 属性选择器，解决表达式闪烁问题 */
+    /* 利用属性选择器，添加display: none */
     [v-cloak] {
       display: none;
     }
@@ -100,7 +100,8 @@
 
     <!-- v-cloak：用于解决表达式 {{}} 闪烁的问题
          步骤：1.给会闪烁的标签添加 v-cloak
-              2.添加样式(见顶部 [v-cloak] ) -->
+              2.添加样式(见顶部 [v-cloak] )
+              3.当vue实例编译完成之后，会自动去掉v-cloak指令 -->
     <p v-cloak>{{username}}</p>
 
   </div>

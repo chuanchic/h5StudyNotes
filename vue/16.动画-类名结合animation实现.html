@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./vue2.js"></script>
+  <style>
+    .slide-enter,
+    .slide-leave-to {}
+
+    .slide-leave,
+    .slide-enter-to {}
+
+    .slide-enter-active {
+      animation: slide-in 2s ease-out;
+    }
+
+    .slide-leave-active {
+      animation: slide-out 2s ease-out;
+    }
+
+    .slide2-enter,
+    .slide2-leave-to {}
+
+    .slide2-leave,
+    .slide2-enter-to {}
+
+    .slide2-enter-active {
+      animation: slide-in 2s ease-out;
+    }
+
+    .slide2-leave-active {
+      animation: slide-out 2s ease-out;
+      position: absolute;
+      /*让其脱离标准流，就能平滑移动*/
+    }
+
+    /* v-move 添加平滑移动 */
+    .slide2-move {
+      transition: all 2s;
+    }
+
+    @keyframes slide-in {
+      from {
+        transform: translateY(50px);
+      }
+
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slide-out {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(50px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 类名结合animation实现 -->
+    <transition name="slide">
+      <div v-if="isShow">显示</div>
+    </transition>
+    <button @click="isShow = !isShow">切换</button>
+
+    <!-- 列表动画实现 -->
+    <button @click="addItem">添加数据项</button>
+    <ul>
+      <!-- 包裹列表需要 transition-group -->
+      <transition-group name="slide2">
+        <li v-for="(item, index) in list" :key="item" @click="removeItem(index)">{{item}}</li>
+      </transition-group>
+    </ul>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        isShow: true,
+        list: [1, 2, 3, 4]
+      },
+      methods: {
+        addItem() {
+          this.list.push(this.list[this.list.length - 1] + 1)
+        },
+        removeItem(index) {
+          this.list.splice(index, 1)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

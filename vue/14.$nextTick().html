@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./vue2.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1 id="myh">{{msg}}</h1>
+    <button @click="change">点击改变</button>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'jack'
+      },
+      methods: {
+        change() {
+          this.msg = "jack2"
+          // 下面打印的不是jack2，而是jack，因为this.msg = "jack2"是异步操作
+          console.log(document.getElementById('myh').innerText)
+          // 解决方式
+          this.$nextTick(() => {
+            console.log(document.getElementById('myh').innerText)
+          })
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

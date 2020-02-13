@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue2.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <index>
+      <!-- 这儿是组件外部的代码片段，会放到插槽(slot)里，
+           包括 innerHTML方式 的代码片段也会被放到插槽里
+           指定代码片段放到指定插槽里需要通过slot属性 -->
+      <span slot="header">我是顶部代码片段</span>
+      <span slot="footer">我是底部代码片段</span>
+      <!-- 访问插槽里的属性比如title，company，需要借助slot-scope属性，
+           这个属性的值是一个对象，保存了slot里的所有属性 -->
+      <p slot-scope="scope">{{scope.title}}</p>
+    </index>
+    <index-b></index-b>
+  </div>
+  <script>
+    // 创建局部组件
+    let product = {
+      template: `
+      <div>
+        消息：{{msg}}，描述：{{productDec}}
+        <button @click="changeContent">改变内容</button>
+        <input type="text" v-myfocus>
+        <h1>{{ctime | fmtTime}}</h1>
+      </div>`,
+      // 配置数据，此处的data不同于之前的方式，必须是一个函数，并且返回一个对象
+      data() {
+        return {
+          msg: "我是商品消息",
+          ctime: new Date()
+        }
+      },
+      // 配置方法
+      methods: {
+        changeContent() {
+          this.msg = "我不是商品"
+        }
+      },
+      // 配置计算属性
+      computed: {
+        productDec() {
+          return '我是商品描述'
+        }
+      },
+      // 局部自定义指令(可以创建多个)，只能在当前组件中使用
+      directives: {
+        // 自动聚焦指令
+        myfocus: {
+          inserted: function (el) {
+            el.focus()
+          }
+        }
+      },
+      // 局部过滤器(可以创建多个)，只能在当前组件中使用
+      filters: {
+        fmtTime(time) {
+          let y = time.getFullYear()
+          return y
+        }
+      }
+    }
+
+    // 创建全局组件：Vue.component(组件名, 配置项)
+    Vue.component('index', {
+      // template属性指定组件模板，并且只能有一个根节点
+      // 全局组件(index-b)可以直接被使用，不需要注入
+      // slot组件用来定义插槽，可以让组件外部的代码片段放到组件内部来
+      // 不给slot添加name属性就是默认插槽，添加name属性就是具名插槽
+      // 给slot添加属性比如title,company，需要借助slot-scope才能访问到
+      template: `
+      <div>
+        <slot name="header"></slot>
+        这是首页
+        <index-b></index-b>
+        <product></product>
+        <slot name="footer"></slot>
+        <slot title="这是标题" company="这是公司"></slot>
+      </div>`,
+      // 局部组件(product)需要通过components注入才能被使用
+      components: {
+        product: product
+      }
+    })
+    // 如果组件名是驼峰命名方式，在使用组件的时候要换成 index-b
+    Vue.component('indexB', {
+      template: `
+      <div>
+        这是首页B
+      </div>`
+    })
+
+    let vm = new Vue({
+      el: '#app',
+      data: {
+      }
+    })
+  </script>
+</body>
+
+</html>

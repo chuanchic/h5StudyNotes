@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue2.js"></script>
+  <!-- vue-resource简介(不推荐)
+       github官网：https://github.com/pagekit/vue-resource 
+       引入：依赖于vue，因此引入必须在vue之后，
+            当成功引入之后，会在vue的原型上绑定一个 $http 对象(Vue.prototype.$http)，用来发送网络请求-->
+  <script src="./vue-resource.js"></script>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+
+  <script>
+    let vm = new Vue({
+      el: "#app",
+      data: {
+      },
+      // 页面一加载就执行
+      mounted() {
+        this.$http.get('http://www.liulongbin.top:3005/api/getprodlist')
+          .then(res => {
+            // vue-resource将数据包裹在body属性中
+            console.log(res.body.message);
+          }, err => {
+          })
+        this.$http.jsonp('http://157.122.54.189:9093/jsonp')
+          .then(res => {
+            console.log(res);
+          }, err => {
+          })
+      }
+    })
+  </script>
+</body>
+
+</html>

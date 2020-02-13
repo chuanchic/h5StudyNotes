@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./vue2.js"></script>
+  <style>
+    .move-enter,
+    .move-leave-to {
+      padding-left: 100px;
+    }
+
+    .move-leave,
+    .move-enter-to {
+      padding-left: 0;
+    }
+
+    .move-enter-active,
+    .move-leave-active {
+      transition: all 2s;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 类名实现的动画，需要 transition组件 包裹
+         name属性：作为类名前缀被使用
+         mode属性：指定两个动画切换的顺序
+         appear属性：一进入页面就有动画-->
+    <transition name="move" mode="out-in" appear>
+      <!-- 在标签同名的情况下，必须指定 key属性 作为唯一标识 -->
+      <div v-if="isShow" key="div1">显示</div>
+      <div v-else key="div2">显示2</div>
+    </transition>
+    <button @click="isShow = !isShow">切换</button>
+  </div>
+  <script>
+    // vue中 过渡动画 分为两类，一类是进场动画，一类是出场动画
+    // 实现动画主要有三种方式，1.类名，2.css动画库，3.js函数
+    // 1.类名：v-enter          进场 开始状态
+    //        v-enter-active   进场 中间状态
+    //        v-enter-to       进场 结束状态
+    //        v-leave          出场 开始状态
+    //        v-leave-active   出场 中间状态
+    //        v-leave-to       出场 结束状态
+    // 实现步骤：1.给需要动画的元素包裹 transition组件
+    //         2.在style里定义类名样式
+    // 本质：就是动态添加类名实现动画
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        isShow: true
+      }
+    })
+  </script>
+</body>
+
+</html>

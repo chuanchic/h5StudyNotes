@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue2.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+    <a href="http://www.baidu.com" v-myon:click.prevent="notJump">不想跳转</a>
+  </div>
+
+  <script>
+
+    // 自定义指令
+    Vue.directive("myon", {
+      // binding对象中的属性：
+      // value：绑定属性的值
+      // arg：绑定属性的名称
+      // modifiers：绑定属性的修饰符
+      inserted(el, binding) {
+        el.addEventListener(binding.arg, function (e) {
+          if (binding.modifiers.prevent) {
+            e.preventDefault()
+          }
+          if (binding.modifiers.stop) {
+            e.stopPropagation()
+          }
+          binding.value()
+        })
+      }
+    })
+
+    let vm = new Vue({
+      el: "#app",
+      data: {
+      },
+      methods: {
+        notJump() {
+          console.log("不想跳转")
+        }
+      }
+    })
+
+  </script>
+
+</body>
+
+</html>
