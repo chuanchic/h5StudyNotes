@@ -32,6 +32,10 @@ Vue语法高亮和自动补全代码
   Vetur
   VueHelper
 
+编译器代码风格统一
+  EditorConfig for VS Code
+会自动读取 .editorconfig 文件来统一编译器代码风格，这个文件在 todomvc-app 里有
+
 VS Code配置：
 打开 Code -> Preferences -> Settings -> Open Settings(JSON)
 
