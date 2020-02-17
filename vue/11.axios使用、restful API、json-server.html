@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue2.js"></script>
+  <!-- axios简介
+       以 Promise 为基础的 HTTP 客户端，适用于 浏览器 和 node.js
+       封装 ajax，用来发送网络请求获取数据
+       github官网：https://github.com/axios/axios
+       安装：方式一 Using npm: npm install axios 
+            方式二 Using cdn: <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            ... 
+            在浏览器中直接使用 方式二 即可
+       在项目中最好要遵循 restful API 的约束：
+          查询：axios.get()
+          添加：axios.post()
+          删除：axios.delete()
+          修改：axios.patch() 或 axios.put()
+       json-server的说明：
+          在前后端分离的开发方式中，如何同时进行开发？前端可以采用假数据的方式(mock数据)，
+          借助 json-server 来快速提供 restful API 的接口
+          github地址：https://github.com/typicode/json-server
+          安装方式：npm install -g json-server
+          使用方式：1.创建 db.json 文件，文件中是你的数据，文件名可以随便定义
+                  2.在 db.json 文件对应的目录下，打开终端，然后启动json-server：
+                    json-server --watch db.json
+                  3.最后就可以访问接口了：
+                    Resources：http://localhost:3000/todos
+                    Home：http://localhost:3000
+                    具体使用方式参见 todomvc-app 或者访问 github -->
+  <script src="./axios.js"></script>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+
+  <script>
+    let vm = new Vue({
+      el: "#app",
+      data: {
+      },
+      // 页面一加载就执行
+      mounted() {
+        axios.get('http://www.liulongbin.top:3005/api/getprodlist')
+          .then(res => {
+            // axios将获取到的数据封装到了data属性中
+            console.log(res.data);
+          })
+          .catch(err => {
+            console.log(err);
+          })
+      }
+    })
+  </script>
+</body>
+
+</html>

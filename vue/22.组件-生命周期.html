@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./vue2.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <h1 id="title">{{msg}}</h1>
+    <button @click="changeTitle">更新数据</button>
+  </div>
+  <script>
+    // 实例生命周期：
+    // 所有的 Vue组件 都是 Vue实例，实例生命周期 也叫做 组件生命周期
+    // 一个组件(实例)从开始到消亡所经历的各种状态，就是组件(实例)的生命周期
+
+    // 生命周期三个阶段：
+    // 1.挂载阶段(进入页面) 
+    // 2.更新阶段(当数据发生变化) 
+    // 3.卸载阶段(实例卸载)
+
+    // 生命周期函数(钩子函数)：
+    // 生命周期的三个阶段伴随着各种事件，这些事件统称为生命周期函数
+
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        msg: "生命周期函数"
+      },
+      methods: {
+        test() {
+          console.log('test')
+        },
+        changeTitle() {
+          this.msg = "我改变了"
+        }
+      },
+      // new Vue()，创建Vue实例
+      // 初始化Vue内部使用的事件，以及开启Vue生命周期
+      // 先调用 beforeCreate 函数
+      beforeCreate() {
+        // 这里不能访问 data数据、methods等
+        console.log("beforeCreate")
+      },
+      // 然后将data数据变成 响应式数据(双向数据绑定)，之后回调 created
+      created() {
+        // 这里就可以访问 data数据、methods等
+        // 一般发送ajax请求也可以在这里
+        console.log("created msg=" + this.msg)
+      },
+      // created回调之后
+      // Has 'el' option？
+      // 没有指定，会尝试调用#mount('#app')来指定Vue管理的范围
+      // Has 'template' option？
+      // 没有指定，会将el的outerHTML作为模板进行编译
+      // 所谓编译，即解析{{}}、指令，比如@click被解析成给当前元素添加单击事件
+      // 如果指定了 template 选项，就会将template的内容作为模板进行编译
+      // 紧接着调用 beforeMount
+      beforeMount() {
+        // 这里只是编译了，并没有渲染到页面中
+        console.log("beforeMount 值=" + document.getElementById('title').innerText)
+      },
+      // beforeMount回调之后
+      // 会创建 vm.$el 来替换el中的内容，也就是我们写的模板被编译成DOM后，会渲染到页面中
+      // 渲染完成后，会回调 mounted
+      mounted() {
+        // 这里就可以操作dom了，因为已经把编译好的DOM渲染进来了
+        // 也可以在这里发送ajax请求
+        console.log("mounted 值=" + document.getElementById('title').innerText)
+      },
+      // when data changes，会先回调 beforeUpdate
+      beforeUpdate() {
+        // 获取到的是更新前的DOM，还没有重新渲染
+        console.log("beforeUpdate 值=" + document.getElementById('title').innerText)
+      },
+      // 然后将数据的变化重新渲染到页面中，之后回调 updated
+      updated() {
+        // 获取到的是更新后的DOM
+        console.log("updated 值=" + document.getElementById('title').innerText)
+      },
+      // when vm.$destroy() is called，会先回调 beforeDestroy
+      beforeDestroy() {
+        console.log("beforeDestroy")
+      },
+      // 然后卸载所有的watchers、子组件以及事件，即执行清理工作
+      // Vue会主动清理自己的内容，比如：响应式数据，@click绑定事件
+      // 清理完成以后，最后会回调 destroyed
+      destroyed() {
+        // 我们自己写的一些定时器，自己手动创建的DOM，需要我们自己在这里清理
+        console.log("destroyed")
+      }
+    })
+  </script>
+</body>
+
+</html>

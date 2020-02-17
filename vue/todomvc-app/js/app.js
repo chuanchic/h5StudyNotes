@@ -6,42 +6,73 @@ const vm = new Vue({
 		// 标记被编辑的任务项
 		editId: -1,
 		// 任务列表
-		todos: [
-			{ id: 1, name: "抽烟", completed: false },
-			{ id: 2, name: "喝酒", completed: true },
-			{ id: 3, name: "烫头", completed: false }
-		]
+		todos: []
+	},
+	// 挂载页面，渲染完成之后
+	mounted() {
+		// 获取任务列表
+		this.getTodos()
 	},
 	methods: {
+		// 获取任务列表
+		getTodos() {
+			axios.get('http://localhost:3000/todos')
+				.then(res => {
+					this.todos = res.data
+				})
+		},
 		// 添加任务
 		add() {
 			if (this.todoName.trim() === '') {
 				return
 			}
-			let id
-			if (this.todos.length === 0) {
-				id = 1
-			} else {
-				id = this.todos[this.todos.length - 1].id + 1
-			}
-			this.todos.push({
-				id: id,
+			// axios 会自动添加 id，不需要手动添加
+			// let id
+			// if (this.todos.length === 0) {
+			// 	id = 1
+			// } else {
+			// 	id = this.todos[this.todos.length - 1].id + 1
+			// }
+			// this.todos.push({
+			// 	id: id,
+			// 	name: this.todoName,
+			// 	completed: false
+			// })
+			// 发送添加请求
+			axios.post('http://localhost:3000/todos', {
 				name: this.todoName,
 				completed: false
+			}).then(res => {
+				// 添加成功，更新任务列表
+				// this.todos.push(res.data)
+				// ...扩展运算符，将data里的字段依次取出来，给新建的对象{}
+				this.todos.push({ ...res.data })
+				this.todoName = ''
 			})
-			this.todoName = ''
 		},
 		// 删除任务
-		delTodo(index) {
-			this.todos.splice(index, 1)
+		delTodo(index, id) {
+			// 注意模板字符串的 `` 不能写成 ''
+			axios.delete(`http://localhost:3000/todos/${id}`)
+				.then(res => {
+					// 删除成功，更新任务列表
+					this.todos.splice(index, 1)
+				})
 		},
 		// 双击 显示编辑状态
 		showEditStatus(id) {
 			this.editId = id
 		},
-		// 回车键 隐藏编辑状态
-		updateTodo() {
-			this.editId = -1
+		// 回车键 隐藏编辑状态，并修改任务
+		updateTodo(id) {
+			const name = this.todos.find(item => item.id === id).name
+			// 注意模板字符串的 `` 不能写成 ''
+			axios.patch(`http://localhost:3000/todos/${id}`, {
+				name: name
+			}).then(res => {
+				console.log(res)
+				this.editId = -1
+			})
 		},
 		// 删除 所有已完成的项
 		delAllCompleted() {

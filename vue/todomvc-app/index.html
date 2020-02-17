@@ -40,11 +40,11 @@
 						<!-- 添加双击事件，显示编辑状态 -->
 						<label @dblclick="showEditStatus(item.id)">{{item.name}}</label>
 						<!-- 添加点击事件，删除任务项 -->
-						<button class="destroy" @click="delTodo(index)"></button>
+						<button class="destroy" @click="delTodo(index, item.id)"></button>
 					</div>
 					<!-- v-model绑定input输入框的value值
 							 回车键要隐藏编辑状态 -->
-					<input class="edit" v-model="item.name" @keyup.enter="updateTodo">
+					<input class="edit" v-model="item.name" @keyup.enter="updateTodo(item.id)">
 				</li>
 			</ul>
 		</section>
@@ -84,6 +84,8 @@
 	<script src="node_modules/todomvc-common/base.js"></script>
 	<!-- 添加vue库 -->
 	<script src="../vue2.js"></script>
+	<!-- 添加axios库 -->
+	<script src="../axios.js"></script>
 	<script src="js/app.js"></script>
 </body>
 
