@@ -12,66 +12,20 @@
 </head>
 
 <body>
+
 	<!-- Vue需要管理的dom结构 -->
 	<section class="todoapp" id="app">
-		<header class="header">
-			<h1>todos</h1>
-			<input class="new-todo" placeholder="What needs to be done?" autofocus v-model="todoName" @keyup.enter="add">
-		</header>
-		<!-- This section should be hidden by default and shown when there are todos -->
-		<section class="main">
-			<input id="toggle-all" class="toggle-all" type="checkbox">
-			<label for="toggle-all">Mark all as complete</label>
-			<!-- todo列表 -->
-			<ul class="todo-list">
-				<!-- These are here just to show the structure of the list items -->
-				<!-- List items should get the class `editing` when editing and `completed` when marked as completed -->
-				<!-- todo条目
-						 :class 动态绑定样式 通过对象语法
-						 v-for 循环遍历列表
-						 :key 添加唯一标识 提高渲染性能
-						 completed 设置任务是否完成
-						 editing 设置为编辑状态 可以修改任务内容 -->
-				<li :class="{completed: item.completed, editing: item.id === editId}" v-for="(item, index) in todos"
-					:key="item.id">
-					<div class="view">
-						<!-- v-model 双向数据绑定，这儿代表checkbox的选中状态 -->
-						<input class="toggle" type="checkbox" v-model="item.completed">
-						<!-- 添加双击事件，显示编辑状态 -->
-						<label @dblclick="showEditStatus(item.id)">{{item.name}}</label>
-						<!-- 添加点击事件，删除任务项 -->
-						<button class="destroy" @click="delTodo(index, item.id)"></button>
-					</div>
-					<!-- v-model绑定input输入框的value值
-							 回车键要隐藏编辑状态 -->
-					<input class="edit" v-model="item.name" @keyup.enter="updateTodo(item.id)">
-				</li>
-			</ul>
-		</section>
-		<!-- This footer should hidden by default and shown when there are todos -->
-		<!-- 通过 todos.length > 0 控制显示隐藏不是特别好，用计算属性 showFooter 更好 -->
-		<footer class="footer" v-show="showFooter" v-cloak>
-			<!-- This should be `0 items left` by default -->
-			<!-- v-text 计算属性 -->
-			<span class="todo-count"><strong v-text="unCompletedCount"></strong> item left</span>
-			<!-- Remove this if you don't implement routing -->
-			<ul class="filters">
-				<li>
-					<a class="selected" href="#/">All</a>
-				</li>
-				<li>
-					<a href="#/active">Active</a>
-				</li>
-				<li>
-					<a href="#/completed">Completed</a>
-				</li>
-			</ul>
-			<!-- Hidden if no completed items are left ↓ -->
-			<!-- v-show 计算属性 是否显示 清除已完成任务 按钮 -->
-			<!-- 点击清除按钮，删除所有已完成的项 -->
-			<button class="clear-completed" v-show="showClearCompleted" @click="delAllCompleted">Clear completed</button>
-		</footer>
+		<!-- 自定义组件 - 头部
+		 		 @gettodoname="getAddTodoName" 传递方法给子组件 -->
+		<todo-header @gettodoname="getAddTodoName"></todo-header>
+		<!-- 自定义组件 - 列表
+				 :todos="todos" 自定义属性传递数据给子组件
+				 @deltodo="delTodo" 传递方法给子组件 -->
+		<todo-list :todos="todos" @deltodo="delTodo"></todo-list>
+		<!-- 自定义组件 - 尾部 -->
+		<todo-footer :todos="todos"></todo-footer>
 	</section>
+
 	<footer class="info">
 		<p>Double-click to edit a todo</p>
 		<!-- Remove the below line ↓ -->
@@ -80,6 +34,7 @@
 		<p>Created by <a href="http://todomvc.com">you</a></p>
 		<p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
 	</footer>
+
 	<!-- Scripts here. Don't remove ↓ -->
 	<script src="node_modules/todomvc-common/base.js"></script>
 	<!-- 添加vue库 -->
@@ -87,6 +42,7 @@
 	<!-- 添加axios库 -->
 	<script src="../axios.js"></script>
 	<script src="js/app.js"></script>
+
 </body>
 
 </html>

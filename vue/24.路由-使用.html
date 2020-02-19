@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 引入 vue -->
+  <script src="./vue2.js"></script>
+  <!-- 引入 vue-router，依赖于 vue -->
+  <script src="./vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <li>
+        <!-- 指定 路由入口，最终会被解析成 a 标签
+             <a href="#/home" class>首页</a> -->
+        <router-link to="/home">首页</router-link>
+        <router-link to="/stu/1001">学生1</router-link>
+        <router-link to="/stu/1002">学生2</router-link>
+      </li>
+    </ul>
+
+    <!-- 指定 路由出口，将要显示的 视图内容 的位置 -->
+    <router-view></router-view>
+  </div>
+  <script>
+    // 在 Web APP 中，一般只有一个页面，通过 路由 来展示和管理整个应用的视图内容
+    // 路由：浏览器URL中的哈希值(# hash)与视图内容(template)之间的对应规则(一对一)
+    //      当URL中的哈希值发生改变，路由就会展示对应的视图内容
+    //      vue中的路由就是 hash 和 component 的对应关系(一个哈希值对应一个组件)
+    // 路由官网：https://cn.vuejs.org 里选 生态系统 -> 核心插件 -> Vue Router(语言选中文)
+    // 安装路由：npm install -S vue-router
+    // 通过 路由 展示 组件 的过程：
+    //  1.当点击 a 标签(或者浏览器地址栏中输入)，就会改变 哈希值
+    //  2.路由就会监听到 哈希值 的改变，根据 哈希值 去匹配对应的 组件
+    //  3.如果匹配成功，就会将这个组件展示在 router-view 中
+
+    // 声明组件(全局)
+    // const Home = Vue.component('home', {
+    //   template: `
+    //     <h1>这是 Home 组件</h1>
+    //   `
+    // })
+    // 声明组件(局部)
+    const Home = {
+      template: `
+        <h1>这是 Home 组件</h1>
+      `
+    }
+    // $route.params 路由参数，其中 id 是配置 路由规则 时定义的
+    const Stu = {
+      template: `
+        <div>
+          <p>这是第{{ $route.params.id }}个学生</p>
+
+          <!-- 子路由的入口 -->
+          <router-link to="/stu/1001/profile">个人资料</router-link>
+
+          <!-- 子路由的出口 -->
+          <router-view></router-view>
+
+        </div>
+      `,
+      data() {
+        return {
+          id: 0
+        }
+      },
+      created() {
+        this.id = this.$route.params.id
+        console.log(this.id)
+      },
+      // 在 组件复用 的情况下，也就是两个相同的组件之间切换，钩子函数不会被再次调用
+      // 这种情况下如果想监听 路由参数 的改变，可以通过 watch 监听 $route对象
+      // 应用场景例如：如何更新 data 里的 id属性 的值
+      watch: {
+        // to：目标路由，from：原来路由，就是指 $route对象
+        $route(to, from) {
+          this.id = to.params.id
+          console.log(this.id)
+        }
+      }
+    }
+    // 嵌套路由 子组件
+    const Profile = {
+      template: `
+        <div>我是子组件</div>
+      `
+    }
+    // 声明路由
+    const router = new VueRouter({
+      // 配置路由规则
+      routes: [
+        // 路由重定向，默认路径 重定向到 首页
+        { path: '/', redirect: '/home' },
+        // 首页
+        { path: '/home', component: Home },
+        // 学生，动态路由匹配，通过 路由参数(:id) 来实现
+        // 匹配的哈希值例如：/stu/1001 或 /stu/abc
+        // 无法匹配的例如：/stu 或 /stu/ 或 /stu/1001/abc(多了少了都不行) 
+        {
+          path: '/stu/:id', component: Stu,
+          // 配置 嵌套路由(子路由) 通过 children 属性
+          // 注意：同时需要配置 子路由的出口
+          children: [
+            // 子路由 不需要 / 作为前缀
+            { path: 'profile', component: Profile }
+          ]
+        }
+      ]
+    })
+
+    const vm = new Vue({
+      el: '#app',
+      data: {
+      },
+      // 声明路由
+      router: router
+    })
+  </script>
+</body>
+
+</html>
