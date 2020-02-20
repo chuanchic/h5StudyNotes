@@ -13,3 +13,8 @@ webAPI/test
 nodejs/test
 nodejs/js/node_modules
 nodejs/hacker-news模块化改造/node_modules
+
+# vue 相关
+vue/webpack-basic/node_modules
+vue/webpack-basic/dist
+vue/todomvc-app/node_modules
