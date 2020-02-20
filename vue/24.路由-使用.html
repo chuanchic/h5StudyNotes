@@ -9,6 +9,34 @@
   <script src="./vue2.js"></script>
   <!-- 引入 vue-router，依赖于 vue -->
   <script src="./vue-router.js"></script>
+  <style>
+    /* router-link-exact-active：精确匹配的类
+       router-link-active：模糊匹配的类
+       假设点击的是 <a href="#/user/posts" class="router-link-exact-active 
+       router-link-active">岗位</a>，
+       那么当前 哈希值 为 #/user/posts，精确匹配成功，所以 a 就会有两个类
+       而对于 <a href="#/user" class="router-link-active">用户管理</a> 来说，
+       因为 #/user 包含在 #/user/posts 里，模糊匹配成功，所以 a 只有一个类
+       
+       那么如何去掉 模糊匹配，只保留 精确匹配？
+       给对应的 路由入口 添加 exact 属性就行了
+
+       如何实现路由 高亮显示？
+       方式一：直接给下面两个类设置样式
+       方式二：修改 高亮显示 的类为其他类，比如为 第三方UI库提供的类
+              修改方式：在配置路由的地方修改
+        */
+    .router-link-exact-active,
+    .router-link-active {
+      color: green;
+      font-size: 40px;
+    }
+
+    .myClass {
+      color: red;
+      font-size: 40px;
+    }
+  </style>
 </head>
 
 <body>
@@ -16,9 +44,10 @@
     <ul>
       <li>
         <!-- 指定 路由入口，最终会被解析成 a 标签
-             <a href="#/home" class>首页</a> -->
+             <a href="#/home" class>首页</a> 
+             exact属性：表示对应 路由入口 是精确匹配-->
         <router-link to="/home">首页</router-link>
-        <router-link to="/stu/1001">学生1</router-link>
+        <router-link to="/stu/1001" exact>学生1</router-link>
         <router-link to="/stu/1002">学生2</router-link>
       </li>
     </ul>
@@ -110,7 +139,9 @@
             { path: 'profile', component: Profile }
           ]
         }
-      ]
+      ],
+      // 修改 高亮显示 的类名，myClass 可以换成 第三方UI库的类
+      linkActiveClass: 'myClass'
     })
 
     const vm = new Vue({

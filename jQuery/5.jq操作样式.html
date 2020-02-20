@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <script src="jquery-1.12.4.js"></script>
+  <script src="./test/jquery-1.12.4.js"></script>
 </head>
+
 <body>
   <ul>
     <li>hello world</li>
@@ -17,12 +19,12 @@
     /*
     jq操作样式
     */
-    $(function(){
+    $(function () {
       //设置单个样式
       // $("li").css("color", "red");
       // $("li").css("fontSize", "30px");
       // $("li").css("margin", "10px");
-      
+
       //设置多个样式
       $("li").css({
         color: "red",
@@ -37,8 +39,9 @@
       //获取样式，获取第一个li元素的字体大小
       var fontSize = $("li").css("fontSize");
       console.log(fontSize);
-      
+
     });
   </script>
 </body>
+
 </html>
