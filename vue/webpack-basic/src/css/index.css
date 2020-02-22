@@ -1,3 +1,11 @@
 #list {
   list-style: none;
 }
+.img {
+  width: 300px;
+  height: 400px;
+  background-image: url('../imgs/a.jpg');
+}
+p {
+  height: 50px;
+}

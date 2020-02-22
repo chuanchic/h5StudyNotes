@@ -1,4 +1,6 @@
 
+// 推荐阮一峰的中文文档：http://es6.ruanyifeng.com
+
 // 1.声明变量
 // 之前：var a = 10
 // es6：let a = 10

@@ -74,7 +74,26 @@
 // 比如 .css 类型的文件，可以通过 style-loader css-loader 来处理
 //     .less类型的文件，除了需要上面的两个之外，还需要 less-loader
 // 加载器的使用：
-// 1.安装 npm install -D style-loader css-loader
+// 1.处理 .css 类型的文件：
+//     npm install -D style-loader css-loader
+//   处理 .less 类型的文件：
+//     npm install -D style-loader css-loader less-loader less
+//     less-loader 依赖于 less 模块，所以多安装个 less 
+//   处理 图片、字体 文件：
+//     npm install -D url-loader file-loader
+//       如果在 webpack.config.js 里的 loader 中 设置了 limit，
+//       那么在安装 url-loader 的同时也要安装 file-loader
+//       因为对于超过 limit 限制的图片，url-loader 内部会使用 file-loader 来处理图片
+//     file-loader：重命名 图片、字体 文件后 再加载
+//       重命名：自己写的 图片地址 会被重命名为 MD5加密过的 图片地址
+//       好处是：假设有两个相同的图片，但是名字不同，经过MD5加密之后的 图片地址 还是同一个，
+//              这样原本 两次图片加载 就会变成 一次图片加载，减少网络请求
+//     url-loader：将 图片、字体 文件转化为 base64 编码格式的字符串，嵌入到样式文件中
+//       功能更强大，推荐
+//       图片处理的发展历程：  
+//         1.精灵图(将多个小的图标合成一个，变成一次网络请求)
+//         2.字体图标(将多个小的图标制作成一个字体文件，变成一次网络请求)
+//         3.base64编码(将小的图标 base64 编码，嵌入到样式文件中，没有网络请求)
 // 2.在 webpack.config.js 里的 module 中配置 loader 处理规则
 
 // 引入 jquery
@@ -91,3 +110,33 @@ $('#list > li:even').css('background-color', 'green')
 // 如果查找到了 loader，就通过对应的 loader 来处理这个 css 文件
 // 如果没有找到 loader，就会报错
 import './css/index.css'
+
+// 导入 less 文件
+import './css/index.less'
+
+// 导入 字体 文件
+import './css/font-awesome/css/font-awesome.css'
+
+// 对象扩展运算符不是 ECMAScript 标准语法
+const obj = {
+  name: 'jack',
+  age: 18
+}
+const obj2 = { ...obj }
+console.log(obj2)
+
+// 测试 单文件组件
+// 先 npm install vue，再导入 vue
+import Vue from 'vue'
+// 导入创建好的 单文件组件
+import App from './App.vue'
+// 创建 vue 实例
+const vm = new Vue({
+  el: '#app',
+  data: {
+  },
+  // 渲染组件
+  render: function (createElement, context) {
+    return createElement(App)
+  }
+})

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // Babel官网：http://babel.docschina.org
+
+    // Babel的作用：
+    // 1.语法转换：将新的 ES 语法转化为浏览器能够识别的语法
+    //   借助 babel-preset-env 能够转化 es6 es7 es8 ... 的语法
+    //   借助 babel-preset-stage-2 能够转化暂时还不是标准语法的语法
+    // 2.浏览器兼容：让 低版本 浏览器兼容最新版 ES 的 API
+    //   借助 transform-runtime 或 babel-ployfill
+
+    // 使用 Babel 来处理 .js 类型的文件：
+    // 1.安装:
+    //   npm install -D babel-core babel-loader@7 ( @7 指定版本为7)
+    //   npm install -D babel-preset-env
+    //   babel-preset-env：表示 es2015 es2016 es2017 等的集合(es6 es7 es8 ...)
+    //   安装 babel-preset-env 之后才能使用 es6(包括es6) 之后的所有语法
+    // 2.在 webpack.config.js 里的 module 中配置 babel
+    // 3.在项目根目录下(webpack-basic)新建文件 .babelrc，
+    //   然后在 .babelrc 里的 presets 中添加 env，
+    //   这样就可以放心的在项目中使用 ES 最新的 API 了
+    // 题外：npm install -D babel-preset-env 安装的是 ES标准语法
+    //   如果想使用不是 ES标准语法，比如使用 Stage 2 阶段的语法，就需要这样：
+    //   npm install -D babel-preset-stage-2
+    //   然后在 .babelrc 里的 presets 中添加 stage-2
+
+    // transform-runtime 作用：
+    // 实现浏览器对不支持 API 的兼容(兼容就环境、填补)
+    // 1.安装：
+    // npm install -D babel-plugin-transform-runtime
+    // npm install babel-runtime (babel-runtime 包中的代码会被打包到我们的代码中)
+
+    // 扩展知识：
+    // 一种新的语法从提案到变成正式标准，需要经历五个阶段：
+    // Stage 0 - Strawman（展示阶段）
+    // Stage 1 - Proposal（征求意见阶段）
+    // Stage 2 - Draft（草案阶段）
+    // Stage 3 - Candidate（候选人阶段）
+    // Stage 4 - Finished（定案阶段）
+    // 其中 Stage 4 就是指 ECMAScript 标准(es5 es6 es7 ...)
+
+  </script>
+</body>
+
+</html>

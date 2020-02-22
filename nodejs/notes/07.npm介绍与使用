@@ -29,6 +29,8 @@ npm官网：https://www.npmjs.com
 卸载项目中用到的包：
   命令卸载：npm uninstall 包名
   手动卸载：删除node_modules下对应的包就行了
+强制清除 npm 中的缓存
+  npm cache clean --force
 代码分享：
   在进行代码分享的时候，不需要分享node_modules，只需要分享自己的代码和package.json文件
   其他人拿到代码以后，只需要根据package.json文件下载所有的依赖项即可
