@@ -1,0 +1,25 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          // "> 1%" 表示浏览器的 市场份额 >1% 的
+          // "last 2 versions" 表示兼容最新的两个版本
+          // "not ie <= 8" 表示不兼容 ie8及以下
+          "browsers": [
+            "> 1%",
+            "last 2 versions",
+            "not ie <= 8"
+          ]
+        }
+      }
+    ],
+    "stage-2"
+  ],
+  "plugins": [
+    "transform-vue-jsx",
+    "transform-runtime"
+  ]
+}

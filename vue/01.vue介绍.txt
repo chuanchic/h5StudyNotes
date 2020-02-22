@@ -48,6 +48,9 @@ Vue语法高亮和自动补全代码
 如何在其他机器上同步(共享) 配置、插件？
   如果没有插件先安装插件，然后重复上述步骤，选择某个 gist 就行了
 
+代码格式化(Code formatter)
+  Prettier
+
 VS Code配置：
 打开 Code -> Preferences -> Settings -> Open Settings(JSON)
 

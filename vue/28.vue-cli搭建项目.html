@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+  <body>
+    <script>
+      // 脚手架：快速生成项目的目录结构
+      // vue-cli 脚手架：快速生成 vue 项目的目录结构(webpack 也配置好了)
+      // vue-cli 官网：https://cli.vuejs.org/zh/ (选择中文)
+      // vue-cli github：https://github.com/vuejs/vue-cli/tree/master
 
-<body>
-  <script>
-    // vue-cli 脚手架：
-    // 官网：https://cli.vuejs.org/zh/ (选择中文)
-    // github：https://github.com/vuejs/vue-cli/tree/master
-    // 脚手架：快速生成项目的目录结构
-    // 作用：快速生成一个 vue 项目的目录结构，包括 webpack 也配置好了
-    // 使用步骤：
-    //   1.全局安装 npm install -g vue-cli
-    //   2.通过 vue 命令初始化一个带有 webpack 模板的项目结构：
-    //     在某个目录下执行命令：vue init webpack my-vue-project，
-    //     然后根据提示一步步操作，结果如下：
-    //     ? Project name my-vue-project
-    //     ? Project description A Vue.js project
-    //     ? Author liuchuanchi <chuanchic@163.com>
-    //     ? Vue build standalone
-    //     ? Install vue-router? Yes
-    //     ? Use ESLint to lint your code? Yes
-    //     ? Pick an ESLint preset Standard
-    //     ? Set up unit tests No
-    //     ? Setup e2e tests with Nightwatch? No
-    //     ? Should we run `npm install` for you after the project has been 
-    //     created?  (recommended) npm
-    //   3.等待安装完成会提示：
-    //     Project initialization finished!
-    //     To get started:
-    //     cd my-vue-project
-    //     npm run dev
-    //     执行 npm run dev 之后，就可以通过浏览器访问 http://localhost:8080
-    // 题外，当拿到一个 vue 项目的时候：
-    //   1.先安装项目中使用的模块 npm install
-    //   2.然后在运行项目 npm run dev / npm start
+      // 快速生成项目的步骤：
+      //   1.全局安装 npm install -g vue-cli
+      //   2.通过 vue 命令初始化一个带有 webpack 模板的项目结构：
+      //     在某个目录下执行命令：vue init webpack my-vue-project，
+      //     然后根据提示一步步操作，结果如下：
+      //     ? Project name my-vue-project
+      //     ? Project description A Vue.js project
+      //     ? Author liuchuanchi <chuanchic@163.com>
+      //     ? Vue build standalone
+      //     ? Install vue-router? Yes
+      //     ? Use ESLint to lint your code? Yes
+      //     ? Pick an ESLint preset Standard
+      //     ? Set up unit tests No
+      //     ? Setup e2e tests with Nightwatch? No
+      //     ? Should we run `npm install` for you after the project has been
+      //     created?  (recommended) npm
+      //   3.等待安装完成会提示：
+      //     Project initialization finished!
+      //     To get started:
+      //     cd my-vue-project
+      //     npm run dev
+      //     执行 npm run dev 之后，就可以通过浏览器访问 http://localhost:8080
+      //     按住 control + C 就可以退出
 
-  </script>
-</body>
+      // 当拿到一个 vue 项目的时候：
+      //   1.先安装项目中使用的模块 npm install
+      //   2.然后在运行项目 npm run dev / npm start
 
+      // 如何添加一个新的功能？
+      // 1.在 components 中新建文件夹(login)，在文件夹中创建组件(Login.vue)
+      // 2.在 router/index.js 中导入组件(Login.vue)，并配置路由规则
+    </script>
+  </body>
 </html>

@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-  <script>
-    // 1.如何关闭 ESLint 代码风格校验
-    //   在 /config/index.js 中将 useEslint 设置为 false
-    // 2. /static 文件夹：
-    //   存放静态资源的，不需要 webpack 处理的资源放在这里
-    // 3. /src 文件夹：
-    //   放在这里的资源都会经过 webpack 的处理
-    //   在代码中，@ 符号被设置为 src 目录，代表 src 目录
-    //   1. /assets 文件夹：放置资源文件，比如 图片 css
-    //   2. /components 文件夹：放置项目中所有的组件
-    //   3. /router 文件夹：路由配置
-    //   4. /App.vue：根组件
-    //   5. /main.js：项目的入口文件，Vue实例就在这里创建的
-    // 4. /static/.gitkeep 文件：
-    //   如果 static 文件夹是空的，git 是不会管理这个文件夹的
-    //   .gitkeep 文件保证了 文件夹 不是空的，会被 git 管理
-    // 5. /.editorconfig 文件：
-    //   统一编译器风格的
-    // 6. /.eslintignore 文件：
-    //   哪些文件 需要忽略代码风格校验的
-    // 7. /.eslintrc.js 文件：
-    //   修改 eslint 配置的
-    // 8. /index.html
-    //   单文件组件的 页面
-    // 9. /package.json 里 scripts 中的 dev 
-    //   --progress 表示在编译的过程中有 进度 提示
-    //   --config build/webpack.dev.conf.js" 
-    //     默认情况下 webpack 会读取 webpack.config.js 文件
-    //     指定 webpack 读取 build/webpack.dev.conf.js 文件
-    // 10.不同构建版本的说明
-    //   1.完整版(运行时+编译器)
-    //   2.运行时(体积比完整版小 30%)
-    //   3. import Vue from 'vue' 默认导入的是 运行时 版本
-    //      设置 webpack.base.conf.js 里的 alias，设置导入的是 完整版
-    // 11. /.babelrc 文件
-    //   "> 1%" 表示浏览器的 市场份额 >1% 的
-    //   "last 2 versions" 表示兼容最新的两个版本
-    //   "not ie <= 8" 表示不兼容 ie8及以下  
-  </script>
-</body>
-
+  <body>
+    <script>
+      // 1.如何关闭 ESLint 代码风格校验
+      //   在 /config/index.js 中将 useEslint 设置为 false
+      // 2. /static 文件夹：
+      //   存放静态资源的，不需要 webpack 处理的资源放在这里
+      // 3. /src 文件夹：
+      //   放在这里的资源都会经过 webpack 的处理
+      //   在代码中，@ 符号被设置为 src 目录，代表 src 目录
+      //   1. /assets 文件夹：放置资源文件，比如 图片 css
+      //   2. /components 文件夹：放置项目中所有的组件
+      //   3. /router 文件夹：路由配置
+      //   4. /App.vue：根组件
+      //   5. /main.js：项目的入口文件，Vue实例就在这里创建的
+      // 4. /static/.gitkeep 文件：
+      //   如果 static 文件夹是空的，git 是不会管理这个文件夹的
+      //   .gitkeep 文件保证了 文件夹 不是空的，会被 git 管理
+      // 5. /.editorconfig 文件：
+      //   统一编译器风格的
+      // 6. /.eslintignore 文件：
+      //   哪些文件 需要忽略代码风格校验的
+      // 7. /.eslintrc.js 文件：
+      //   修改 eslint 配置的
+      // 8. /index.html
+      //   单文件组件的 页面
+      // 9. /package.json 里 scripts 中的 dev
+      //   --progress 表示在编译的过程中有 进度 提示
+      //   --config build/webpack.dev.conf.js"
+      //     默认情况下 webpack 会读取 webpack.config.js 文件
+      //     指定 webpack 读取 build/webpack.dev.conf.js 文件
+      // 10.不同构建版本的说明
+      //   1.完整版(运行时+编译器)
+      //   2.运行时(体积比完整版小 30%)
+      //   3. import Vue from 'vue' 默认导入的是 运行时 版本
+      //      设置 webpack.base.conf.js 里的 alias，设置导入的是 完整版
+      // 11. /.babelrc 文件
+      //   "> 1%" 表示浏览器的 市场份额 >1% 的
+      //   "last 2 versions" 表示兼容最新的两个版本
+      //   "not ie <= 8" 表示不兼容 ie8及以下
+      // 12. 配置哪些 扩展名 的文件可以省略 后缀
+      //   在 webpack.base.conf.js 里的 extensions 中添加
+    </script>
+  </body>
 </html>
