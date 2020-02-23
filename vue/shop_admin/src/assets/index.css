@@ -1,0 +1,7 @@
+/* 设置整个页面的 宽 高 */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}

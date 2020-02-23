@@ -31,6 +31,9 @@ VS Code插件：
 Vue语法高亮和自动补全代码
   Vetur
   VueHelper
+对于 Vetur ，设置让其可以自动格式化 .vue 文件里的 template 代码
+在 Preferences -> Settings -> 搜索vetur
+把 Vetur...HTML 的默认值 none 改成 js-beautify-html
 
 编译器代码风格统一
   EditorConfig for VS Code
@@ -49,7 +52,7 @@ Vue语法高亮和自动补全代码
   如果没有插件先安装插件，然后重复上述步骤，选择某个 gist 就行了
 
 代码格式化(Code formatter)
-  Prettier
+  Prettier 
 
 VS Code配置：
 打开 Code -> Preferences -> Settings -> Open Settings(JSON)

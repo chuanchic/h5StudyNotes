@@ -4,6 +4,9 @@ import Vue from "vue";
 import App from "./App";
 import router from "./router";
 
+// 导入全局样式
+import '@/assets/index.css'
+
 // 导入 ElementUI - js
 import ElementUI from "element-ui";
 // 导入 ElementUI - css
@@ -18,6 +21,8 @@ Vue.config.productionTip = false;
 new Vue({
   el: "#app",
   router,
+  // App 组件是局部组件，需要声明才能被 template 所使用
   components: { App },
+  // template: "<App/>" 会覆盖掉 el: "#app"
   template: "<App/>"
 });

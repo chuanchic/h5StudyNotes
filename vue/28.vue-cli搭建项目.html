@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
 
-  <body>
-    <script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
       // 脚手架：快速生成项目的目录结构
       // vue-cli 脚手架：快速生成 vue 项目的目录结构(webpack 也配置好了)
       // vue-cli 官网：https://cli.vuejs.org/zh/ (选择中文)
@@ -37,6 +38,14 @@
       //     执行 npm run dev 之后，就可以通过浏览器访问 http://localhost:8080
       //     按住 control + C 就可以退出
 
+      // npm run dev 之后执行的过程
+      // 1.实际上就是运行了 package.json 里的 webpack-dev-server ...
+      // 2.使用 webpack-dev-server 开启一个服务器
+      // 3.根据指定的入口 src/main.js 文件，开始分析文件中使用到的模块
+      // 4.遇到 import 就会加载这些模块的内容，遇到代码就执行这些代码
+      // 5.创建 Vue 实例，将 App 组件作为模板进行编译，然后将 App 组件中 template 的内容
+      //   渲染在 index.html 页面的 #app 的位置
+
       // 当拿到一个 vue 项目的时候：
       //   1.先安装项目中使用的模块 npm install
       //   2.然后在运行项目 npm run dev / npm start
@@ -44,6 +53,12 @@
       // 如何添加一个新的功能？
       // 1.在 components 中新建文件夹(login)，在文件夹中创建组件(Login.vue)
       // 2.在 router/index.js 中导入组件(Login.vue)，并配置路由规则
-    </script>
-  </body>
+
+      // shop_admin 项目所依赖的 模块
+      //   1. npm i axios
+      //   2. npm i -D less-loader less
+
+  </script>
+</body>
+
 </html>
