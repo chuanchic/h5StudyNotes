@@ -260,3 +260,20 @@
 // Promise.race(arr).then(function(data){
 // })
 
+// 23.async await 关键字(基于 Promise)
+// function fn() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve('hahaha')
+//     }, 2000);
+//   })
+// }
+// async 用来修饰 函数
+// await 只能用在 async 修饰的函数中
+// await 后面跟一个 Promise 对象
+// await 会等待 Promise 封装的异步操作执行完，再去执行后面的代码
+// result 就是 Promise 中 resolve 函数的 参数
+// async function fn2() {
+//   const result = await fn()
+//   console.log(result)
+// }
