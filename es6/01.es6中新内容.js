@@ -277,3 +277,17 @@
 //   const result = await fn()
 //   console.log(result)
 // }
+// await 只会阻塞 fn2() 内部的执行，不会影响 fn2() 外部的执行
+// console.log('我会立即执行，不会阻塞我')
+
+// 24.Promise对象的静态方法 resolve()、reject()
+// resolve() 方法可以直接获取 成功状态的 Promise 对象
+// reject() 方法可以直接获取 失败状态的 Promise 对象
+// Promise.resolve('haha')
+//   .then(res => {
+//     console.log(res)
+//   })
+// Promise.reject('haha')
+//   .then(res => {
+//     console.log(res)
+//   })
