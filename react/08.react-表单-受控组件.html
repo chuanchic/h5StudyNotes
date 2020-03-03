@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 通过 本地 的方式引入 -->
+  <script src="./lib/react.development.js"></script>
+  <script src="./lib/react-dom.development.js"></script>
+  <script src="./lib/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script type="text/babel">
+    // 当用户提交表单时，HTML的默认行为会跳转到一个新页面，在 react 中也是如此
+    // 通常我们会构造一个 处理用户表单 的函数，通过 受控组件 的技术
+    // 受控组件：
+    //   在当前组件中的 表单元素 受到了 react 的控制
+    //   1.当 表单元素 的内容发生改变，react 对应的状态就会发生改变
+    //   2.当 react 对应的状态发生改变，表单元素 的内容也要发生改变
+    class Form extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          username: '小明',
+          city: 2,
+          age: 0,
+          sex: 0
+        }
+      }
+      render() {
+        return (
+          <div>
+            {/* 
+              让value属性和组件中的一个状态对应，这样就受到了 react 的控制 
+              同时还需要提供一个 onChange 的事件来处理内容的变化
+              但是这样只能 一个元素 对应 一个事件处理函数
+              还需要name属性就可以 多个元素 对应 一个事件处理函数
+            */}
+            <input type="text" value={this.state.username} onChange={this.changeName} />
+            <select value={this.state.city} onChange={this.changeCity}>
+              <option value="1">北京</option>
+              <option value="2">上海</option>
+              <option value="3">广州</option>
+            </select>
+            <input type="text" name="age" value={this.state.age} onChange={this.handleChange} />
+            <input type="text" name="sex" value={this.state.sex} onChange={this.handleChange} />
+          </div>
+        )
+      }
+      // 通过 箭头函数 的方式解决this指向问题
+      changeName = (e) => {
+        // 在这里需要改变 state.username 的值
+        this.setState({
+          username: e.target.value
+        })
+      }
+      changeCity = (e) => {
+        this.setState({
+          city: e.target.value
+        })
+      }
+      // 多个元素 对应 一个事件处理函数
+      handleChange = (e) => {
+        let name = e.target.name
+        // 方式一
+        // this.setState({
+        //   // [] 用来取出 name 的值，属性名表达式
+        //   [name]: e.target.value
+        // })
+        // 方式二
+        this.state[name] = e.target.value
+        this.setState(this.state)
+      }
+    }
+    ReactDOM.render(<Form />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

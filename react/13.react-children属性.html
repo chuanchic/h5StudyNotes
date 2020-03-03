@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 通过 本地 的方式引入 -->
+  <script src="./lib/react.development.js"></script>
+  <script src="./lib/react-dom.development.js"></script>
+  <script src="./lib/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script type="text/babel">
+    // 在 react 中建议使用 组合 而不是 继承 来复用组件之间的代码
+    // 一些组件不能提前知道他们的子组件是什么，对于 Sidebar、Dialog 这类通用容器很常见
+    // 建议这些组件使用 props的children属性 将子元素直接传递到输出
+    class Modal extends React.Component {
+      // 通过 props.children 就能拿到 组件 的 子元素
+      render() {
+        return (
+          <div>
+            <h3>{this.props.title}</h3>
+            <div>{this.props.children}</div>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render((
+      <div>
+        {/* 
+          这里的文本内容就是 props 的 children 属性的值 
+          children 属性的值可以是任何一段 jsx 代码，不只是 文本内容
+          这里的 自定义属性 也会被放到 props 里
+        */}
+        <Modal title="标题">是否要退出系统？</Modal>
+        <Modal title="标题2">是否删除这条记录?</Modal>
+      </div>
+    ), document.getElementById('app'))
+  </script>
+</body>
+
+</html>

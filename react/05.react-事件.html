@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 通过 本地 的方式引入 -->
+  <script src="./lib/react.development.js"></script>
+  <script src="./lib/react-dom.development.js"></script>
+  <script src="./lib/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script type="text/babel">
+    // 在 react 中注册事件与给 DOM 注册事件基本一样
+    // DOM中：onclick onmouseenter onblur onkeyup
+    // react中：onClick onMouseEnter onBlur onKeyup (驼峰命名)
+    // react中 注册事件 需要通过 {} 传入一个函数，而不是字符串
+    class Event extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          msg: "我是消息"
+        }
+        // 事件处理函数的 this指向 问题
+        // 方式一是在 jsx 语法中调用 bind(this)
+        // 方式二是在 构造函数 中调用，然后 jsx 语法中就可以省略 bind(this)
+        // 方式三是把 事件处理函数 改成 箭头函数，因为 箭头函数 里没有 this，
+        // 进而 this 就指向了 箭头函数外的 组件
+        // 而普通的 声明函数 的方式是有 this 的
+        // 推荐 方式三
+        this.clickFn = this.clickFn.bind(this)
+      }
+      render() {
+        return (
+          <div>
+            <p>{this.state.msg}</p>
+            <button onClick={this.clickFn}>注册事件</button>
+            <a href="http://www.baidu.com" onClick={this.baidu}>百度一下</a>
+            <button onClick={this.changeMsg.bind(this)}>修改msg</button>
+            (/*
+              传递参数有两种方式
+              方式一：通过 bind(this, 参数1, 参数2, ...)
+              方式二：通过 箭头函数 没有this 这个特性的方式
+              推荐 方式一
+            */)
+            <button onClick={this.sendParam1.bind(this, 1)}>bind方式传递参数</button>
+            <button onClick={() => { this.sendParam2(2) }}>bind方式传递参数</button>
+          </div>
+        )
+      }
+      clickFn() {
+        console.log('hahaha')
+      }
+      baidu(e) {
+        // 阻止浏览器的默认行为，不能 return false
+        e.preventDefault()
+        console.log('百度一下')
+      }
+      changeMsg() {
+        // 类的方法默认不会绑定 this，this 会指向 undefined
+        // 解决方式 通过 bind() 方法修改 函数内部的 this 指向
+        // 任何一个函数都有 bind() 方法
+        // 如果想要修改 state 的状态不能通过 this.state.xxx 去修改
+        // this.state.msg = "我被改变了"
+        this.setState({
+          msg: "我被改变了"
+        })
+        console.log(this.state.msg)
+      }
+      // 箭头函数 赋值给 changeMsg2
+      changeMsg2 = () => {
+        // 这里的 this 不需要 bind(this)，就能指向外层的 组件
+      }
+      // bind() 方式传递参数
+      // 这种方式如果想拿到 事件对象，通过方法的 最后 一个参数
+      // 事件对象 会被隐式传递，排在所有参数的后面
+      sendParam1(id, e) {
+        console.log("bind传递的参数：" + id)
+        console.log(e)
+      }
+      // 箭头函数 方式传递参数
+      sendParam2(id) {
+        console.log("箭头函数方式传递的参数：" + id)
+      }
+    }
+    ReactDOM.render(<Event />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

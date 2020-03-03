@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 通过 本地 的方式引入 -->
+  <script src="./lib/react.development.js"></script>
+  <script src="./lib/react-dom.development.js"></script>
+  <script src="./lib/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script type="text/babel">
+    function UserGreeting() {
+      return (
+        <div>欢迎回来，尊贵的VIP用户</div>
+      )
+    }
+    function GuestGreeting() {
+      return (
+        <div>你好，请先登录</div>
+      )
+    }
+    class App extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          isLogin: true,
+          score: 90,
+          age: 18
+        }
+      }
+      render() {
+        // 阻止组件渲染 可以隐藏组件
+        if (this.state.age < 18) {
+          return null
+        }
+
+        // 条件渲染：根据不同的条件，渲染不同的组件
+        // if (this.state.isLogin) {
+        //   return (
+        //     <UserGreeting />
+        //   )
+        // } else {
+        //   return (
+        //     <GuestGreeting />
+        //   )
+        // }
+
+        // 元素变量：通过 变量 保存不同的 元素(react 对象)
+        let content = null
+        if (this.state.score >= 90) {
+          content = <p>A</p>
+        } else {
+          content = <p>B</p>
+        }
+        return (
+          <div>
+            <p>你本次成绩是</p>
+            {content}
+            {/* 可以使用运算符 */}
+            {this.state.age >= 18 && <div>成年人</div>}
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<App />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

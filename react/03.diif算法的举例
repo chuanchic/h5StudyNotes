@@ -1,0 +1,72 @@
+如果两棵树的根元素类型不同，React会销毁旧树，创建新树
+
+// 旧树
+<div>
+  张三
+</div>
+
+// 新树
+<span>
+  张三
+</span>
+
+对于类型相同的React DOM 元素，如果仅仅是属性不同，只更新不同的属性
+
+// 旧
+<div className="before" title="stuff"></div>
+// 新
+<div className="after" title="stuff"></div>
+只更新：className 属性
+
+// 旧
+<div style={{color: 'red', fontWeight: 'bold'}}></div>
+// 新
+<div style={{color: 'green', fontWeight: 'bold'}}></div>
+只更新：color属性
+
+添加节点的情况
+
+// 旧
+<ul>
+  <li>first</li>
+  <li>second</li>
+</ul>
+
+// 新
+<ul>
+  <li>first</li>
+  <li>second</li>
+  <li>third</li>
+</ul>
+//在虚拟DOM中添加 <li>third</li>
+
+// 效率不高
+// 旧
+<ul>
+  <li>a</li>
+  <li>b</li>
+</ul>
+// 新
+<ul>
+  <li>c</li>
+  <li>a</li>
+  <li>b</li>
+</ul>
+// React将改变每一个子节点, 不会保证<li>a</li><li>b</li>不变化
+
+带key的情况
+
+// 旧
+<ul>
+  <li key="2015">a</li>
+  <li key="2016">b</li>
+</ul>
+
+// 新
+<ul>
+  <li key="2014">c</li>
+  <li key="2015">a</li>
+  <li key="2016">b</li>
+</ul>
+// react会根据唯一的key来移动元素
+// 在遍历数据时，推荐使用 key 属性

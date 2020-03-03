@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 通过 cdn 的方式引入 -->
+  <!-- 引入 react 核心文件 -->
+  <!-- <script src="https://cdn.bootcss.com/react/16.4.0/umd/react.development.js"></script> -->
+  <!-- 引入 react-dom 文件，专门用于操作DOM -->
+  <!-- <script src="https://cdn.bootcss.com/react-dom/16.4.0/umd/react-dom.development.js"></script> -->
+  <!-- 引入 babel 文件，可以把 ES6 的语法转成 ES5 的语法 -->
+  <!-- 学习的时候可以这样引入 babel，通常都是配合 webpack 一起使用 -->
+  <!-- <script src="https://cdn.bootcss.com/babel-standalone/6.26.0/babel.min.js"></script> -->
+
+  <!-- 通过 本地 的方式引入 -->
+  <script src="./lib/react.development.js"></script>
+  <script src="./lib/react-dom.development.js"></script>
+  <script src="./lib/babel.min.js"></script>
+</head>
+
+<body>
+
+  <div id="app">
+  </div>
+
+  <!-- 如果以浏览器的方式(script)引入 babel
+       需要设置 type="text/babel"，babel才会工作  -->
+  <script type="text/babel">
+
+    // 创建 react 对象(虚拟 DOM 对象)
+    // 表示 <div id="box" title="哈哈">我是内容</div>
+    // 参数一：创建什么类型的元素
+    // 参数二：创建的元素有哪些 属性，是个 对象
+    // 参数三：创建的元素的 内容，可以是 文本 也可以是 react 对象
+    // let element = React.createElement('div', {
+    //   id: 'box',
+    //   title: '哈哈',
+    //   className: 'mdiv' // 类名
+    // }, "我是内容")
+
+    // 把 react 对象渲染到页面中(将 虚拟DOM 渲染成 真实DOM)
+    // 参数一：需要渲染的 react 对象
+    // 参数二：渲染到页面中的 DOM容器
+    // 参数三：渲染完成后的 回调函数
+    // let app = document.getElementById('app')
+    // ReactDOM.render(element, app)
+
+    // 总结：使用 createElement 的方式非常麻烦，推荐使用 jsx 语法
+    // jsx 语法是一种 JavaScript 的语法扩展，用来声明 react 元素，描述用户界面
+    // 浏览器不能直接识别 jsx 语法，需要通过 babel 转义
+
+    const user = {
+      name: "小明",
+      age: 18
+    }
+    function test() {
+      // return 一旦换行，会自动在 return 后面加 ; 
+      // 会导致 return 并没有返回任何数据，因此建议在 jsx语法 的最外层加上 ()
+      return (
+        <div>
+          <p>哈哈哈</p>
+        </div>
+      )
+    }
+    // 通过 jsx 语法创建 react 对象，内部会调用 createElement()
+    // jsx 语法中通过 {} 来写表达式，只能写 表达式 不能写 语句
+    // jsx 语法中注释 {/*  */}
+    // jsx 语法只能有一个根元素，并且里面所有的 标签 都是闭合的
+    // 建议将 jsx语法 的整个代码包裹在 () 中，可以防止 分号自动插入 的 bug
+    // 因为 jsx 语法更像 JavaScript 而非 HTML，因此自定义属性用 驼峰 命名法
+    // class 也要用 className 来代替
+    const element = (
+      <div id="box">
+        <p>姓名：{user.name}，年龄：{user.age}</p>
+        <p title={user.name}></p>
+      </div>
+    )
+    let app = document.getElementById('app')
+    // 将 react 对象渲染成 真实的 DOM 对象
+    // 在没有渲染之前 react 操作的都是 虚拟 DOM
+    // 虚拟DOM 的特点：
+    // 1. 属性 少，而真实的DOM 属性 太多了，操作真实的 DOM 代价很大
+    // 2. 虚拟DOM 是js对象，更新内存中的 js对象 速度更快，不需要重绘与回流
+    // 3. 等更新完成之后，再将最终的 js对象 映射成真实的 DOM，交由浏览器去绘制
+    // 内部 diff 算法：
+    // 虚拟DOM 和 真实DOM 会有一一对应关系，对 虚拟DOM 进行更改会产生新的 虚拟DOM
+    // diff 算法会比较两个 虚拟DOM 之间的差异，将修改的部分更新到 真实DOM 中
+    ReactDOM.render(element, app)
+
+  </script>
+</body>
+
+</html>

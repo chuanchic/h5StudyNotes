@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 通过 本地 的方式引入 -->
+  <script src="./lib/react.development.js"></script>
+  <script src="./lib/react-dom.development.js"></script>
+  <script src="./lib/babel.min.js"></script>
+  <link rel="stylesheet" href="07.react-设置样式.css">
+  </link>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script type="text/babel">
+    class List extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          list: ['张三', '李四', '王五'],
+          list2: [
+            { id: 1, name: "张三", content: "哈哈" },
+            { id: 2, name: "李四", content: "呵呵" },
+            { id: 3, name: "王五", content: "好的" }
+          ]
+        }
+      }
+      render() {
+        // 列表渲染
+        // 最好提供一个 key 作为唯一标识，推荐使用 id
+        // 如果列表可以重新排序，不建议使用 index，这会导致渲染很慢
+        let content = this.state.list.map((item, index) => <li key={index}>{item}</li>)
+        return (
+          <ul>
+            {content}
+            {/* 这儿封装一个 子组件，通过 自定义属性 传值 给子组件 */}
+            {this.state.list2.map(item => (
+              <Item data={item} key={item.id} />
+            ))}
+          </ul>
+        )
+      }
+    }
+    // 设置样式有两种方式
+    // 方式一 给元素添加 className 属性 (用在 样式固定不变 的元素上)
+    // 方式二 给元素添加 style 属性 (用在 样式经常变化 的元素上)
+    function Item(props) {
+      // 子组件通过 props 接收父组件传过来的参数
+      return (
+        <li className="container">
+          {/* 
+            {{}} 第一个{}代表 jsx 语法，第二个{}代表 js 对象 
+            样式属性 要是 驼峰命名，因为是 js对象 的属性 
+          */}
+          <h3 style={{ color: '#fff', backgroundColor: 'red' }}>
+            评论人：{props.data.name}
+          </h3>
+          <p>
+            评论内容：{props.data.content}
+          </p>
+        </li>
+      )
+    }
+    ReactDOM.render(<List />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

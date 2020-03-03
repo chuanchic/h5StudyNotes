@@ -1,0 +1,18 @@
+react 官网
+  https://zh-hans.reactjs.org  (选择中文)
+
+react 介绍
+  用于构建用户界面的 JavaScript 库
+
+react 使用步骤
+  1.引入 react 文件
+  2.通过 react 的API创建 react 对象
+  3.把 react 元素渲染到页面中
+
+react 浏览器插件 devtools
+  安装：谷歌浏览器左上角工具栏 应用 -> Chrome网上应用店 -> 搜索 react 
+       选择 React Developer Tools 然后安装
+       会出来一个类似于 vue图标 的东西，在打开有 react 的网页的时候就会亮
+       在控制栏会多出来一个 React 的选项，辅助开发调试
+  配置：更多工具 -> 扩展程序 -> 找到React点击详细信息 -> 勾上允许访问文件网址
+       这样用 file:...协议 打开的文件也可以生效  

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 通过 本地 的方式引入 -->
+  <script src="./lib/react.development.js"></script>
+  <script src="./lib/react-dom.development.js"></script>
+  <script src="./lib/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script type="text/babel">
+    class App extends React.Component {
+      render() {
+        return (
+          <div>
+            <button onClick={this.getAll}>获取所有书籍</button>
+            <button onClick={this.add}>添加书籍</button>
+            <button onClick={this.getInfo}>获取书籍详情</button>
+          </div>
+        )
+      }
+      // 使用 fetch 不需要引入任何库，是 JavaScript 自带的
+      // 由于 fetch 是后出现的，性能优于 ajax，但是存在 兼容性问题
+      getAll = () => {
+        // 发送 get 请求，获取所有书籍
+        // fetch 是 window 的一个方法，fetch 是一个全局方法，可以直接使用
+        // fetch 返回的是 promise 对象
+        fetch('http://localhost:9999/getBookList')
+          .then(res => {
+            // res 是一个 promise 对象，表示请求的结果
+            // res 获取到仅仅是响应的 结果，还不是我们想要的 json
+            // 还需要 res.json() 把响应的结果转成 json 返回的还是 promise
+            return res.json()
+          })
+          .then(data => {
+            console.log(data)
+          })
+      }
+      getInfo = async () => {
+        let res = await fetch('http://localhost:9999/getBookInfo?id=1')
+        let data = await res.json()
+        console.log(data)
+      }
+      add = async () => {
+        // fetch发送post请求
+        // 参数1： 请求的url地址
+        // 参数2： 配置对象
+        let res = await fetch('http://localhost:9999/addBook', {
+          method: 'POST',
+          headers: {
+            // 用于指定请求的数据类型
+            // 'content-type': 'application/x-www-form-urlencoded' //表单类型
+            'content-type': 'application/json' //json类型
+          },
+          // 传递参数 有两种方式
+          // 方式一：表单 类型的 body 是 'name=张三&desc=哈哈哈' 
+          // 方式二：json 类型的 body 是下面这种形式
+          body: JSON.stringify({
+            name: '测试',
+            desc: '测试一下内容'
+          })
+        })
+        let data = await res.json()
+        console.log(data)
+      }
+    }
+    ReactDOM.render(<App />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 通过 本地 的方式引入 -->
+  <script src="./lib/react.development.js"></script>
+  <script src="./lib/react-dom.development.js"></script>
+  <script src="./lib/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script type="text/babel">
+
+    // react 中组件有两种：1.函数组件 2.类组件
+    // 二者区别：
+    // 1.函数组件 是无状态的 组件
+    // 2.类组件 是有状态的 组件
+    // 使用场景：
+    // 1.如果某个组件不需要有自己的状态，这个组件的内容是固定不变的，用 函数组件
+    // 2.如果某个组件有自己的状态，就需要使用 类组件，状态的改变会更新 组件
+
+    // 1.定义 函数组件 作为自定义的 html 标签
+    // 组件名字的 首字母 必须大写，为了和普通的 html 标签作区分
+    // 必须返回一个 jsx 语法的对象 react 对象
+    // 通过 props 参数接收传递过来的值
+    // props是只读的 不能修改
+    function Hello(props) {
+      return (
+        <div>
+          我是一个组件，姓名：{props.name},年龄：{props.age}
+          <Child name="李四" />
+        </div>
+      )
+    }
+    function Child(props) {
+      return (
+        <div>我是孩子组件，姓名：{props.name}</div>
+      )
+    }
+
+    // 2.定义类组件
+    class World extends React.Component {
+
+      constructor(props) {
+        super(props)
+        // 类组件中可以通过 state 属性提供一些状态
+        // props 是父组件传过来的，不允许修改
+        // state 是组件自己的状态，可以被修改
+        this.state = {
+          msg: "你好啊"
+        }
+      }
+
+      // 类组件 必须要有 render 方法
+      render() {
+        return (
+          <div>
+            {/* 通过 state 属性显示一些状态 */}
+            我是一个类组件，{this.state.msg}
+          </div>
+        )
+      }
+
+    }
+
+    // 渲染组件
+    ReactDOM.render(
+      <div>
+        {/* 定义属性 给组件传值 */}
+        <Hello name="张三" age="18"></Hello>
+        <World />
+      </div>,
+      document.getElementById('app')
+    )
+
+  </script>
+</body>
+
+</html>

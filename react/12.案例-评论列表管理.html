@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 通过 本地 的方式引入 -->
+  <script src="./lib/react.development.js"></script>
+  <script src="./lib/react-dom.development.js"></script>
+  <script src="./lib/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+  <script type="text/babel">
+    // 评论 父组件
+    class Comment extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          list: [
+            { id: 1, name: '张三', content: '沙发' },
+            { id: 2, name: '李四', content: '板凳' },
+            { id: 3, name: '王五', content: '卖瓜子' }
+          ],
+          index: 3
+        }
+      }
+      render() {
+        return (
+          <div>
+            <h1>评论案例</h1>
+            {/* 父组件 传递函数给 子组件 */}
+            <CommentForm add={this.add} />
+            <hr />
+            {/* 父组件 传递评论列表给 子组件 */}
+            <CommentList list={this.state.list} />
+          </div>
+        )
+      }
+      // 添加评论
+      add = (name, content) => {
+        this.state.list.push({
+          id: ++this.state.index,
+          name,
+          content
+        })
+        this.setState(this.state)
+      }
+    }
+    // 评论添加 子组件
+    class CommentForm extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          name: '',
+          content: ''
+        }
+      }
+      render() {
+        return (
+          <div className="form">
+            <input
+              type="text"
+              value={this.state.name}
+              onChange={this.handleChange}
+              name="name"
+            />
+            <br />
+            <textarea
+              value={this.state.content}
+              onChange={this.handleChange}
+              name="content"
+              cols="30"
+              rows="5"
+            />
+            <br />
+            <button onClick={this.addFn}>添加</button>
+          </div>
+        )
+      }
+      handleChange = e => {
+        let { name, value } = e.target
+        this.setState({
+          [name]: value
+        })
+      }
+      // 添加评论
+      addFn = () => {
+        // 调用父组件传递过来的方法
+        let { add } = this.props
+        add(this.state.name, this.state.content)
+        // 清空表单
+        this.setState({
+          name: '',
+          content: ''
+        })
+      }
+    }
+    // 评论列表 子组件
+    class CommentList extends React.Component {
+      constructor(props) {
+        super(props)
+      }
+      render() {
+        // 子组件通过 props 获取父组件传递过来的数据
+        let { list } = this.props
+        return (
+          <div className="list">
+            <ul>
+              {list.map(item => (
+                <li key={item.id}>
+                  <h3>
+                    评论人：
+                    {item.name}
+                  </h3>
+                  <p>
+                    评论内容：
+                    {item.content}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Comment />, document.getElementById('app'))
+  </script>
+</body>
+
+</html>
