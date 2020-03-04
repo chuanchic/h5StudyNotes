@@ -19,3 +19,6 @@ vue/webpack-basic/node_modules
 vue/webpack-basic/dist
 vue/todomvc-app/node_modules
 vue/shop_admin/node_modules
+
+# react 相关
+react/react-app-demo/node_modules
