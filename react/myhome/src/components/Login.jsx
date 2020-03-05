@@ -1,12 +1,12 @@
 import React from 'react'
-// 引入semanticui的组件
+// 引入 semantic-ui 的组件
 import { Form } from 'semantic-ui-react'
-// 引入Login.css样式
+// 引入 Login.css 样式
 import './Login.css'
-
-// 引入withRouter实现编程式导航
+// 引入 withRouter 实现编程式导航
 import { withRouter } from 'react-router-dom'
 
+// 登录组件
 class Login extends React.Component {
   // 构造函数
   constructor(props) {
@@ -16,7 +16,6 @@ class Login extends React.Component {
       pwd: ''
     }
   }
-
   // 用于处理受控组件
   handleChange = e => {
     let { name, value } = e.target
@@ -24,40 +23,46 @@ class Login extends React.Component {
       [name]: value
     })
   }
-
   // 登录功能
   login = async e => {
+    // 阻止默认行为
     e.preventDefault()
+
     let { history } = this.props
-    // 发送请求
     let { uname, pwd } = this.state
-    // await必须在async函数中使用，await可以在promise对象前面使用
-    // await会暂停aysnc函数的执行，等待promise的结果，才会继续async函数的执行
+
+    // await 会暂停 async 函数的执行
+    // 等待 promise 的结果，再继续 async 函数的执行
     let res = await this.axios.post('users/login', {
       uname,
       pwd
     })
     let { meta, data } = res
     if (meta.status === 200) {
-      //1. 把token给保存到浏览器本地
+      // 把 token 保存到浏览器本地
       localStorage.setItem('myToken', data.token)
-      //2. 把userid存储起来
+      // 把 userid 保存到浏览器本地
       localStorage.setItem('uid', data.uid)
-      //3. 跳转到home组件
+      // 跳转到home组件
       history.push('/home')
     } else {
       console.log(meta.msg)
     }
   }
-
   // 组件的渲染方法
   render() {
     return (
       <div className="login_container">
         <div className="login_title">登录</div>
         <div className="login_form">
-          {/* Form:表示整个表单组件 */}
-          {/* Form.Field：表示表单的一个字段 */}
+          {/* 
+            Form 表示整个表单组件
+            Form.Field 表示表单的一个字段
+            autoComplete 自动补全关闭，不要提示效果
+            required 必填
+            onSubmit 点击 登录 按钮会校验合法性，合法就会触发 onSubmit 事件
+                     而不应该点击 登录 按钮直接发送登录请求
+          */}
           <Form action="" onSubmit={this.login}>
             <Form.Field>
               <Form.Input
@@ -65,10 +70,10 @@ class Login extends React.Component {
                 icon="user"
                 iconPosition="left"
                 placeholder="请输入用户名..."
-                name="uname"
                 autoComplete="off"
                 value={this.state.uname}
                 onChange={this.handleChange}
+                name="uname"
                 required
               />
             </Form.Field>
@@ -78,14 +83,15 @@ class Login extends React.Component {
                 icon="lock"
                 iconPosition="left"
                 placeholder="请输入密码..."
-                name="pwd"
                 autoComplete="off"
                 value={this.state.pwd}
                 onChange={this.handleChange}
+                name="pwd"
                 required
               />
             </Form.Field>
             <Form.Field>
+              {/* fluid 流式布局 宽度填充父窗体 */}
               <Form.Button fluid positive size="big">
                 登录
               </Form.Button>

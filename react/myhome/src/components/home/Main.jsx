@@ -1,4 +1,5 @@
 import React from 'react'
+// 导入 react-image-gallery 轮播图样式
 import 'react-image-gallery/styles/css/image-gallery.css'
 import './Main.css'
 import {
@@ -10,8 +11,9 @@ import {
   Dimmer,
   Loader
 } from 'semantic-ui-react'
-// 导入轮播图组件
+// 导入 react-image-gallery 轮播图组件
 import ImageGallery from 'react-image-gallery'
+
 class Main extends React.Component {
   constructor(props) {
     super(props)
@@ -24,70 +26,8 @@ class Main extends React.Component {
       loading: true
     }
   }
-
-  /* // 获取轮播图数据
-  getImgList = async () => {
-    let res = await this.axios.post('homes/swipe')
-    let { meta, data } = res
-    if (meta.status === 200) {
-      this.setState({
-        imgList: data.list
-      })
-    }
-  }
-  // 获取菜单数据
-  getMenuList = async () => {
-    let res = await this.axios.post('homes/menu')
-    let { meta, data } = res
-    if (meta.status === 200) {
-      this.setState({
-        menuList: data.list
-      })
-    }
-  }
-  // 获取咨询数据
-  getInfoList = async () => {
-    let res = await this.axios.post('homes/info')
-    let { meta, data } = res
-    if (meta.status === 200) {
-      this.setState({
-        infoList: data.list
-      })
-    }
-  }
-  // 获取咨询数据
-  getFaqList = async () => {
-    let res = await this.axios.post('homes/faq')
-    let { meta, data } = res
-    if (meta.status === 200) {
-      this.setState({
-        faqList: data.list
-      })
-    }
-  }
-  // 获取房屋数据
-  getHouseList = async () => {
-    let res = await this.axios.post('homes/house')
-    let { meta, data } = res
-    if (meta.status === 200) {
-      this.setState({
-        houseList: data.list
-      })
-    }
-  } */
-  doRequest = (url, dataName) => {
-    return this.axios.post(url).then(res => {
-      let { meta, data } = res
-      if (meta.status === 200) {
-        this.setState({
-          [dataName]: data.list
-        })
-      }
-    })
-  }
-  // 页面加载完成，需要发送ajax请求，获取轮播图数据
+  // 页面加载完成，发送ajax请求，获取数据
   async componentDidMount() {
-    // Promise.all()
     await Promise.all([
       this.doRequest('homes/swipe', 'imgList'),
       this.doRequest('homes/menu', 'menuList'),
@@ -97,6 +37,16 @@ class Main extends React.Component {
     ])
     this.setState({
       loading: false
+    })
+  }
+  doRequest = (url, dataName) => {
+    return this.axios.post(url).then(res => {
+      let { meta, data } = res
+      if (meta.status === 200) {
+        this.setState({
+          [dataName]: data.list
+        })
+      }
     })
   }
   render() {
@@ -110,10 +60,14 @@ class Main extends React.Component {
           />
         </div>
         <div className="content">
+          {/* 加载效果 */}
           <Dimmer inverted active={this.state.loading} page>
             <Loader>Loading</Loader>
           </Dimmer>
-          {/* 轮播图 */}
+          {/* 
+            轮播图 
+            showBullets 显示小圆点
+          */}
           <ImageGallery
             items={this.state.imgList}
             showThumbnails={false}
@@ -121,7 +75,7 @@ class Main extends React.Component {
             showPlayButton={false}
             showBullets={true}
           />
-          {/* 菜单部分 */}
+          {/* 菜单部分 父组件传值给子组件 自定义属性传值 data */}
           <MenuList data={this.state.menuList} />
           {/* 好客咨询部分 */}
           <InfoList data={this.state.infoList} />
@@ -139,7 +93,7 @@ class Main extends React.Component {
 export default Main
 
 // 定义菜单组件，渲染菜单数据
-// 参数的解构
+// 接收父组件传值通过 props，利用参数解构
 function MenuList({ data }) {
   return (
     <Grid className="menu" divided padded>
@@ -247,7 +201,6 @@ function HouseList({ data }) {
       hireHouse.push(temp)
     }
   })
-  // console.log(data)
   return (
     <div>
       <div>

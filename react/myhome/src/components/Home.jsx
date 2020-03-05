@@ -7,8 +7,9 @@ import Info from './home/info/Info'
 import Chat from './home/chat/Chat'
 import My from './home/my/My'
 // import Demo from './home/demo/Demo.jsx'
+
+// 首页组件
 class Home extends React.Component {
-  // 点标记语法
   render() {
     return (
       <div className="home">
@@ -21,7 +22,7 @@ class Home extends React.Component {
           </Switch>
         </div>
         <div className="home_menu">
-          {/* 网格布局 */}
+          {/* semantic-ui 网格布局 */}
           <Grid>
             <Grid.Row columns={4}>
               <Grid.Column>

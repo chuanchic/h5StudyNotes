@@ -30,6 +30,21 @@
     //   We suggest that you begin by typing:
     //     cd react-app-demo
     //     npm start
+
+    // npm run eject 命令：
+    // 默认 webpack 的配置文件 webpack.config.js 是隐藏的，使用默认配置 不需要修改
+    // 如果想修改 webpack.config.js，就需要执行 npm run eject 把它显示出来
+    // 然后就可以修改配置
+
+    // 修改默认启动的 3000 端口
+    // 在执行 npm start 的时候会默认用 3000 端口，可以修改默认的 3000 端口
+    // 在 package.json 中 修改 start 命令 
+    // 在 windows 系统上添加：set PORT=8888
+    // 在 mac 系统上添加：PORT=8888 不需要 set
+    // 需要借助一个包 cross-env 解决不同平台的 命令 的差异
+    // npm install cross-env --save-dev(或者 -D)
+    // 最后在 start 命令上添加：cross-env PORT=8888
+
   </script>
 </body>
 

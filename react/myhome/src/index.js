@@ -3,38 +3,42 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import 'semantic-ui-css/semantic.min.css'
 import App from './App'
-
-// 导入axios对象
+// 导入 axios 模块
 import axios from 'axios'
-// 把axios对象绑定到了React组件的原型上，将来所有的react组件都能访问到axios对象
+
+// 把 axios 对象绑定到 react 组件的原型上，所有的 react 组件都能访问到
 React.Component.prototype.axios = axios
 
-// 给axios对象配置默认全局路径
+// 给 axios 对象配置 默认 全局路径
 axios.defaults.baseURL = 'http://localhost:9999/'
 // axios.defaults.baseURL = 'http://47.96.21.88:8086/'
 
-// 给axios配置一个响应拦截器 直接把data中的数据返回
+// 给 axios 配置 响应拦截器
 axios.interceptors.response.use(
-  function(response) {
-    // 拦截到axios所有的请求，直接返回了响应结果中的data数据
+  // 成功回调
+  function (response) {
+    // 拦截到 axios 所有请求，直接返回响应结果中的 data 数据
     return response.data
   },
-  function(error) {
+  // 失败回调
+  function (error) {
     return error
   }
 )
 
-// 配置请求拦截器，每次请求，除了login，都可以添加token值
+// 给 axios 配置 请求拦截器
 axios.interceptors.request.use(
-  function(config) {
+  function (config) {
+    // 每次请求，除了 login，都要添加 token 值
     if (!window.location.href.endsWith('/login')) {
       config.headers.Authorization = localStorage.getItem('myToken')
     }
     return config
   },
-  function(error) {
+  function (error) {
     return Promise.reject(error)
   }
 )
 
+// 渲染根组件
 ReactDOM.render(<App />, document.getElementById('root'))

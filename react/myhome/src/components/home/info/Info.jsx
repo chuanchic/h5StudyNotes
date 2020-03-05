@@ -1,7 +1,9 @@
 import React from 'react'
 import './Info.css'
 import { Tab, Item, Icon } from 'semantic-ui-react'
+// 下拉刷新 加载更多 第三方组件
 import Tloader from 'react-touch-loader'
+
 class Info extends React.Component {
   render() {
     const panes = [
@@ -119,11 +121,8 @@ class Loader extends React.Component {
       total: 0
     }
   }
-
   // 加载数据
   loadData = () => {
-    // 发送ajax请求，动态加载数据
-    // console.log(this.props.type)
     return this.axios
       .post('infos/list', {
         type: this.props.type,
@@ -149,14 +148,14 @@ class Loader extends React.Component {
       hasMore: newNum < data.total
     })
   }
-
+  // 下拉刷新
   refresh = async (resolve, reject) => {
     // 重置初始的条数
-    // react的setState是异步的，通过setState修改react内部的数据，不是立即更新的
-    // 如果就想获取立即更新的数据
+    // react的setState是异步的
     this.setState({
       pagenum: 0
     })
+    // 添加 setTimeout 确保 setState 已经更新
     setTimeout(async () => {
       let data = await this.loadData()
       let newNum = this.state.pagenum + this.state.pagesize
@@ -168,7 +167,7 @@ class Loader extends React.Component {
       resolve()
     }, 0)
   }
-
+  // 加载更多
   loadMore = async (resolve, reject) => {
     let data = await this.loadData()
     let newNum = this.state.pagenum + this.state.pagesize
@@ -182,7 +181,7 @@ class Loader extends React.Component {
     })
     resolve()
   }
-
+  // 渲染组件
   render() {
     let { hasMore, initializing, list } = this.state
     let { type } = this.props

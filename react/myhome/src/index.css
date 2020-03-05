@@ -13,6 +13,7 @@ code {
     monospace;
 }
 
+/* 设置 整个根布局容器 宽高 */
 #root {
   height: 100%;
   width: 100%;

@@ -4,30 +4,33 @@
   position: relative;
   overflow: hidden;
 }
+/* 使用绝对定位，底部有60px的间距 作为底部导航栏的空间 */
 .home_content {
   position: absolute;
   width: 100%;
   top: 0;
   bottom: 60px;
-  /* background-color: lightgreen; */
 }
-
+/* 底部导航栏 */
 .home_menu {
   position: absolute;
   width: 100%;
   height: 60px;
   bottom: 0;
-  /* background-color: lightblue; */
 }
 
+/* 重置 semantic-ui 的样式 */
 .home_menu .ui.grid {
   margin: 0;
 }
 
+/* 重置 semantic-ui 的样式 */
 .home_menu .ui.grid > .row {
   padding: 0;
 }
 
+/* 底部导航栏 每一列 
+column 类是 semantic-ui 自动加上去的 */
 .home_menu .column {
   height: 60px;
   border-right: 1px solid #ccc;
@@ -35,6 +38,7 @@
   box-sizing: border-box;
 }
 
+/* 底部导航栏 a标签 */
 .home_menu .column a {
   color: #666;
   width: 100%;
@@ -43,16 +47,19 @@
   text-align: center;
 }
 
+/* 底部导航栏 a标签选中 */
 .home_menu .column a.active {
   color: darkorange;
 }
 
+/* 底部导航栏 图标 */
 .home_menu .column i {
   font-size: 24px;
   height: 40px;
   line-height: 40px;
 }
 
+/* 底部导航栏 标题 */
 .home_menu .column p {
   height: 20px;
   line-height: 20px;
