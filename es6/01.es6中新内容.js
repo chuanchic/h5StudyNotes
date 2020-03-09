@@ -1,58 +1,5 @@
 
-// 推荐阮一峰的中文文档：http://es6.ruanyifeng.com
 
-// 1.声明变量
-// 之前：var a = 10
-// es6：let a = 10
-// 特性1：let不能重复声明变量
-// let a = 2
-// let a = 3 // 不能重复声明
-// 特性2：let声明的变量有 块级作用域
-// if(true){
-//   var a = 1 // a在外部可以访问
-//   let a = 1 // a在外部不能访问
-// }
-// console.log(a)
-
-// 2.声明常量
-// const a = 10
-// 同let，不能 重复声明，有 块级作用域
-// 不同点，声明的同时必须赋值，不能 重复赋值(修改)
-
-// 3.对象的简写
-// let obj = {
-//   // 之前：
-//   sing: function(){
-//     console.log("sing")
-//   }
-//   // es6：
-//   sing(){
-//     console.log("sing")
-//   }
-// }
-
-// 4.对象的解构赋值
-// let obj = {
-//   name: "chuanchic",
-//   age: 30
-// }
-// let{对象的属性名: 要声明的变量名} = 对象
-// 场景一
-// let{name: name, age: age} = obj // 完整写法
-// let{name, age} = obj //简写(对象属性名和声明的变量名一致)
-// 场景二
-// test(obj)
-// function test({name, age}){
-//   console.log(name, age)
-// }
-
-// 5.数组的解构赋值
-// let arr = [1, 2, 3];
-// let[num1, num2, num3] = arr;//声明三个
-// let[num1] = arr;//声明第一个
-// let[, , num3] = arr;//声明第三个
-// let arr2 = [[1, 2], [3, 4]];
-// let[[num1, num2], [num3, num4]] = arr2;
 
 // 6.数组的解构赋值中的RestElement
 // ... 叫剩余元素，必须放在最后声明

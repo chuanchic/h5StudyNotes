@@ -1,18 +1,10 @@
-
-1、为什么要学习服务端开发？
-1.了解Web请求和响应过程，了解服务端如何与客户端配合
-2.作为前端工程师需要具备一定的服务端开发能力
-  了解什么是服务端渲染？
-  了解服务端如何编写接口？
-3.全栈工程师的必经之路
-
-2、服务端开发语言有很多，为什么要选择nodejs？
+1、服务端开发语言有很多，为什么要选择nodejs？
 1.降低编程语言的学习成本(nodejs实质上用的还是JavaScript)
 2.nodejs是前端项目的基础设施，前端项目中用到的大量工具(webpack、vue-cli、angular-cli等)，都是基于nodejs实现的
 3.nodejs在处理高并发上有得天独厚的优势
 4.对于前端工程师，面试时对nodejs有一定的要求
 
-3、nodejs是什么？
+2、nodejs是什么？
 中文网：http://nodejs.cn
 1.Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行时。 
   a.nodejs不是一门新的编程语言，nodejs是在服务端运行JavaScript的运行环境

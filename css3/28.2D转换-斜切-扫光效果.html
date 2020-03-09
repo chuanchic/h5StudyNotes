@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,6 +8,7 @@
         body {
             background-color: black;
         }
+
         div {
             width: 700px;
             height: 400px;
@@ -14,6 +16,7 @@
             position: relative;
             overflow: hidden;
         }
+
         /*伪元素实现扫光效果*/
         div::before {
             content: '';
@@ -23,24 +26,25 @@
             left: -150px;
             top: 0;
             /*添加线性渐变*/
-            background-image: linear-gradient(
-                to right,
-                rgba(255, 255, 255, 0),
-                rgba(255, 255, 255, 1),
-                rgba(255, 255, 255, 0)
-            );
+            background-image: linear-gradient(to right,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 1),
+                    rgba(255, 255, 255, 0));
             /*添加斜切效果*/
             transform: skewX(-30deg);
         }
+
         div:hover::before {
             left: 800px;
             transition: all 2s;
         }
     </style>
 </head>
+
 <body>
     <div>
-        <img src="test.jpg">
+        <img src="./test/test.jpg">
     </div>
 </body>
+
 </html>

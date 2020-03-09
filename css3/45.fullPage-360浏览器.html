@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>360浏览器</title>
-    <link rel="stylesheet" href="fullpage.css">
-    <script src="jquery-1.12.4.js"></script>
-    <script src="fullpage.js"></script>
+    <link rel="stylesheet" href="./test/fullpage.css">
+    <script src="./test/jquery-1.12.4.js"></script>
+    <script src="./test/fullpage.js"></script>
     <style>
         .fp-section {
             /*避免每一屏设置的margin塌陷问题*/
             overflow: hidden;
         }
+
         .one .logo {
             width: 251px;
             height: 186px;
-            background-image: url("test.jpg");
+            background-image: url("./test/test.jpg");
             /*块级元素居中用margin*/
             margin: 80px auto;
         }
+
         .one .info {
             width: 772px;
             height: 49px;
-            background-image: url("test.jpg");
+            background-image: url("./test/test.jpg");
             /*块级元素居中用margin*/
             margin: 20px auto;
         }
+
         .one .text {
             /*text里的img是行内块，设置img居中可以用text-align*/
             text-align: center;
         }
+
         .one .text img {
             width: 60px;
             height: 60px;
@@ -36,6 +41,7 @@
             margin: 0 30px;
             opacity: 0.2;
         }
+
         /*通过添加now类，实现过渡动画的结束状态*/
         .one.now .text img {
             margin: 0;
@@ -47,103 +53,126 @@
             */
             transition: all 1s;
         }
+
         .two {
             display: flex;
             justify-content: space-around;
             align-items: center;
         }
+
         .two .info {
             width: 635px;
             height: 309px;
-            background-image: url("test.jpg");
+            background-image: url("./test/test.jpg");
         }
+
         .two .shield {
             width: 450px;
             height: 450px;
         }
+
         .two .shield img {
             width: 150px;
             height: 150px;
         }
+
         .two .shield img:nth-child(1) {
             transform: translate(-10px, 30px) rotate(30deg);
         }
+
         .two .shield img:nth-child(2) {
             transform: translate(10px, -30px) rotate(50deg);
         }
+
         .two .shield img:nth-child(3) {
             transform: translate(100px, 300px) rotate(60deg);
         }
+
         .two .shield img:nth-child(4) {
             transform: translate(-100px, -300px) rotate(80deg);
         }
+
         .two .shield img:nth-child(5) {
             transform: translate(20px, 500px) rotate(10deg);
         }
+
         .two .shield img:nth-child(6) {
             transform: translate(300px, 100px) rotate(30deg);
         }
+
         .two .shield img:nth-child(7) {
             transform: translate(400px, 200px) rotate(40deg);
         }
+
         .two .shield img:nth-child(8) {
             transform: translate(-210px, -430px) rotate(90deg);
         }
+
         .two .shield img:nth-child(9) {
             transform: translate(-10px, -200px) rotate(190deg);
         }
+
         /*添加now类*/
         .two.now .shield img {
             transform: none;
             /*添加过渡动画*/
             transition: all 1s;
         }
+
         .three {
             display: flex;
             justify-content: space-around;
             align-items: center;
         }
+
         .three .info {
             width: 631px;
             height: 278px;
-            background-image: url("test.jpg");
+            background-image: url("./test/test.jpg");
         }
+
         .three .circle {
             width: 453px;
             height: 449px;
             background-color: pink;
             position: relative;
         }
+
         .three .circle .rocket {
             width: 203px;
             height: 204px;
-            background-image: url("test.jpg");
+            background-image: url("./test/test.jpg");
             position: absolute;
             left: 110px;
             top: 110px;
             /*默认状态：让小火箭在可视区外面*/
             transform: translate(-1000px, 800px);
         }
+
         /*添加now类，让小火箭飞入可视区*/
         .three.now .circle .rocket {
             transform: none;
             transition: all 1s;
         }
+
         .four {
             display: flex;
             justify-content: space-around;
             align-items: center;
         }
+
         .four .movie {
             width: 529px;
             height: 500px;
             background-color: pink;
         }
+
         .four .info {
             width: 612px;
             height: 299px;
-            background-image: url("test.jpg");
+            background-image: url("./test/test.jpg");
         }
+
         /*search的动画：从左边看不见区域飞入进来*/
         .four .movie .search {
             width: 529px;
@@ -153,6 +182,7 @@
             /*初始状态：在左边看不见的区域*/
             transform: translateX(-1000px);
         }
+
         /*key的动画：从宽度0px过渡到宽度99px*/
         .four .movie .search .key {
             /*width: 99px;*/
@@ -163,30 +193,35 @@
             left: 22px;
             top: 22px;
         }
+
         /*result的动画：从高度0px过渡到高度372px*/
         .four .movie .result {
             width: 529px;
             /*height: 372px;*/
             height: 0;
-            background-image: url("test.jpg");
+            background-image: url("./test/test.jpg");
             /*稍微向上移动一点距离*/
             transform: translateY(-20px);
         }
+
         /*添加now类，让search从左侧飞入进来*/
         .four.now .search {
             transform: none;
             transition: all 1s;
         }
+
         /*添加now类，让key一个字一个字的显示出来*/
         .four.now .search .key {
             width: 99px;
             /*延迟1秒，动画分成五步，每步显示一个字*/
             transition: all 1.5s 1s steps(5);
         }
+
         .four.now .result {
             height: 372px;
             transition: all 1s 3s;
         }
+
         .five {
             display: flex;
             /*调整主轴方向为从上到下*/
@@ -196,36 +231,42 @@
             /*调整侧轴水平居中*/
             align-items: center;
         }
+
         .five .info {
             width: 1077px;
             height: 134px;
             background-color: green;
         }
+
         .five .browser {
             width: 1044px;
             height: 443px;
             background-color: rgba(255, 255, 255, 0.3);
             position: relative;
         }
+
         .line_top,
         .line_bottom,
-        .line_center{
+        .line_center {
             height: 1px;
             width: 100%;
             background-color: white;
             position: absolute;
             left: 0;
         }
+
         .line_top {
             top: 0;
             /*初始状态：向右平移自身的宽度，也是父元素宽度*/
             transform: translateX(100%);
         }
+
         .line_bottom {
             bottom: 0;
             /*初始状态：向左平移自身的宽度，也是父元素的宽度*/
             transform: translateX(-100%);
         }
+
         .line_left,
         .line_right {
             width: 1px;
@@ -234,20 +275,24 @@
             position: absolute;
             top: 0;
         }
+
         .line_left {
             left: 0;
             /*初始状态：向上平移自身的高度，也是父元素的高度*/
             transform: translateY(-100%);
         }
+
         .line_right {
             right: 0;
             /*初始状态：向下平移自身的高度，也是父元素的高度*/
             transform: translateY(100%);
         }
+
         .five.now div[class^='line'] {
             transform: none;
             transition: all 1s;
         }
+
         /*toolbar的动画：让宽度从0px到1004px*/
         .five .toolbar {
             /*width: 1004px;*/
@@ -258,11 +303,13 @@
             /*当宽度为0的时候，添加的边框不会跟着消失，需要添加下面这句*/
             overflow: hidden;
         }
+
         /*添加now类，让宽度过渡到1004px*/
         .five.now .toolbar {
             width: 1004px;
             transition: all 2s 1s;
         }
+
         .five .extra {
             width: 394px;
             height: 29px;
@@ -271,9 +318,11 @@
             right: 0;
             bottom: 0;
         }
+
         .line_center {
             bottom: 30px;
         }
+
         .line_box {
             width: 926px;
             height: 27px;
@@ -285,33 +334,34 @@
         }
     </style>
 </head>
+
 <body>
     <div id="box">
         <div class="fp-section one">
             <div class="logo"></div>
             <div class="text">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
             </div>
             <div class="info"></div>
         </div>
         <div class="fp-section two">
             <div class="shield">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
-                <img src="meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
+                <img src="./test/meinv_small.jpg">
             </div>
             <div class="info"></div>
         </div>
@@ -371,4 +421,5 @@
         })
     </script>
 </body>
+
 </html>

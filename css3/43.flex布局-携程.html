@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,6 +10,7 @@
             padding: 0;
             list-style: none;
         }
+
         .container {
             /*
             宽度写死640px缺点：当浏览器宽度变小会出现水平滚动条
@@ -21,6 +23,7 @@
             min-width: 320px;
             margin: 0 auto;
         }
+
         /*设置img的统一样式*/
         img {
             width: 100%;
@@ -31,6 +34,7 @@
             */
             display: block;
         }
+
         .nav_item {
             /*宽度省略，继承父级宽度*/
             height: 90px;
@@ -40,22 +44,28 @@
             /*设置成伸缩布局*/
             display: flex;
         }
+
         .nav_item:nth-child(1) {
             background-color: #FF697A;
         }
+
         .nav_item:nth-child(2) {
             background-color: #3D98FF;
         }
+
         .nav_item:nth-child(3) {
             background-color: #00FF00;
         }
+
         .nav_item:nth-child(4) {
             background-color: #FF9911;
         }
+
         .nav_item .title {
             /*nav_item分三份，title占一份*/
             flex: 1;
         }
+
         .nav_item .content {
             /*nav_item分三份，content占两份*/
             flex: 2;
@@ -64,6 +74,7 @@
             /*设置换行*/
             flex-wrap: wrap;
         }
+
         .nav_item .content a {
             /*a默认行内元素，内容撑开，设置宽度为父元素一半，需要父元素为伸缩布局*/
             width: 50%;
@@ -83,32 +94,39 @@
             所以子元素要设置内减模式，这样就不会超出父元素的宽高*/
             box-sizing: border-box;
         }
+
         /*content里子元素a共有4个，后两个不需要下边框，需要去掉，
         n取值：0,1,2,3...，-n+2取值：2,1,0,-1...，可以找到后两个子元素a*/
         .nav_item .content a:nth-last-child(-n+2) {
             border-bottom: none;
         }
+
         /*第四个nav_item里的a宽度不同，需要重新设置*/
         .nav_item:nth-child(4) .content a {
             width: 33.3%;
         }
+
         /*第四个nav_item里的第一个a去掉左边框*/
         .nav_item:nth-child(4) .content a:nth-child(1) {
             border-left: none;
         }
+
         /*第四个nav_item里的第四个a去掉左边框、下边框*/
         .nav_item:nth-child(4) .content a:nth-child(4) {
             border: none;
         }
+
         .xc_product {
             /*设置为伸缩布局*/
             display: flex;
         }
+
         .xc_product a {
             /*让每个子元素平分父元素宽度，或者宽度设置为50%*/
             flex: 1;
             /*width: 50%;*/
         }
+
         .xc_footer ul {
             /*设置为伸缩布局*/
             display: flex;
@@ -118,22 +136,26 @@
             border-top: 1px solid #000;
             border-bottom: 1px solid #000;
         }
+
         .xc_footer ul li {
             flex: 1;
         }
+
         .xc_footer ul li a {
             color: #000;
             text-decoration: none;
         }
+
         .xc_footer p {
             text-align: center;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="xc_banner">
-            <a href="#"><img src="test.jpg"></a>
+            <a href="#"><img src="./test/test.jpg"></a>
         </div>
         <div class="xc_nav">
             <div class="nav_item">
@@ -175,8 +197,8 @@
             </div>
         </div>
         <div class="xc_product">
-            <a href="#"><img src="test.jpg"></a>
-            <a href="#"><img src="test.jpg"></a>
+            <a href="#"><img src="./test/test.jpg"></a>
+            <a href="#"><img src="./test/test.jpg"></a>
         </div>
         <div class="xc_footer">
             <ul>
@@ -189,4 +211,5 @@
         </div>
     </div>
 </body>
+
 </html>

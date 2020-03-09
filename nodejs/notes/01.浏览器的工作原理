@@ -32,10 +32,10 @@ Microsoft Edge浏览器：    EdgeHTML引擎(Trident的一个分支)
 3、渲染引擎的工作原理(渲染引擎解析的基本流程)
 1.解析 HTML 构建 DOM 树，DOM 是W3C组织推荐的处理可扩展标志语言的标准编程接口。
 2.构建渲染树，渲染树并不等同于 DOM 树，因为像 'head' 标签或 'display:none' 这样的元素
-没有必要放在渲染树中，但是他们在 DOM 树种。
+没有必要放在渲染树中，但是他们在 DOM 树中。
 3.对渲染树进行布局，定位坐标和大小、确定是否换行、确定position、overflow、z-index等等，这个过程
 叫 layout 或 reflow。
-4.绘制渲染树，调用操作系统底层API(UI Backend)进行绘制操作。 
+4.对渲染树进行绘制，调用操作系统底层API(UI Backend)进行绘制操作。 
 
 Webkit内核工作流程：
                     DOM

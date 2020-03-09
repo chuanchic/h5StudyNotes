@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,6 +10,7 @@
             margin: 0;
             list-style: none;
         }
+
         .box {
             width: 560px;
             height: 380px;
@@ -16,6 +18,7 @@
             margin: 100px auto;
             position: relative;
         }
+
         ul {
             /*
             切割效果实现思路：
@@ -31,18 +34,23 @@
             transform-style: preserve-3d;
             float: left;
         }
+
         ul:nth-child(2) li {
             background-position: -112px 0;
         }
+
         ul:nth-child(3) li {
             background-position: -224px 0;
         }
+
         ul:nth-child(4) li {
             background-position: -336px 0;
         }
+
         ul:nth-child(5) li {
             background-position: -448px 0;
         }
+
         ul li {
             width: 100%;
             height: 100%;
@@ -50,22 +58,27 @@
             top: 0;
             position: absolute;
         }
+
         ul li:nth-child(1) {
-            background-image: url("test.jpg");
+            background-image: url("./test/test.jpg");
             transform: translateZ(190px);
         }
+
         ul li:nth-child(2) {
-            background-image: url("test.jpg");
+            background-image: url("./test/test.jpg");
             transform: rotateX(90deg) translateZ(190px);
         }
+
         ul li:nth-child(3) {
-            background-image: url("test.jpg");
+            background-image: url("./test/test.jpg");
             transform: rotateX(180deg) translateZ(190px);
         }
+
         ul li:nth-child(4) {
-            background-image: url("test.jpg");
+            background-image: url("./test/test.jpg");
             transform: rotateX(270deg) translateZ(190px);
         }
+
         .arrow_left,
         .arrow_right {
             width: 100px;
@@ -81,14 +94,17 @@
             border-radius: 10px;
             text-decoration: none;
         }
+
         .arrow_left {
             left: -100px;
         }
+
         .arrow_right {
             right: -100px;
         }
     </style>
 </head>
+
 <body>
     <div class="box">
         <ul>
@@ -132,28 +148,28 @@
         var clickFlag = true;
         //点击左箭头，让每个ul绕X轴旋转，正方向旋转90度
         leftBtn.onclick = function () {
-            if(!clickFlag){
+            if (!clickFlag) {
                 return;//避免多次点击
             }
             clickFlag = false;
 
             degCount += 90;
             uls.forEach(function (v, i) {
-                v.style.transition = "all 1s "+(0.2*i)+"s";
-                v.style.transform = "rotateX("+degCount+"deg)";
+                v.style.transition = "all 1s " + (0.2 * i) + "s";
+                v.style.transform = "rotateX(" + degCount + "deg)";
             })
         }
         //点击右箭头，让每个ul绕X轴旋转，反方向旋转90度
         rightBtn.onclick = function () {
-            if(!clickFlag){
+            if (!clickFlag) {
                 return;//避免多次点击
             }
             clickFlag = false;
 
             degCount -= 90;
             uls.forEach(function (v, i) {
-                v.style.transition = "all 1s "+(0.2*i)+"s";
-                v.style.transform = "rotateX("+degCount+"deg)";
+                v.style.transition = "all 1s " + (0.2 * i) + "s";
+                v.style.transform = "rotateX(" + degCount + "deg)";
             })
         }
         //监听最后一个ul动画执行结束
@@ -162,4 +178,5 @@
         })
     </script>
 </body>
+
 </html>
