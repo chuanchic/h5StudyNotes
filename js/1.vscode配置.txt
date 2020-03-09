@@ -1,0 +1,60 @@
+隐藏右边mini预览图
+    view -> show minimap
+
+配置：左下角齿轮 -> 设置
+    Files: Auto Save     afterDelay
+    Editor: Font Size    18
+    Editor: Tab Size     2
+    Extensions: Auto Update      false
+    Emmet: Trigger Expansion On Tab     true  //自动补全代码
+    Window: Zoom Level   1
+    Workbench: Startup Editor      newUntitledFile
+    Workbench › Side Bar: Location    right
+    Explorer: Confirm Delete     false
+
+VS Code配置：
+    打开 Code -> Preferences -> Settings -> Open Settings(JSON)
+
+打开默认浏览器
+    open in browser
+
+自动提示路径(路径自动补全)
+    Path intellisense
+
+自动补全标签  
+    Auto Close Tag
+    Auto Rename Tag
+    Auto Complete Tag
+
+帮助你规范化js代码
+    JavaScriptBooster
+
+代码格式化(Code formatter)
+    Prettier 
+
+Vue语法高亮和自动补全代码
+    Vetur
+    VueHelper
+    对于 Vetur ，设置让其可以自动格式化 .vue 文件里的 template 代码
+    在 Preferences -> Settings -> 搜索vetur
+    把 Vetur...HTML 的默认值 none 改成 js-beautify-html
+
+编译器代码风格统一
+    EditorConfig for VS Code
+    会自动读取 .editorconfig 文件来统一编译器代码风格，这个文件在 todomvc-app 里有
+
+开启一个服务器浏览HTML页面，可以实时更新页面
+    Live Server
+    第一次使用需要 Command + Shift + p 输入 live server 选择 open
+
+实现多设备同步(共享) 配置、插件 的功能
+    Settings Sync
+    第一次使用需要 Command + Shift + p 输入 sync 选择 Sync: Download Settings
+    点击 LOGIN WITH GITHUB，授权完成后会显示 success等字样，关闭页面即可
+    这时候vscode会自动打开 Select Your Existing Gist 页面，
+    如果之前使用过这个插件，会在这个页面里显示之前的 gist id 可供选择，
+    如果没有，可以使用插件自动生成，自动生成的方式
+    Command + Shift + p 输入 sync 选择 Sync: Update/Upload Settings，然后回车，
+    会自动创建 gist，这时插件会询问是否确定上传，点击 是 就行了
+    如何在其他机器上同步(共享) 配置、插件？
+    如果没有插件先安装插件，然后重复上述步骤，选择某个 gist 就行了

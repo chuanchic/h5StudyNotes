@@ -10,51 +10,13 @@ MVVM：Model(数据模型 对象)
       View(视图模型 DOM) 
       ViewModel(同步Model和View的对象 监听)
 
-3.准备工作(安装插件)
-浏览器插件：
+3.安装浏览器插件
 Vue.js-devtools_v4.1.4  一个在浏览器上可以调试vue项目的插件
 
-VS Code插件：
-自动补全标签  
-  Auto Close Tag
-  Auto Rename Tag
-  Auto Complete Tag
-在 VS Code 的左侧菜单项最下面一个EXTENSIONS里搜索，比如 Auto Close Tag，然后 Install
 
-开启一个服务器浏览HTML页面，可以实时更新页面
-  Live Server
-第一次使用需要 Command + Shift + p 输入 live server 选择 open
 
-路径自动补全
-  Path Intellisense
 
-Vue语法高亮和自动补全代码
-  Vetur
-  VueHelper
-对于 Vetur ，设置让其可以自动格式化 .vue 文件里的 template 代码
-在 Preferences -> Settings -> 搜索vetur
-把 Vetur...HTML 的默认值 none 改成 js-beautify-html
 
-编译器代码风格统一
-  EditorConfig for VS Code
-会自动读取 .editorconfig 文件来统一编译器代码风格，这个文件在 todomvc-app 里有
 
-实现多设备同步(共享) 配置、插件 的功能
-  Settings Sync
-第一次使用需要 Command + Shift + p 输入 sync 选择 Sync: Download Settings
-  点击 LOGIN WITH GITHUB，授权完成后会显示 success等字样，关闭页面即可
-这时候vscode会自动打开 Select Your Existing Gist 页面，
-如果之前使用过这个插件，会在这个页面里显示之前的 gist id 可供选择，
-如果没有，可以使用插件自动生成，自动生成的方式
-  Command + Shift + p 输入 sync 选择 Sync: Update/Upload Settings，然后回车，
-  会自动创建 gist，这时插件会询问是否确定上传，点击 是 就行了
-如何在其他机器上同步(共享) 配置、插件？
-  如果没有插件先安装插件，然后重复上述步骤，选择某个 gist 就行了
-
-代码格式化(Code formatter)
-  Prettier 
-
-VS Code配置：
-打开 Code -> Preferences -> Settings -> Open Settings(JSON)
 
 

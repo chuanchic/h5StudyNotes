@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <!-- 1.引入vue库 -->
+  <!-- 引入vue库 -->
   <script src="./vue2.js"></script>
 </head>
 
 <body>
-  <!-- 3.View，将data中定义好的数据展示到页面 -->
+  <!-- View，将data中定义好的数据展示到页面 -->
   <div id="app">
     <!-- 插值表达式 {{}} 的用法：
          1.直接写变量
@@ -26,7 +26,7 @@
     <h1>{{msg.split("").reverse().join("")}}</h1>
   </div>
   <script>
-    // 2.创建vue实例(ViewModel对象)，用来管理html代码
+    // 创建vue实例(ViewModel对象)，用来管理html代码
     let vm = new Vue({
       // 通过el属性来指定vue实例需要管理的范围
       el: "#app",
