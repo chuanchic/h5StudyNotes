@@ -1,0 +1,18 @@
+//将图片的路径定义为变量
+@imgURL: "../images/";
+
+ul{
+  //字符串的拼接要加上 {}
+  background: url("@{imgURL}bg.png");
+}
+
+//定义混合
+.error(@color: #999, @size: 14px){
+  background-color: @color;
+  font-size: @size;
+}
+
+//使用混合
+.title{
+  .error(#666, 20px)
+}
